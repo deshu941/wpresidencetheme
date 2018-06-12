@@ -1,10 +1,19 @@
 <?php
 class Social_widget extends WP_Widget {
+<<<<<<< HEAD
 
 	function Social_widget(){
 		$widget_ops = array('classname' => 'social_sidebar', 'description' => 'Social Links on sidebar.');
 		$control_ops = array('id_base' => 'social_widget');
 		$this->WP_Widget('social_widget', 'Wp Estate: Social Links', $widget_ops, $control_ops);
+=======
+        function __construct(){
+	//function Social_widget(){
+		$widget_ops = array('classname' => 'social_sidebar', 'description' => 'Social Links on sidebar.');
+		$control_ops = array('id_base' => 'social_widget');
+		//$this->WP_Widget('social_widget', 'Wp Estate: Social Links', $widget_ops, $control_ops);
+		parent::__construct('social_widget', 'Wp Estate: Social Links', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 	
 function form($instance){

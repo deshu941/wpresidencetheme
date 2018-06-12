@@ -2,7 +2,11 @@
 // Template Name:Stripe Charge Page
 // Wp Estate Pack
 require_once('libs/stripe/lib/Stripe.php');
+<<<<<<< HEAD
 
+=======
+$allowed_html =array();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 $stripe_secret_key              =   esc_html( get_option('wp_estate_stripe_secret_key','') );
 $stripe_publishable_key         =   esc_html( get_option('wp_estate_stripe_publishable_key','') );
@@ -22,6 +26,14 @@ $input = @file_get_contents("php://input");
 $event_json = json_decode($input);
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 if($event_json!=''){
     $event_json = json_decode($input);
     
@@ -31,7 +43,11 @@ if($event_json!=''){
         $customer_stripe_id= $value->customer;
     }
 
+<<<<<<< HEAD
     if($event_json->type=='charge.failed'){   
+=======
+    if($event_json->type=='invoice.payment_failed'){   
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $args=array('meta_key'      => 'stripe', 
                     'meta_value'    => $customer_stripe_id
                 );
@@ -45,7 +61,11 @@ if($event_json!=''){
     
     
     // recurring charge
+<<<<<<< HEAD
     if($event_json->type=='charge.succeeded'){
+=======
+    if($event_json->type=='invoice.payment_succeeded'){
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $args=array('meta_key'      => 'stripe', 
                         'meta_value'    => $customer_stripe_id
             );
@@ -84,14 +104,23 @@ if($event_json!=''){
 
 
 
+<<<<<<< HEAD
 //////////////////////end webhook - start processing
+=======
+//////////////////////end webhook - start processing        
+        
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 
 
 
 if( is_email($_POST['stripeEmail']) ){
+<<<<<<< HEAD
    $stripeEmail= $_POST['stripeEmail'];  
+=======
+   $stripeEmail=  wp_kses ( esc_html($_POST['stripeEmail']) ,$allowed_html);  
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }else{
     exit('none mail');
 }
@@ -142,8 +171,12 @@ if( isset($_POST['is_upgrade']) && !is_numeric( $_POST['is_upgrade'] ) ){
 
 
 
+<<<<<<< HEAD
 global $current_user;
 get_currentuserinfo();
+=======
+$current_user   =   wp_get_current_user();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 $userID         =   $current_user->ID;
 $user_email     =   $current_user->user_email;
 $username       =   $current_user->user_login;
@@ -153,6 +186,7 @@ $submission_curency_status = esc_html( get_option('wp_estate_submission_curency'
 ///////////////// payment for booking 
 ////////////////////////////////////////////////////////////////////////////////
 if ( isset($_POST['booking_id']) ){
+<<<<<<< HEAD
     
    /* try {    
         $token  = $_POST['stripeToken'];
@@ -240,12 +274,19 @@ if ( isset($_POST['booking_id']) ){
     
     
     
+=======
+    // do nothing    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }else if ( isset ($_POST['submission_pay'])  && $_POST['submission_pay']==1  ){
     ////////////////////////////////////////////////////////////////////////////////
     ////////////////// payment for submission
     ////////////////////////////////////////////////////////////////////////////////    
     try {
+<<<<<<< HEAD
         $token  = $_POST['stripeToken'];
+=======
+        $token  = wp_kses ( $_POST['stripeToken'] ,$allowed_html);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $customer = Stripe_Customer::create(array(
             'email' => $stripeEmail,
             'card'  => $token
@@ -307,8 +348,13 @@ if ( isset($_POST['booking_id']) ){
         wpestate_email_to_admin(0);
         }
         
+<<<<<<< HEAD
         $redirect = get_dashboard_link();
       wp_redirect($redirect);
+=======
+        $redirect = wpestate_get_template_link('user_dashboard.php');
+        wp_redirect($redirect);exit;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
     
        
@@ -336,8 +382,13 @@ if ( isset($_POST['booking_id']) ){
 ////////////////// payment for pack recuring
 ////////////////////////////////////////////////////////////////////////////////    
     try {
+<<<<<<< HEAD
         $dash_profile_link = get_dashboard_profile_link();
         $token          =   $_POST['stripeToken'];
+=======
+        $dash_profile_link = wpestate_get_template_link('user_dashboard_profile.php');
+        $token          =   wp_kses ( esc_html($_POST['stripeToken']) ,$allowed_html);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $pack_id        =   intval($_POST['pack_id']);
         $stripe_plan    =   esc_html(get_post_meta($pack_id, 'pack_stripe_id', true));
 
@@ -359,12 +410,34 @@ if ( isset($_POST['booking_id']) ){
         }else{
             wpestate_upgrade_user_membership($current_user->ID,$pack_id,2,'');
         }      
+<<<<<<< HEAD
         // wp_redirect( $dash_profile_link );  
         update_user_meta( $current_user->ID, 'stripe', $stripe_customer_id );
         update_user_meta( $current_user->ID, 'stripe_subscription_id', $subscription_id );
         
         
         wp_redirect( $dash_profile_link ); 
+=======
+        // wp_redirect( $dash_profile_link );  exit;
+        
+        $current_stripe_customer_id =  get_user_meta( $current_user->ID, 'stripe', true );
+        $is_stripe_recurring        =   get_user_meta( $current_user->ID, 'has_stripe_recurring',true );
+        if ($current_stripe_customer_id !=='' && $is_stripe_recurring==1){
+            if( $current_stripe_customer_id !== $stripe_customer_id ){
+                wpestate_stripe_cancel_subscription_on_upgrade();
+            }
+        }
+        
+        
+        update_user_meta( $current_user->ID, 'stripe', $stripe_customer_id );
+        update_user_meta( $current_user->ID, 'stripe_subscription_id', $subscription_id );
+        update_user_meta( $current_user->ID, 'has_stripe_recurring',1 );
+       
+        
+        
+        
+        wp_redirect( $dash_profile_link ); exit;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
  
     }
     catch (Exception $e) {
@@ -377,6 +450,7 @@ if ( isset($_POST['booking_id']) ){
     
     
     
+<<<<<<< HEAD
     
     
     
@@ -390,6 +464,9 @@ if ( isset($_POST['booking_id']) ){
     
     
     
+=======
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
 }else{
 
@@ -397,9 +474,15 @@ if ( isset($_POST['booking_id']) ){
 ////////////////// payment for pack
 ////////////////////////////////////////////////////////////////////////////////  
     try {
+<<<<<<< HEAD
         $dash_profile_link = get_dashboard_profile_link();
 
         $token  = $_POST['stripeToken'];
+=======
+        $dash_profile_link = wpestate_get_template_link('user_dashboard_profile.php');
+
+        $token  = wp_kses (esc_html($_POST['stripeToken']),$allowed_html);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $customer = Stripe_Customer::create(array(
             'email' => $stripeEmail,
             'card'  => $token
@@ -422,7 +505,15 @@ if ( isset($_POST['booking_id']) ){
         }else{
             wpestate_upgrade_user_membership($current_user->ID,$pack_id,1,'');
         }      
+<<<<<<< HEAD
         wp_redirect( $dash_profile_link );  
+=======
+        
+      
+        
+        update_user_meta( $current_user->ID, 'has_stripe_recurring',0 );
+        wp_redirect( $dash_profile_link );  exit;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
     }
     catch (Exception $e) {
@@ -436,6 +527,38 @@ if ( isset($_POST['booking_id']) ){
 }
 
   
+<<<<<<< HEAD
+=======
+function wpestate_stripe_cancel_subscription_on_upgrade(){
+    global $current_user;  
+    require_once(get_template_directory().'/libs/stripe/lib/Stripe.php');
+    
+    $current_user = wp_get_current_user();
+    $userID                 =   $current_user->ID;
+
+    $stripe_customer_id =  get_user_meta( $userID, 'stripe', true );
+    $subscription_id =     get_user_meta( $userID, 'stripe_subscription_id', true );
+    
+    $stripe_secret_key              =   esc_html( get_option('wp_estate_stripe_secret_key','') );
+    $stripe_publishable_key         =   esc_html( get_option('wp_estate_stripe_publishable_key','') );
+
+    $stripe = array(
+        "secret_key"      => $stripe_secret_key,
+        "publishable_key" => $stripe_publishable_key
+    );
+
+    Stripe::setApiKey($stripe['secret_key']);
+   
+    $submission_curency_status = esc_html( get_option('wp_estate_submission_curency','') );
+ 
+    
+    $cu = Stripe_Customer::retrieve($stripe_customer_id);
+    $cu->subscriptions->retrieve($subscription_id)->cancel(
+    array("at_period_end" => true ));
+    update_user_meta( $current_user->ID, 'stripe_subscription_id', '' );
+}
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 

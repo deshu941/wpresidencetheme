@@ -1,10 +1,20 @@
 <?php
 class Advanced_Search_widget extends WP_Widget {
+<<<<<<< HEAD
 	
 	function Advanced_Search_widget(){
 		$widget_ops = array('classname' => 'advanced_search_sidebar', 'description' => 'Advanced Search Widget');
 		$control_ops = array('id_base' => 'advanced_search_widget');
 		$this->WP_Widget('advanced_search_widget', 'Wp Estate: Advanced Search', $widget_ops, $control_ops);
+=======
+	function __construct(){
+	//function Advanced_Search_widget(){
+		$widget_ops = array('classname' => 'advanced_search_sidebar boxed_widget', 'description' => 'Advanced Search Widget');
+		$control_ops = array('id_base' => 'advanced_search_widget');
+		//$this->WP_Widget('advanced_search_widget', 'Wp Estate: Advanced Search', $widget_ops, $control_ops);
+                parent::__construct('advanced_search_widget', 'Wp Estate: Advanced Search', $widget_ops, $control_ops);
+                
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 	
 	function form($instance){
@@ -45,7 +55,11 @@ class Advanced_Search_widget extends WP_Widget {
                     print '<div class="widget-title-sidebar_blank"></div>';
                 }
                 
+<<<<<<< HEAD
                 $adv_submit=get_adv_search_link();
+=======
+                $adv_submit=wpestate_get_template_link('advanced_search_results.php');
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 
                 //  show cities or areas that are empty ?
                 $args = wpestate_get_select_arguments();
@@ -60,6 +74,7 @@ class Advanced_Search_widget extends WP_Widget {
                 $adv_search_label       =   get_option('wp_estate_adv_search_label','');
                 $adv_search_how         =   get_option('wp_estate_adv_search_how','');
                 
+<<<<<<< HEAD
                 $custom_advanced_search =   get_option('wp_estate_custom_advanced_search','');
                 print '<form role="search" method="get"   action="'.$adv_submit.'" >';
                             if($custom_advanced_search=='yes'){
@@ -70,12 +85,96 @@ class Advanced_Search_widget extends WP_Widget {
                                 $this->normal_fields_widget($action_select_list,$categ_select_list,$select_city_list,$select_area_list);
                   
                             }
+=======
+                $custom_advanced_search     =   get_option('wp_estate_custom_advanced_search','');
+                $adv_search_type            =   get_option('wp_estate_adv_search_type','');
+                    
+                print '<form role="search" method="get"   action="'.$adv_submit.'" >';
+                    if ( $adv_search_type==10){
+                        $adv_actions_value  =   __('All Actions','wpestate');
+                        $adv_actions_value1 =   'all';
+
+                        print '
+                            <input type="text" id="adv_location" class="form-control" name="adv_location"  placeholder="'.__('Type address, state, city or area','wpestate').'" value="">      
+                        ';
+
+                        print'
+                        
+                            <div class="dropdown form-control " >
+                                <div data-toggle="dropdown" id="sidebar-adv_actions" class=" sidebar_filter_menu  " data-value="'.strtolower ( rawurlencode ( $adv_actions_value1) ).'"> 
+                                    '.$adv_actions_value.' 
+                                <span class="caret caret_sidebar "></span> </div>           
+                                <input type="hidden" name="filter_search_action[]" value="">
+                                <ul  class="dropdown-menu filter_menu" role="menu" aria-labelledby="sidebar-adv_actions">
+                                    '.$action_select_list.'
+                                </ul>        
+                            </div>
+                       ';
+                       print '<input type="hidden" name="is10" value="10">';
+                    }
+
+
+                    if ( $adv_search_type==11){
+                        $adv_actions_value  =   __('All Actions','wpestate');
+                        $adv_actions_value1 =   'all';
+                        $adv_categ_value    =   __('All Types','wpestate');
+                        $adv_categ_value1   =   'all';
+            
+                        print'<input type="text" id="keyword_search" class="form-control" name="keyword_search"  placeholder="'. __('Type Keyword','wpestate').'" value="">';
+                    
+                        print '<div class="dropdown form-control " >
+                            <div data-toggle="dropdown" id="sidebar-adv_categ" class="sidebar_filter_menu"  data-value="'.strtolower ( rawurlencode( $adv_categ_value1)).'"> 
+                                '.$adv_categ_value.'               
+                            <span class="caret caret_sidebar"></span> </div>           
+                            <input type="hidden" name="filter_search_type[]" value="">
+                            <ul  class="dropdown-menu filter_menu" role="menu" aria-labelledby="sidebar-adv_categ">
+                                '.$categ_select_list.'
+                            </ul>
+                        </div>';
+               
+                        print'<div class="dropdown form-control " >
+                            <div data-toggle="dropdown" id="sidebar-adv_actions" class="sidebar_filter_menu" data-value="'.strtolower ( rawurlencode ( $adv_actions_value1) ).'"> 
+                                '.$adv_actions_value.' 
+                            <span class="caret caret_sidebar"></span> </div>           
+                            <input type="hidden" name="filter_search_action[]" value="">
+                            <ul  class="dropdown-menu filter_menu" role="menu" aria-labelledby="sidebar-adv_actions">
+                                '.$action_select_list.'
+                            </ul>        
+                        </div>';
+                    
+                        print ' <input type="hidden" name="is11" value="11">';
+                    }
+
+
+
+
+
+
+                    if($custom_advanced_search=='yes'){
+                        $this->custom_fields_widget($adv_search_what,$action_select_list,$categ_select_list,$select_city_list,$select_area_list,$adv_search_how,$adv_search_label,$select_county_state_list);
+                    }else{ // not custom search
+                        $this->normal_fields_widget($action_select_list,$categ_select_list,$select_city_list,$select_area_list);
+
+                    }
+                    
+                    
+                    
+                    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 $extended_search = get_option('wp_estate_show_adv_search_extended','');
                 if($extended_search=='yes'){            
                     show_extended_search('widget');
                 }
                 
+<<<<<<< HEAD
                 print'<button class="wpb_button  wpb_btn-info wpb_btn-large" id="advanced_submit_widget">'.__('Search','wpestate').'</button>
+=======
+                if (function_exists('icl_translate') ){
+                    print do_action( 'wpml_add_language_form_field' );
+                }
+                
+                print'<button class="wpresidence_button" id="advanced_submit_widget">'.__('Search','wpestate').'</button>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 </form>  
                 '; 
 		print $after_widget;
@@ -90,6 +189,31 @@ class Advanced_Search_widget extends WP_Widget {
         
         
         function custom_fields_widget($adv_search_what,$action_select_list,$categ_select_list,$select_city_list,$select_area_list,$adv_search_how,$adv_search_label,$select_county_state_list){
+<<<<<<< HEAD
+=======
+            $adv_search_type            =   get_option('wp_estate_adv_search_type','');
+            if ( $adv_search_type==6 || $adv_search_type==7 || $adv_search_type==8 || $adv_search_type==9 ){    
+                    $adv6_taxonomy          =   get_option('wp_estate_adv6_taxonomy');
+                
+                    if ($adv6_taxonomy=='property_category'){
+                        $search_field="categories";
+                    }else if ($adv6_taxonomy=='property_action_category'){
+                        $search_field="types";
+                    }else if ($adv6_taxonomy=='property_city'){
+                        $search_field="cities";
+                    }else if ($adv6_taxonomy=='property_area'){
+                        $search_field="areas";
+                    }else if ($adv6_taxonomy=='property_county_state'){
+                        $search_field="county / state";
+                    }
+                   
+                wpestate_show_search_field_tab_inject('sidebar',$search_field,$action_select_list,$categ_select_list,$select_city_list,$select_area_list,'',$select_county_state_list);
+            }
+            
+           
+            
+            
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             foreach($adv_search_what as $key=>$search_field){
                 wpestate_show_search_field('sidebar',$search_field,$action_select_list,$categ_select_list,$select_city_list,$select_area_list,$key,$select_county_state_list);
             } 

@@ -1,5 +1,6 @@
 <?php
 //related listings
+<<<<<<< HEAD
 
 $counter = 0;
 $post_category          = get_the_terms($post->ID, 'property_category');
@@ -15,6 +16,33 @@ $action_array           = '';
 $city_array             = '';
 $not_in                 = array();
 $not_in[]               = $post->ID;
+=======
+global $property_unit_slider;
+global $no_listins_per_row;
+global $wpestate_uset_unit;
+global $custom_unit_structure;
+global $prop_unit;
+global $post;
+
+$not_in[]               =   $exclude=  $post->ID;    
+$custom_unit_structure  =   get_option('wpestate_property_unit_structure');
+$wpestate_uset_unit     =   intval ( get_option('wpestate_uset_unit','') );
+$no_listins_per_row     =   intval( get_option('wp_estate_listings_per_row', '') );
+$property_unit_slider   =   get_option('wp_estate_prop_list_slider','');
+$counter                =   0;
+$post_category          =   get_the_terms($post->ID, 'property_category');
+$post_action_category   =   get_the_terms($post->ID, 'property_action_category');
+$post_city_category     =   get_the_terms($post->ID, 'property_city');
+$similar_no             =   3;
+$args                   =   '';
+$items[]                =   '';
+$items_actions[]        =   '';
+$items_city[]           =   '';
+$categ_array            =   '';
+$action_array           =   '';
+$city_array             =   '';
+$not_in                 =   array();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -71,11 +99,16 @@ $args=array(
     'ignore_sticky_posts'   => 0,
     'post_type'             => 'estate_property',
     'post_status'           => 'publish',
+<<<<<<< HEAD
     'post__not_in'          => $not_in,
+=======
+    'post__not_in'          => array($exclude),
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     'tax_query'             => array(
     'relation'              => 'AND',
                                $categ_array,
                                $action_array,
+<<<<<<< HEAD
                                $city_array
                                )
 );
@@ -88,18 +121,56 @@ $my_query = new WP_Query($args);
     if ($my_query->have_posts()) { ?>	
         <?php  get_template_part('templates/compare_list'); ?> 
 
+=======
+                                $city_array
+                               )
+);
+
+
+
+if( !empty($categ_array) || !empty($action_array)){
+
+    $prop_unit          =   esc_html ( get_option('wp_estate_prop_unit','') );
+    $compare_submit     =   wpestate_get_template_link('compare_listings.php');
+    $my_query           =   new WP_Query($args);
+
+    $property_card_type         =   intval(get_option('wp_estate_unit_card_type'));
+    $property_card_type_string  =   '';
+    if($property_card_type==0){
+        $property_card_type_string='';
+    }else{
+        $property_card_type_string='_type'.$property_card_type;
+    }
+
+    if ($my_query->have_posts()) { ?>	
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <div class="mylistings"> 
             <h3 class="agent_listings_title_similar" ><?php _e('Similar Listings', 'wpestate'); ?></h3>   
             <?php
             while ($my_query->have_posts()):$my_query->the_post();
+<<<<<<< HEAD
                 get_template_part('templates/property_unit');  
             endwhile;
             ?>
         </div>	
     <?php } //endif have post
     ?>
+=======
+                get_template_part('templates/property_unit'.$property_card_type_string); 
+            endwhile;
+            ?>
+        </div>	
+    <?php 
+    } //endif have post
+}//end if empty
+?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 <?php
 wp_reset_query();
+<<<<<<< HEAD
 ?> 
+=======
+?> 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

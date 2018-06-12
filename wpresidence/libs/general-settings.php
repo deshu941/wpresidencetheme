@@ -8,11 +8,22 @@ function wpestate_show_price_label_slider($min_price_slider,$max_price_slider,$c
     
         
     $custom_fields = get_option( 'wp_estate_multi_curr', true);
+<<<<<<< HEAD
     //print_r($_COOKIE);
     if( !empty($custom_fields) && isset($_COOKIE['my_custom_curr']) &&  isset($_COOKIE['my_custom_curr_pos']) &&  isset($_COOKIE['my_custom_curr_symbol']) && $_COOKIE['my_custom_curr_pos']!=-1){
         $i=intval($_COOKIE['my_custom_curr_pos']);
         $min_price_slider       =   $min_price_slider * $custom_fields[$i][2];
         $max_price_slider       =   $max_price_slider * $custom_fields[$i][2];
+=======
+
+    if( !empty($custom_fields) && isset($_COOKIE['my_custom_curr']) &&  isset($_COOKIE['my_custom_curr_pos']) &&  isset($_COOKIE['my_custom_curr_symbol']) && $_COOKIE['my_custom_curr_pos']!=-1){
+        $i=intval($_COOKIE['my_custom_curr_pos']);
+        
+        if( !isset($_GET['price_low']) && !isset($_GET['price_max'])  ){
+            $min_price_slider       =   $min_price_slider * $custom_fields[$i][2];
+            $max_price_slider       =   $max_price_slider * $custom_fields[$i][2];
+        }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
         $currency               =   $custom_fields[$i][0];
         $min_price_slider   =   number_format($min_price_slider,0,'.',$th_separator);
@@ -55,14 +66,25 @@ if (!current_user_can('manage_options') ) { show_admin_bar(false); }
 if( !function_exists('wpestate_image_size') ): 
     function wpestate_image_size(){
         add_image_size('user_picture_profile', 255, 143, true);
+<<<<<<< HEAD
         add_image_size('agent_picture_single_page', 314, 180, true);
+=======
+        //  add_image_size('agent_picture_single_page', 320, 180, true);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         add_image_size('agent_picture_thumb' , 120, 120, true);
         add_image_size('blog_thumb'          , 272, 189, true);
         add_image_size('blog_unit'           , 1110, 385, true);
         add_image_size('slider_thumb'        , 143,  83, true);
+<<<<<<< HEAD
         add_image_size('property_featured_sidebar',261,225,true);
         add_image_size('blog-full'           , 940, 529, true);
         add_image_size('property_listings'   , 265, 163, true);
+=======
+        add_image_size('property_featured_sidebar',768,662,true);
+        //  add_image_size('property_featured_sidebar',261,225,true);
+        // add_image_size('blog-full'           , 940, 529, true);
+        add_image_size('property_listings'   , 525, 328, true); // 1.62 was 265/163 until v1.12
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         add_image_size('property_full'       , 980, 777, true);
         add_image_size('listing_full_slider' , 835, 467, true);
         add_image_size('listing_full_slider_1', 1110, 623, true);
@@ -160,8 +182,13 @@ function wpestate_widgets_init() {
         'description' => __('The top bar left widget area', 'wpestate'),
         'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
         'after_widget' => '</li>',
+<<<<<<< HEAD
         'before_title' => '',
         'after_title' => '',
+=======
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     ));
        
     register_sidebar(array(
@@ -170,11 +197,88 @@ function wpestate_widgets_init() {
         'description' => __('The top bar right widget area', 'wpestate'),
         'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
         'after_widget' => '</li>',
+<<<<<<< HEAD
         'before_title' => '',
         'after_title' => '',
     ));
        
        
+=======
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+    ));
+      register_sidebar(array(
+        'name' => __('Sidebar Menu Widget Area - Before Menu', 'wpestate'),
+        'id' => 'sidebar-menu-widget-area-before',
+        'description' => __('Sidebar for header type 3 - before menu', 'wpestate'),
+        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</li>',
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+    ));
+    register_sidebar(array(
+        'name' => __('Sidebar Menu Widget Area - After Menu', 'wpestate'),
+        'id' => 'sidebar-menu-widget-area-after',
+        'description' => __('Sidebar for header type 3 - after menu', 'wpestate'),
+        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</li>',
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+    ));
+       
+    
+    
+    register_sidebar(array(
+        'name' => __('Header4 Widget Area', 'wpestate'),
+        'id' => 'header4-widget-area',
+        'description' => __('Header4 widget area', 'wpestate'),
+        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</li>',
+        'before_title' => '<h3 class="widget-title-header4">',
+        'after_title' => '</h3>',
+    ));
+
+    
+     register_sidebar(array(
+        'name' => __('Dashboard Top Bar Left Widget Area', 'wpestate'),
+        'id' => 'dashboard-top-bar-left-widget-area',
+        'description' => __('User Dashboard - The top bar left widget area', 'wpestate'),
+        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</li>',
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+    ));
+       
+    register_sidebar(array(
+        'name' => __('Dashboard Top Bar Right Widget Area', 'wpestate'),
+        'id' => 'dashboard-top-bar-right-widget-area',
+        'description' => __('User Dashboard - The top bar right widget area', 'wpestate'),
+        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</li>',
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+    ));
+    
+    register_sidebar(array(
+        'name' => __('Splash Page Bottom Right Widget Area', 'wpestate'),
+        'id' => 'splash-page_bottom-right-widget-area',
+        'description' => __('Splash Page - Bottom right area', 'wpestate'),
+        'before_widget' => '<li id="%1$s" class="splash_page_widget widget-container %2$s">',
+        'after_widget' => '</li>',
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+    ));
+    
+    register_sidebar(array(
+        'name' => __('Splash Page Bottom Left Widget Area', 'wpestate'),
+        'id' => 'splash-page_bottom-left-widget-area',
+        'description' => __('Splash Page - Bottom left area', 'wpestate'),
+        'before_widget' => '<li id="%1$s" class="splash_page_widget widget-container %2$s">',
+        'after_widget' => '</li>',
+        'before_title' => '<h3 class="widget-title-topbar">',
+        'after_title' => '</h3>',
+    ));
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 endif; // end   wpestate_widgets_init  
 
@@ -211,14 +315,53 @@ endif; // end   wpestate_new_excerpt_more
 
 if( !function_exists('wpestate_strip_words') ):
     function wpestate_strip_words($text, $words_no) {
+<<<<<<< HEAD
+=======
+        
+       
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $temp = explode(' ', $text, ($words_no + 1));
         if (count($temp) > $words_no) {
             array_pop($temp);
         }
         return implode(' ', $temp);
+<<<<<<< HEAD
     }
 endif; // end   wpestate_strip_words 
 
+=======
+          }
+endif; // end   wpestate_strip_words 
+
+
+if( !function_exists('wpestate_strip_excerpt_by_char') ):
+    function wpestate_strip_excerpt_by_char($text, $chars_no,$post_id) {
+        $return_string  = '';
+        $return_string  =  mb_substr( $text,0,$chars_no); 
+            if(mb_strlen($text)>$chars_no){
+                $return_string.= ' <a href="'.get_permalink($post_id).'" class="unit_more_x">'.__('[more]','wpestate').'</a>';   
+            } 
+        return $return_string;
+        }
+        
+endif; // end   wpestate_strip_words 
+
+if( !function_exists('wpestate_strip_excerpt_by_char_places') ):
+    function wpestate_strip_excerpt_by_char_places($text, $chars_no,$link) {
+        $return_string  = '';
+        $return_string  =  mb_substr( $text,0,$chars_no); 
+            if(mb_strlen($text)>$chars_no){
+                $return_string.= ' <a href="'.$link.'" class="unit_more_x">'.__('[more]','wpestate').'</a>';   
+            } 
+        return $return_string;
+        }
+        
+endif; // end   wpestate_strip_words 
+
+
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 /////////////////////////////////////////////////////////////////////////////////////////
 ///// add extra div for wp embeds
 /////////////////////////////////////////////////////////////////////////////////////////

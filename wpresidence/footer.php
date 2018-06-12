@@ -1,10 +1,22 @@
 </div><!-- end content_wrapper started in header -->
+<<<<<<< HEAD
 <?php
 //print_R($_COOKIE);
 $footer_background          =   get_option('wp_estate_footer_background','');
 $repeat_footer_back_status  =   get_option('wp_estate_repeat_footer_back','');
 $footer_style       =   '';
 $footer_back_class  =   '';
+=======
+
+</div> <!-- end class container -->
+<?php
+$show_sticky_footer_select  =   get_option('wp_estate_show_sticky_footer','');
+$footer_background          =   get_option('wp_estate_footer_background','');
+$repeat_footer_back_status  =   get_option('wp_estate_repeat_footer_back','');
+$logo_header_type           =   get_option('wp_estate_logo_header_type','');
+$footer_style               =   '';
+$footer_back_class          =   '';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 if ($footer_background!=''){
@@ -21,6 +33,7 @@ if( $repeat_footer_back_status=='repeat' ){
     $footer_back_class = ' footer_back_repeat_no ';
 }
 
+<<<<<<< HEAD
 
 if( !wpestate_half_map_conditions ($post->ID) ){
 
@@ -55,6 +68,74 @@ if( !wpestate_half_map_conditions ($post->ID) ){
                 </div>  
             </div>  
         </div>
+=======
+if($show_sticky_footer_select=='yes'){
+    $footer_back_class.=' sticky_footer ';
+}
+
+if($logo_header_type=='type4'){
+    $footer_back_class.= ' footer_header4 ';
+}
+
+$show_foot          =   get_option('wp_estate_show_footer','');
+$wide_footer        =   get_option('wp_estate_wide_footer','');
+$wide_footer_class  =   '';
+
+
+
+if(  is_tax() || ( isset($post->ID) && !wpestate_half_map_conditions ($post->ID) && $show_foot=='yes') ){
+    $wide_status     =   esc_html(get_option('wp_estate_wide_status',''));
+    if($wide_status==2){
+        $footer_back_class.=" boxed_footer ";
+    }
+
+?>    
+    <footer id="colophon" role="contentinfo" <?php echo ($footer_style); ?> class=" <?php echo ($footer_back_class);?> ">    
+
+        <?php 
+        if($wide_footer=='yes'){
+            $wide_footer_class=" wide_footer ";
+        }
+        ?>
+        
+        <div id="footer-widget-area" class="row <?php echo $wide_footer_class;?>">
+           <?php get_sidebar('footer');?>
+        </div>
+
+        
+        <?php     
+        $show_show_footer_copy_select  =   get_option('wp_estate_show_footer_copy','');
+        if($show_show_footer_copy_select=='yes'){
+        ?>
+            <div class="sub_footer">  
+                <div class="sub_footer_content <?php echo $wide_footer_class;?>">
+                    <span class="copyright">
+                        <?php   
+                        $message = stripslashes( esc_html (get_option('wp_estate_copyright_message', '')) );
+                        if (function_exists('icl_translate') ){
+                            $property_copy_text      =   icl_translate('wpestate','wp_estate_copyright_message', $message );
+                            print ($property_copy_text);
+                        }else{
+                            print ($message);
+                        }
+                        ?>
+                    </span>
+
+                    <div class="subfooter_menu">
+                        <?php      
+                            wp_nav_menu( array(
+                                'theme_location'    => 'footer_menu',
+                            ));  
+                        ?>
+                    </div>  
+                </div>  
+            </div>      
+        <?php
+        }// end show subfooter
+        ?>
+        
+        
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     </footer><!-- #colophon -->
 <?php } ?>
 
@@ -62,7 +143,10 @@ if( !wpestate_half_map_conditions ($post->ID) ){
 <?php get_template_part('templates/navigational');?>
 
 <?php wp_get_schedules(); ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 <?php wp_footer(); ?>
 
 <?php
@@ -76,7 +160,11 @@ if ($ga != '') { ?>
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+<<<<<<< HEAD
   ga('create', '<?php echo $ga; ?>', '<?php     echo $_SERVER['SERVER_NAME']; ?>');
+=======
+  ga('create', '<?php echo esc_html($ga); ?>', '<?php     echo esc_html($_SERVER['SERVER_NAME']); ?>');
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
   ga('send', 'pageview');
 //]]>
 </script>
@@ -85,6 +173,7 @@ if ($ga != '') { ?>
 }
 ?>
 
+<<<<<<< HEAD
 <?php
 //print_r($_COOKIE);
 ?>
@@ -92,5 +181,23 @@ if ($ga != '') { ?>
 
 </div> <!-- end class container -->
 </div> <!-- end website wrapper -->
+=======
+
+<?php 
+global $logo_header_align;
+$logo_header_type            =   get_option('wp_estate_logo_header_type','');
+$logo_header_align           =   get_option('wp_estate_logo_header_align','');
+if($logo_header_type=='type3'){ 
+    get_template_part( 'templates/top_bar_sidebar' ); 
+}
+?>
+</div> <!-- end website wrapper -->
+<?php  get_template_part('templates/compare_list'); ?> 
+<?php  get_template_part('templates/login_register_modal'); ?> 
+<?php if(is_singular('estate_property')){
+        get_template_part ('/templates/image_gallery'); 
+}
+?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 </body>
 </html>

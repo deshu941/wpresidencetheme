@@ -10,10 +10,22 @@ if($options['content_class']=='col-md-12'){
 
 
 if ($tags) {
+<<<<<<< HEAD
        
         $first_tag = $tags[0]->term_id;
         $args = array(
             'tag__in'       => array($first_tag),
+=======
+        $tag_array=array();
+        foreach($tags as $tag){
+            $tag_array[]=$tag->term_id;
+        }
+    
+     
+     
+        $args = array(
+            'tag__in'       => $tag_array,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             'post__not_in'  => array($post->ID),
             'showposts'     => $no_rows,
             'meta_query'    => array(
@@ -24,6 +36,10 @@ if ($tags) {
                                 )
         );
         
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         wp_reset_query();
         $my_query = new WP_Query($args);
         
@@ -50,5 +66,9 @@ if ($tags) {
 
  
 wp_reset_query();
+<<<<<<< HEAD
 ?> 
 
+=======
+?> 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

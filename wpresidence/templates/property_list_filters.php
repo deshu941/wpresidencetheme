@@ -3,6 +3,7 @@ global $current_adv_filter_search_label;
 global $current_adv_filter_category_label;
 global $current_adv_filter_city_label;
 global $current_adv_filter_area_label;
+<<<<<<< HEAD
 global $prop_unit;
 
 $current_name      =   '';
@@ -10,12 +11,33 @@ $current_slug      =   '';
 $listings_list     =   '';
 $show_filter_area  =   get_post_meta($post->ID, 'show_filter_area', true);
 
+=======
+global $current_adv_filter_county_label;
+global $prop_unit;
+
+$current_name      =    '';
+$current_slug      =    '';
+$listings_list     =    '';
+$show_filter_area  =    '';
+ 
+if( isset($post->ID) ){
+    $show_filter_area  =   get_post_meta($post->ID, 'show_filter_area', true);
+}
+
+$current_adv_filter_search_meta     = 'All Actions';
+$current_adv_filter_category_meta   = 'All Types';
+$current_adv_filter_city_meta       = 'All Cities';
+$current_adv_filter_area_meta       = 'All Areas';
+$current_adv_filter_county_meta     = 'All Counties/States';
+        
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 if( is_tax() ){
     $show_filter_area = 'yes';
     $current_adv_filter_search_label    =__('All Actions','wpestate');
     $current_adv_filter_category_label  =__('All Types','wpestate');
     $current_adv_filter_city_label      =__('All Cities','wpestate');
     $current_adv_filter_area_label      =__('All Areas','wpestate');
+<<<<<<< HEAD
     $taxonmy                            = get_query_var('taxonomy');
 //  $term                               = get_query_var( 'name' );
     $term                               = single_cat_title('',false);
@@ -38,6 +60,102 @@ if( is_tax() ){
 
 $selected_order         = __('Sort by','wpestate');
 $listing_filter         = get_post_meta($post->ID, 'listing_filter',true );
+=======
+    $current_adv_filter_county_label      =__('All Counties/States','wpestate');
+
+    
+    $taxonmy                            = get_query_var('taxonomy');
+    $term                               = single_cat_title('',false);
+    
+    
+    
+    if ($taxonmy == 'property_city'){
+        $current_adv_filter_city_label  =   ucwords( str_replace('-',' ',$term) );
+        $current_adv_filter_city_meta   =   sanitize_title($term);
+    }
+    if ($taxonmy == 'property_area'){
+        $current_adv_filter_area_label  =   ucwords( str_replace('-',' ',$term) );
+        $current_adv_filter_area_meta   =   sanitize_title($term);
+    }
+    if ($taxonmy == 'property_category'){
+        $current_adv_filter_category_label  =   ucwords( str_replace('-',' ',$term) );
+        $current_adv_filter_category_meta   =   sanitize_title($term);
+    }
+    if ($taxonmy == 'property_action_category'){
+        $current_adv_filter_search_label    =   ucwords( str_replace('-',' ',$term) );
+        $current_adv_filter_search_meta     =   sanitize_title($term);
+    }
+    if ($taxonmy == 'property_county_state'){
+        $current_adv_filter_county_label    =   ucwords( str_replace('-',' ',$term) );
+        $current_adv_filter_county_meta     =   sanitize_title($term);
+    }
+    
+}
+
+
+if(is_page_template('property_list.php')){
+    
+    $current_adv_filter_search_action   =   get_post_meta ( $post->ID, 'adv_filter_search_action', true);
+    if($current_adv_filter_search_action[0]=='all'){
+        $current_adv_filter_search_label    =__('All Actions','wpestate');
+        $current_adv_filter_search_meta     = 'All Actions';
+    }else{
+        $current_adv_filter_search_label    =   ucwords( str_replace('-',' ',$current_adv_filter_search_action[0]) );
+        $current_adv_filter_search_meta     =   sanitize_title($current_adv_filter_search_action[0]);
+    }
+   
+
+    $current_adv_filter_search_category =   get_post_meta ( $post->ID, 'adv_filter_search_category', true);    
+    if($current_adv_filter_search_category[0]=='all'){
+        $current_adv_filter_category_label  =__('All Types','wpestate');
+        $current_adv_filter_category_meta   = 'All Types';
+    }else{
+        $current_adv_filter_category_label  =   ucwords( str_replace('-',' ',$current_adv_filter_search_category[0]) );
+        $current_adv_filter_category_meta   =   sanitize_title($current_adv_filter_search_category[0]);
+    }
+     
+   // county / state fielter
+    $current_adv_filter_county        =   get_post_meta ( $post->ID, 'current_adv_filter_county', true);
+    if(isset($current_adv_filter_county[0])){
+        if($current_adv_filter_county[0]=='all'){
+            $current_adv_filter_county_label      =__('All Counties/States','wpestate');
+            $current_adv_filter_county_meta       = 'All Counties/States';
+        }else{
+            $current_adv_filter_county_label  =   ucwords( str_replace('-',' ',$current_adv_filter_county[0]) );
+            $current_adv_filter_county_meta   =   sanitize_title($current_adv_filter_county[0]);
+        }
+    }
+   
+   
+    $current_adv_filter_area        =   get_post_meta ( $post->ID, 'current_adv_filter_area', true);
+    if($current_adv_filter_area[0]=='all'){
+        $current_adv_filter_area_label      =__('All Areas','wpestate');
+        $current_adv_filter_area_meta       = 'All Areas';
+    }else{
+        $current_adv_filter_area_label  =   ucwords( str_replace('-',' ',$current_adv_filter_area[0]) );
+        $current_adv_filter_area_meta   =   sanitize_title($current_adv_filter_area[0]);
+    }
+    
+    
+    $current_adv_filter_city        =   get_post_meta ( $post->ID, 'current_adv_filter_city', true);
+    if($current_adv_filter_city[0]=='all'){
+        $current_adv_filter_city_label      =__('All Cities','wpestate');
+        $current_adv_filter_city_meta       = 'All Cities';
+    }else{
+        $current_adv_filter_city_label  =   ucwords( str_replace('-',' ',$current_adv_filter_city[0]) );
+        $current_adv_filter_city_meta   =   sanitize_title($current_adv_filter_city[0]);
+    }
+}
+
+
+
+
+$selected_order         = __('Sort by','wpestate');
+$listing_filter         =   '';
+if( isset($post->ID) ){
+    $listing_filter         = get_post_meta($post->ID, 'listing_filter',true );
+}
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 $listing_filter_array   = array(
                             "1"=>__('Price High to Low','wpestate'),
                             "2"=>__('Price Low to High','wpestate'),
@@ -83,10 +201,18 @@ if( $show_filter_area=='yes' ){
 
     $action_select_list =   wpestate_get_action_select_list($args);
     $categ_select_list  =   wpestate_get_category_select_list($args);
+<<<<<<< HEAD
     $select_city_list   =   wpestate_get_city_select_list($args); 
     $select_area_list   =   wpestate_get_area_select_list($args);
     
         
+=======
+    $select_county_list =   wpestate_get_county_state_select_list($args);
+    $select_city_list   =   wpestate_get_city_select_list($args); 
+    $select_area_list   =   wpestate_get_area_select_list($args);
+    
+         
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }// end if show filter
 
 ?>
@@ -102,7 +228,11 @@ if( $show_filter_area=='yes' ){
             <?php     
           //  if( !empty($tax_terms) ){ ?>
                 <div class="dropdown listing_filter_select" >
+<<<<<<< HEAD
                   <div data-toggle="dropdown" id="a_filter_action" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_search_label;?>"> <?php print $current_adv_filter_search_label;?> <span class="caret caret_filter"></span> </div>           
+=======
+                  <div data-toggle="dropdown" id="a_filter_action" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_search_meta;?>"> <?php print esc_html($current_adv_filter_search_label);?> <span class="caret caret_filter"></span> </div>           
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                   <ul  class="dropdown-menu filter_menu" role="menu" aria-labelledby="a_filter_action">
                       <?php print $action_select_list;?>
                   </ul>        
@@ -116,7 +246,11 @@ if( $show_filter_area=='yes' ){
             <?php
           //   if( !empty($categories) ){ ?>
                 <div class="dropdown listing_filter_select" >
+<<<<<<< HEAD
                   <div data-toggle="dropdown" id="a_filter_categ" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_category_label;?> "> <?php print $current_adv_filter_category_label;?> <span class="caret caret_filter"></span> </div>           
+=======
+                  <div data-toggle="dropdown" id="a_filter_categ" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_category_meta;?>"> <?php print esc_html($current_adv_filter_category_label);?> <span class="caret caret_filter"></span> </div>           
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                   <ul  class="dropdown-menu filter_menu" role="menu" aria-labelledby="a_filter_categ">
                       <?php print $categ_select_list;?>
                   </ul>        
@@ -127,9 +261,22 @@ if( $show_filter_area=='yes' ){
 
 
      
+<<<<<<< HEAD
         
                 <div class="dropdown listing_filter_select" >
                   <div data-toggle="dropdown" id="a_filter_cities" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_city_label;?>"> <?php print $current_adv_filter_city_label;?> <span class="caret caret_filter"></span> </div>           
+=======
+                <div class="dropdown listing_filter_select filter_county" >
+                  <div data-toggle="dropdown" id="a_filter_county" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_county_meta;?>"> <?php print esc_html($current_adv_filter_county_label);?> <span class="caret caret_filter"></span> </div>           
+                  <ul id="filter_county" class="dropdown-menu filter_menu" role="menu" aria-labelledby="a_filter_county">
+                      <?php print $select_county_list;?>
+                  </ul>        
+                </div> 
+	 
+        
+                <div class="dropdown listing_filter_select" >
+                  <div data-toggle="dropdown" id="a_filter_cities" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_city_meta;?>"> <?php print esc_html($current_adv_filter_city_label);?> <span class="caret caret_filter"></span> </div>           
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                   <ul id="filter_city" class="dropdown-menu filter_menu" role="menu" aria-labelledby="a_filter_cities">
                       <?php print $select_city_list;?>
                   </ul>        
@@ -137,7 +284,11 @@ if( $show_filter_area=='yes' ){
        
                 
                 <div class="dropdown listing_filter_select" >
+<<<<<<< HEAD
                   <div data-toggle="dropdown" id="a_filter_areas" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_area_label;?>"><?php print $current_adv_filter_area_label;?><span class="caret caret_filter"></span> </div>           
+=======
+                  <div data-toggle="dropdown" id="a_filter_areas" class="filter_menu_trigger" data-value="<?php print $current_adv_filter_area_meta;?>"><?php print esc_html($current_adv_filter_area_label);?><span class="caret caret_filter"></span> </div>           
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                   <ul id="filter_area" class="dropdown-menu filter_menu" role="menu" aria-labelledby="a_filter_areas">
                       <?php print $select_area_list;?>
                   </ul>        
@@ -146,7 +297,11 @@ if( $show_filter_area=='yes' ){
        
         
         <div class="dropdown listing_filter_select order_filter <?php print $order_class;?>">
+<<<<<<< HEAD
             <div data-toggle="dropdown" id="a_filter_order" class="filter_menu_trigger" data-value="<?php echo $selected_order_num;?>"> <?php echo $selected_order; ?> <span class="caret caret_filter"></span> </div>           
+=======
+            <div data-toggle="dropdown" id="a_filter_order" class="filter_menu_trigger" data-value="<?php echo esc_html($selected_order_num);?>"> <?php echo esc_html($selected_order); ?> <span class="caret caret_filter"></span> </div>           
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
              <ul id="filter_order" class="dropdown-menu filter_menu" role="menu" aria-labelledby="a_filter_order">
                  <?php print $listings_list; ?>                   
              </ul>        
@@ -164,12 +319,17 @@ if( $show_filter_area=='yes' ){
         ?>    
         
         <div class="listing_filter_select listing_filter_views">
+<<<<<<< HEAD
             <div id="grid_view" class="<?php echo $prop_unit_grid_class; ?>"> 
+=======
+            <div id="grid_view" class="<?php echo esc_html($prop_unit_grid_class); ?>"> 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 <i class="fa fa-th"></i>
             </div>
         </div>
 
         <div class="listing_filter_select listing_filter_views">
+<<<<<<< HEAD
              <div id="list_view" class="<?php echo $prop_unit_list_class; ?>">
                  <i class="fa fa-bars"></i>                   
              </div>
@@ -177,3 +337,22 @@ if( $show_filter_area=='yes' ){
         
     </div> 
     <?php } ?>      
+=======
+             <div id="list_view" class="<?php echo esc_html($prop_unit_list_class); ?>">
+                 <i class="fa fa-bars"></i>                   
+             </div>
+        </div>
+          <div data-toggle="dropdown" id="a_filter_county" class="" data-value="<?php print $current_adv_filter_county_meta;?>"></div> 
+    </div> 
+    <?php }else{
+    ?>
+        <div data-toggle="dropdown" id="a_filter_action" class="" data-value="<?php print esc_html($current_adv_filter_search_meta);?>"></div>           
+        <div data-toggle="dropdown" id="a_filter_categ" class="" data-value="<?php print esc_html($current_adv_filter_category_meta);?>"></div>           
+        <div data-toggle="dropdown" id="a_filter_cities" class="" data-value="<?php print esc_html($current_adv_filter_city_meta);?>"></div>           
+        <div data-toggle="dropdown" id="a_filter_areas" class="" data-value="<?php print esc_html($current_adv_filter_area_meta);?>"></div>           
+        <div data-toggle="dropdown" id="a_filter_county" class="" data-value="<?php print esc_html($current_adv_filter_county_meta);?>"></div>           
+              
+    <?php
+    } 
+    ?>      
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

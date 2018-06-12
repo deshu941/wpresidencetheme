@@ -80,7 +80,11 @@ function dump_stops($in = null) {
         }
     }
     if ( isset($_GET['debug']) && $_GET['debug'] == 'cache' ){
+<<<<<<< HEAD
      print 'xxxxxxxxxxxxxxxxxx cacge';
+=======
+        //print 'xxxxxxxxxxxxxxxxxx cacge';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         dump($wp_object_cache->cache);
     }
     if ( isset($_GET['debug']) &&   $_GET['debug'] == 'cron' ) {

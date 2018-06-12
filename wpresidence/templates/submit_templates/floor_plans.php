@@ -71,9 +71,15 @@ $attachid='';
                     ?>  
                     </div>
 
+<<<<<<< HEAD
                     <button id="aaiu-uploader-floor"  class="wpb_button  wpb_btn-success wpb_btn-large vc_button"><?php _e('Select Images','wpestate');?></button>
                     <input type="hidden" name="attachid" id="attachid" value="<?php echo $attachid;?>">
                     <input type="hidden" name="attachthumb" id="attachthumb" value="<?php echo $thumbid;?>">
+=======
+                    <button id="aaiu-uploader-floor"  class="wpresidence_button wpresidence_success"><?php _e('Select Images','wpestate');?></button>
+                    <input type="hidden" name="attachid" id="attachid" value="<?php echo esc_html($attachid);?>">
+                    <input type="hidden" name="attachthumb" id="attachthumb" value="<?php echo esc_html($thumbid);?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
             </div>
         </div>  
@@ -131,28 +137,48 @@ $attachid='';
 
             <p class="meta-options floor_p">
                 <label for="plan_description"><?php _e('Plan Description','wpestate');?></label><br />
+<<<<<<< HEAD
                 <textarea class="plan_description" type="text" size="36" name="plan_description[]" ><?php echo $plan_desc;?></textarea>
+=======
+                <textarea class="plan_description" type="text" size="36" name="plan_description[]" ><?php echo esc_html($plan_desc);?></textarea>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             </p>
 
             <p class="meta-options floor_p">
                 <label for="plan_image"><?php _e('Plan Image','wpestate');?></label><br />
+<<<<<<< HEAD
                 <input id="plan_image" type="text" size="36" name="plan_image[]" value="<?php echo $plan_img;?>" />
+=======
+                <input id="plan_image" type="text" size="36" name="plan_image[]" value="<?php echo esc_url($plan_img);?>" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 <input id="plan_image_button" type="button"   size="40" class="upload_button button floorbuttons" value="<?php _e('Upload Image','wpestate');?>" />
             </p>
 
             <p class="meta-options floor_p">
                 <label for="plan_size"><?php _e('Plan Size','wpestate');?></label><br />
+<<<<<<< HEAD
                 <input id="plan_size" type="text" size="36" name="plan_size[]" value="<?php echo $plan_size;?>" />
+=======
+                <input id="plan_size" type="text" size="36" name="plan_size[]" value="<?php echo esc_html($plan_size);?>" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             </p>
 
             <p class="meta-options floor_p">
                 <label for="plan_rooms"><?php _e('Plan Rooms','wpestate');?></label><br />
+<<<<<<< HEAD
                 <input id="plan_rooms" type="text" size="36" name="plan_rooms[]" value="<?php echo $plan_rooms;?>" />
+=======
+                <input id="plan_rooms" type="text" size="36" name="plan_rooms[]" value="<?php echo esc_html($plan_rooms);?>" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             </p>
 
             <p class="meta-options floor_p">
                 <label for="plan_bath"><?php _e('Plan Bathrooms','wpestate');?> </label><br />
+<<<<<<< HEAD
                 <input id="plan_bath" type="text" size="36" name="plan_bath[]" value="<?php  echo $plan_bath;?>" />
+=======
+                <input id="plan_bath" type="text" size="36" name="plan_bath[]" value="<?php  echo esc_html($plan_bath);?>" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             </p>
 
             <p class="meta-options floor_p">

@@ -18,21 +18,38 @@ var wraper_height=null;
 var info_image=null;
 
  function initialize(){
+<<<<<<< HEAD
         "use strict";
         var mapOptions = {
+=======
+    "use strict";
+    if(!document.getElementById('googleMap') ){
+        return;
+    }
+    var mapOptions = {
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         zoom: parseInt(googlecode_contact_vars.page_custom_zoom),
         scrollwheel: false,
         center: new google.maps.LatLng(googlecode_contact_vars.hq_latitude, googlecode_contact_vars.hq_longitude),
         mapTypeId: googlecode_contact_vars.type.toLowerCase(),
         streetViewControl:false,
+<<<<<<< HEAD
         disableDefaultUI: true
+=======
+        disableDefaultUI: true,
+         gestureHandling: 'cooperative'
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     };
 
     map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 
+<<<<<<< HEAD
     if (Modernizr.mq('only all and (max-width: 1025px)')) {
         map.setOptions({'draggable': false});
     }
+=======
+    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
     google.maps.event.addListener(map, 'tilesloaded', function() {
         jQuery('#gmap-loading').remove();
@@ -49,6 +66,7 @@ var info_image=null;
     setMarkers_contact(map, markers);
     google.maps.event.trigger(gmarkers[0], 'click');
 
+<<<<<<< HEAD
   /*
     function scrollwhel(event){
         if(map.scrollwheel===true){
@@ -59,6 +77,9 @@ var info_image=null;
     google.maps.event.addDomListener(document.getElementById('googleMap'), 'mousewheel', scrollwhel);
     google.maps.event.addDomListener(document.getElementById('googleMap'), 'DOMMouseScroll', scrollwhel);   
     */
+=======
+  
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
  
  
@@ -89,7 +110,11 @@ function setMarkers_contact(map, beach) {
        coord: [1, 1, 1, 38, 38, 59, 59 , 1],
        type: 'poly'
    };
+<<<<<<< HEAD
    
+=======
+   var title;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     var boxText = document.createElement("div");
       var myOptions = {
                       content: boxText,
@@ -129,7 +154,11 @@ function setMarkers_contact(map, beach) {
 
 
     google.maps.event.addListener(marker, 'click', function() { 
+<<<<<<< HEAD
        if(map_open === 0 && first_time === 0){
+=======
+       /*if(map_open === 0 && first_time === 0){
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
              map_open=1;
              jQuery('#googleMap').animate({'height': '590px'});
              jQuery('.gmap_wrapper').animate({'height': '590px'},500,function(){ 
@@ -141,6 +170,7 @@ function setMarkers_contact(map, beach) {
                   
                    
              });                
+<<<<<<< HEAD
         }
         first_time=0;
        // infoBox.setContent('<div class="contact_info_details"><span id="infocloser" onClick=\'javascript:infoBox.close();\' ></span><h2 id="contactinfobox">'+this.title+'</h2></div>' );
@@ -152,6 +182,17 @@ function setMarkers_contact(map, beach) {
          if(mapfunctions_vars.adv_search === '3' || mapfunctions_vars.adv_search === '2' ){          
             
          }
+=======
+        }*/
+        first_time=0;
+        title = this.title;
+        infoBox.setContent('<div class="info_details contact_info_details"><span id="infocloser" onClick=\'javascript:infoBox.close();\' ></span><h2 id="contactinfobox">'+title+'</h2><div class="contactaddr">'+googlecode_contact_vars.address+'</div></div>' );
+  
+        infoBox.open(map, this);    
+        map.setCenter(this.position);      
+        map.panBy(0,-120);
+        
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         close_adv_search()
     });
 
@@ -159,5 +200,11 @@ function setMarkers_contact(map, beach) {
 }// end setMarkers
 
                        
+<<<<<<< HEAD
                          
 google.maps.event.addDomListener(window, 'load', initialize);
+=======
+if(document.getElementById('googleMap') ){                      
+    google.maps.event.addDomListener(window, 'load', initialize);
+}
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

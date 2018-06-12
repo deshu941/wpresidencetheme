@@ -1,10 +1,19 @@
 <?php
 class Contact_widget extends WP_Widget {
+<<<<<<< HEAD
 	
 	function Contact_widget(){
 		$widget_ops = array('classname' => 'contact_sidebar', 'description' => 'Put you contact info on sidebar.');
 		$control_ops = array('id_base' => 'contact_widget');
 		$this->WP_Widget('contact_widget', 'Wp Estate: Contact', $widget_ops, $control_ops);
+=======
+	function __construct(){
+	//function Contact_widget(){
+		$widget_ops = array('classname' => 'contact_sidebar', 'description' => 'Put you contact info on sidebar.');
+		$control_ops = array('id_base' => 'contact_widget');
+		//$this->WP_Widget('contact_widget', 'Wp Estate: Contact', $widget_ops, $control_ops);
+                parent::__construct('contact_widget', 'Wp Estate: Contact', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 	
 	function form($instance){

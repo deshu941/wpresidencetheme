@@ -11,7 +11,11 @@ $blog_unit          =   esc_html ( get_option('wp_estate_blog_unit','') );
 
 <div class="row">
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class=" <?php print $options['content_class'];?> ">
+=======
+    <div class=" <?php print esc_html($options['content_class']);?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <?php get_template_part('templates/ajax_container'); ?>
         <div class="single-content">
       
@@ -33,7 +37,11 @@ $blog_unit          =   esc_html ( get_option('wp_estate_blog_unit','') );
             <h2 class="entry-title-search"> <?php _e( 'We didn\'t find any results. Please try again with different search parameters. ', 'wpestate' ); ?></h2>
             <form method="get" class="searchform" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                 <input type="text" class="field" name="s" id="s" value="<?php esc_attr_e( 'Search', 'wpestate' ); ?>" />
+<<<<<<< HEAD
                 <input type="submit" id="submit-form" class="submit-form" value="<?php esc_attr_e( 'Search', 'wpestate' ); ?>">
+=======
+                <input type="submit" id="submit-form" class="wpresidence_button" value="<?php esc_attr_e( 'Search', 'wpestate' ); ?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             </form>
 
         <?php

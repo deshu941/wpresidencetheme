@@ -21,7 +21,15 @@ register_post_type( 'membership_package',
                 'not_found_in_trash'    =>  __('No Membership Packages found','wpestate'),
                 'parent'                =>  __('Parent Membership Package','wpestate')
 			),
+<<<<<<< HEAD
 		'public' => true,
+=======
+		'public' => false,
+                'show_ui'=>true,
+                'show_in_nav_menus'=>true,
+                'show_in_menu'=>true,
+                'show_in_admin_bar'=>true,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		'has_archive' => true,
 		'rewrite' => array('slug' => 'package'),
 		'supports' => array('title'),
@@ -86,10 +94,30 @@ function membership_package( $post ) {
                 $visible_select.='</select>';
                 
                 
+<<<<<<< HEAD
                 
                 
                 print'
                 <p class="meta-options">
+=======
+                $visible_pack_array     =   array( __('User','wpestate') ,__('Agent','wpestate'),__('Agency','wpestate'),__('Developer','wpestate'));
+                $visible_pack_saved     =   get_post_meta($post->ID, 'pack_visible_user_role', true); 
+                $visible_pack_select    =   '<select id="pack_visible_user_role" name="pack_visible_user_role[]" multiple="multiple">';
+             
+                foreach($visible_pack_array as $option){
+                    $visible_pack_select.='<option value="'.$option.'" ';
+                    
+                    if( is_array($visible_pack_saved) && in_array($option,$visible_pack_saved) ){
+                        $visible_pack_select.=' selected="selected" ';
+                    }
+                    
+                    $visible_pack_select.='>'.$option.'</option>';
+                }
+                $visible_pack_select.='</select>';
+                
+                print'
+                <p class="meta-options third-meta-options">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     <label for="biling_period">'.__('Billing Time Unit :','wpestate').'</label><br />
                     '.$billing_select.'
                 </p>
@@ -102,7 +130,11 @@ function membership_package( $post ) {
                 <p class="meta-options">
                     <label for="pack_listings">'.__('How many listings are included?','wpestate').'</label><br />
                     <input type="text" id="pack_listings" size="58" name="pack_listings" value="'.  esc_html(get_post_meta($post->ID, 'pack_listings', true)).'">
+<<<<<<< HEAD
 
+=======
+                                    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     <input type="hidden" name="mem_list_unl" value=""/>
                     <input type="checkbox"  id="mem_list_unl" name="mem_list_unl" value="1" '.$check_unlimited_lists.'  />
                     <label for="mem_list_unl">'.__('Unlimited listings ?','wpestate').'</label>
@@ -113,6 +145,13 @@ function membership_package( $post ) {
                     <input type="text" id="pack_featured_listings" size="58" name="pack_featured_listings" value="'.  esc_html(get_post_meta($post->ID, 'pack_featured_listings', true)).'">
                 </p>
                 
+<<<<<<< HEAD
+=======
+                 <p class="meta-options">
+                    <label for="billing_freq">'.__('How many images are included per listing?','wpestate').' </label><br />
+                    <input type="text" id="pack_image_included" size="58" name="pack_image_included" value="'.  intval(get_post_meta($post->ID, 'pack_image_included', true)).'">
+                </p>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
                 <p class="meta-options">
                     <label for="pack_price">'.__('Package Price in ','wpestate'). ' ' .get_option('wp_estate_submission_curency').'</label><br />
@@ -120,6 +159,14 @@ function membership_package( $post ) {
 		</p>
 
                 <p class="meta-options">
+<<<<<<< HEAD
+=======
+                    <label for="pack_visible_user_role">'.__('Display package for? *Hold CTRL for multiple selection.','wpestate').'</label><br />
+                    '.$visible_pack_select.'
+		</p>
+                
+                <p class="meta-options">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     <label for="pack_visible">'.__('Is visible? ','wpestate').'</label><br />
                     '.$visible_select.'
 		</p>
@@ -165,14 +212,23 @@ endif; // end   wpestate_get_all_packs
 /// Get a package details from user top profile
 ////////////////////////////////////////////////////////////////////////////////
 if( !function_exists('wpestate_get_pack_data_for_user_top') ):
+<<<<<<< HEAD
 function wpestate_get_pack_data_for_user_top($userID,$user_pack,$user_registered,$user_package_activation){
             print '<div class="pack_description">
+=======
+function wpestate_get_pack_data_for_user_top($userID,$user_pack,$user_registered,$user_package_activation){     
+    print '<div class="pack_description">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 <div class="pack-unit">';
             $remaining_lists=wpestate_get_remain_listing_user($userID,$user_pack);
             if($remaining_lists==-1){
                 $remaining_lists=__('unlimited','wpestate');
             }
                
+<<<<<<< HEAD
+=======
+      
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                
             if ($user_pack!=''){
                 $title              = get_the_title($user_pack);
@@ -200,6 +256,7 @@ function wpestate_get_pack_data_for_user_top($userID,$user_pack,$user_registered
                    case 'Year':
                        $seconds=60*60*24*365;
                        break;    
+<<<<<<< HEAD
                }
                
                $time_frame      =   $seconds*$billing_freq;
@@ -242,12 +299,63 @@ function wpestate_get_pack_data_for_user_top($userID,$user_pack,$user_registered
                 print '<div class="pack_description_unit pack_description_details">'.__('Ends On:','wpestate');
                 print ' '.$expired_date;
                 print '</div>';
+=======
+                }
+               
+                $time_frame      =   $seconds*$billing_freq;
+                $expired_date    =   $date+$time_frame;
+                $expired_date    =   date('Y-m-d',$expired_date); 
+                $pack_image_included  =   get_post_meta($user_pack, 'pack_image_included', true);
+                if (intval($pack_image_included)==0){
+                    $pack_image_included=__('Unlimited', 'wpestate');
+                }
+               
+                
+                
+                print '<div class="pack_description_unit_head"><h4>'.__('Your Current Package :','wpestate').'</h4> 
+                       <span class="pack-name">'.$title.' </span></div> ';
+                
+                if($unlimited_lists==1){
+                    print '<div class="pack_description_unit pack_description_details">';
+                    print __('  unlimited','wpestate');
+                    print '<p class="package_label">'.__('Listings Included','wpestate').'</p></div>';
+                    
+                    print '<div class="pack_description_unit pack_description_details">';
+                    print __('  unlimited','wpestate');
+                    print '<p class="package_label">'.__('Listings Remaining','wpestate').'</p></div>';
+                }else{
+                    print '<div class="pack_description_unit pack_description_details">';
+                    print ' '.$pack_list;
+                    print '<p class="package_label">'.__('Listings Included','wpestate').'</p></div>';
+                    
+                    print '<div class="pack_description_unit pack_description_details">';
+                    print '<span id="normal_list_no"> '.$remaining_lists.'</span>';
+                    print '<p class="package_label">'.__('Listings Remaining','wpestate').'</p></div>';
+                }
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                print '<span id="normal_list_no"> '.$pack_featured.'</span>';
+                print '<p class="package_label">'.__('Featured Included','wpestate').'</p></div>';
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                print '<span id="featured_list_no"> '.wpestate_get_remain_featured_listing_user($userID).'</span>';
+                print '<p class="package_label">'.__('Featured Remaining','wpestate').'</p></div>';
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                print ' '.$pack_image_included;
+                print '<p class="package_label">'.__('Images / per listing','wpestate').'</p></div>';
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                print ' '.$expired_date;
+                print '<p class="package_label">'.__('Ends On','wpestate').'</p></div>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
              
             }else{
 
                 $free_mem_list      =   esc_html( get_option('wp_estate_free_mem_list','') );
                 $free_feat_list     =   esc_html( get_option('wp_estate_free_feat_list','') );
                 $free_mem_list_unl  =   get_option('wp_estate_free_mem_list_unl', '' );
+<<<<<<< HEAD
                 
                 print '<div class="pack_description_unit"><h4>'.__('Your Current Package','wpestate').'</h4>
                       <span class="pack-name">'.__('Free Membership','wpestate').'</span></div>';
@@ -278,6 +386,42 @@ function wpestate_get_pack_data_for_user_top($userID,$user_pack,$user_registered
                 
             }
             print '</div></div>';
+=======
+                $free_pack_image_included  =  esc_html( get_option('wp_estate_free_pack_image_included ','') );
+                print '<div class="pack_description_unit_head"><h4>'.__('Your Current Package:','wpestate').'</h4>
+                      <span class="pack-name">'.__('Free Membership','wpestate').'</span></div>';
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                if($free_mem_list_unl==1){
+                    print __('  unlimited','wpestate');
+                }else{
+                    print ' '.$free_mem_list;
+                }
+                print '<p class="package_label">'.__('Listings Included','wpestate').'</p></div>';
+                 
+                print '<div class="pack_description_unit pack_description_details">';
+                print '<span id="normal_list_no"> '.$remaining_lists.'</span>';
+                print '<p class="package_label">'.__('Listings Remaining','wpestate').'</p></div>';
+             
+                print '<div class="pack_description_unit pack_description_details">';
+                print '<span id="normal_list_no"> '.$free_feat_list.'</span>';
+                print '<p class="package_label">'.__('Featured Included','wpestate').'</p></div>';
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                print '<span id="featured_list_no"> '.wpestate_get_remain_featured_listing_user($userID).'</span>';
+                print '<p class="package_label">'.__('Featured Remaining','wpestate').'</p></div>';
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                print '<span id="free_pack_image_included"> '.$free_pack_image_included.'</span>';
+                print '<p class="package_label">'.__('Images / listing','wpestate').'</p></div>';
+                
+                print '<div class="pack_description_unit pack_description_details">';
+                print '&nbsp;<p class="package_label">'.__('Ends On: -','wpestate').'</p></div>';
+                
+            }
+            print '</div></div>';
+          
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 endif; // end   wpestate_get_pack_data_for_user_top  
 
@@ -298,7 +442,11 @@ function wpestate_get_pack_data_for_user($userID,$user_pack,$user_registered,$us
                 $pack_price         = get_post_meta($user_pack, 'pack_price', true);
 
                 $unlimited_lists    = get_post_meta($user_pack, 'mem_list_unl', true);
+<<<<<<< HEAD
 
+=======
+                print'<div class="user_dashboard_box">';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 print '<strong>'.__('Your Current Package: ','wpestate').'</strong></br><strong>'.$title.'</strong></br> ';
                 print '<p class="full_form-nob">';
                 if($unlimited_lists==1){
@@ -310,13 +458,21 @@ function wpestate_get_pack_data_for_user($userID,$user_pack,$user_registered,$us
 
                 print ' <p class="full_form-nob"> <span id="normal_list_no">'.$pack_featured.__(' Featured listings','wpestate').'</span>';
                 print ' - <span id="featured_list_no">'.wpestate_get_remain_featured_listing_user($userID).'</span>'.__(' remaining','wpestate').' </p>';
+<<<<<<< HEAD
 
+=======
+                print'</div>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
             }else{
 
                 $free_mem_list      =   esc_html( get_option('wp_estate_free_mem_list','') );
                 $free_feat_list     =   esc_html( get_option('wp_estate_free_feat_list','') );
                 $free_mem_list_unl  =   get_option('wp_estate_free_mem_list_unl', '' );
+<<<<<<< HEAD
+=======
+                print'<div class="user_dashboard_box">';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 print '<strong>'.__('Your Current Package: ','wpestate').'</strong></br><strong>'.__('Free Membership','wpestate').'</strong>';
                 print '<p class="full_form-nob">';
                 if($free_mem_list_unl==1){
@@ -329,6 +485,11 @@ function wpestate_get_pack_data_for_user($userID,$user_pack,$user_registered,$us
                 print '<p class="full_form-nob">';
                 print $free_feat_list.__(' Featured listings','wpestate');
                 print ' - <span id="featured_list_no">'.wpestate_get_remain_featured_listing_user($userID).'</span>'.__('  remaining','wpestate').' </p>';
+<<<<<<< HEAD
+=======
+                print'</div>';
+                
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             }
     
 }
@@ -469,6 +630,7 @@ function wpestate_update_old_users($userID){
 
         $curent_list   =   get_user_meta( $userID, 'package_listings', true) ;
         $cur_feat_list =   get_user_meta( $userID, 'package_featured_listings', true) ;
+<<<<<<< HEAD
         
             if($curent_list=='' || $cur_feat_list=='' ){
                  $package_listings           = esc_html( get_option('wp_estate_free_mem_list','') );
@@ -486,6 +648,25 @@ function wpestate_update_old_users($userID){
                $time = time(); 
                $date = date('Y-m-d H:i:s',$time);
                update_user_meta( $userID, 'package_activation', $date);
+=======
+  
+            if($curent_list=='' || $cur_feat_list=='' ){
+                $package_listings           = esc_html( get_option('wp_estate_free_mem_list','') );
+                $featured_package_listings  = esc_html( get_option('wp_estate_free_feat_list','') );
+                    if($package_listings==''){
+                        $package_listings=0;
+                    }
+                    if($featured_package_listings==''){
+                        $featured_package_listings=0;
+                    }
+
+                update_user_meta( $userID, 'package_listings', $package_listings) ;
+                update_user_meta( $userID, 'package_featured_listings', $featured_package_listings) ;
+             
+                $time = time(); 
+                $date = date('Y-m-d H:i:s',$time);
+                update_user_meta( $userID, 'package_activation', $date);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             }
      
     }// end if memebeship
@@ -518,8 +699,17 @@ function wpestate_update_profile($userID){
                 $featured_package_listings=0;
             }
         }
+<<<<<<< HEAD
         update_user_meta( $userID, 'package_listings', $package_listings) ;
         update_user_meta( $userID, 'package_featured_listings', $featured_package_listings) ;
+=======
+        $cur_images    =   esc_html( get_option('free_pack_image_included','') );
+              
+        update_user_meta( $userID, 'package_listings', $package_listings) ;
+        update_user_meta( $userID, 'package_featured_listings', $featured_package_listings) ;
+        update_user_meta( $userID, 'pack_image_included', $cur_images) ;
+        
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $time = time(); 
         $date = date('Y-m-d H:i:s',$time);
         update_user_meta( $userID, 'package_activation', $date);
@@ -575,6 +765,7 @@ endif; // end   wpestate_display_packages
 if( !function_exists('wpestate_downgrade_to_pack') ):
 function wpestate_downgrade_to_pack( $user_id, $pack_id ){
     
+<<<<<<< HEAD
     $future_listings                  =   get_post_meta($pack_id, 'pack_listings', true);
     $future_featured_listings         =   get_post_meta($pack_id, 'pack_featured_listings', true);
     update_user_meta( $user_id, 'package_listings', $future_listings) ;
@@ -585,6 +776,23 @@ function wpestate_downgrade_to_pack( $user_id, $pack_id ){
                'author'    => $user_id,
                'post_status'   => 'any' 
         ); 
+=======
+    $future_listings                =   get_post_meta($pack_id, 'pack_listings', true);
+    $future_featured_listings       =   get_post_meta($pack_id, 'pack_featured_listings', true);
+    $future_images                  =   get_post_meta($pack_id, 'pack_image_included', true);
+    update_user_meta( $user_id, 'package_listings', $future_listings) ;
+    update_user_meta( $user_id, 'package_featured_listings', $future_featured_listings);
+    update_user_meta( $user_id, 'pack_image_included', $future_featured_listings);
+    
+    $agent_list     =  (array) get_user_meta($user_id,'current_agent_list',true);
+    $agent_list[]   =   $user_id;
+    
+    $args = array(
+        'post_type'     => 'estate_property',
+        'author__in'    =>  $agent_list,
+        'post_status'   => 'any' 
+    ); 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
     $query = new WP_Query( $args ); 
     global $post;
@@ -607,7 +815,12 @@ function wpestate_downgrade_to_pack( $user_id, $pack_id ){
     $user_email=$user->user_email;
     
     $arguments=array();
+<<<<<<< HEAD
     wpestate_select_email_type($user_email,'password_reseted',$arguments);
+=======
+ 
+    wpestate_select_email_type($user_email,'account_downgraded',$arguments);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
     
 }
@@ -615,6 +828,26 @@ endif; // end   wpestate_downgrade_to_pack
 
 
 
+<<<<<<< HEAD
+=======
+
+
+if( !function_exists('wpestate_downgrade_warning') ): 
+function wpestate_downgrade_warning($user_id){
+     
+    $user       =   get_user_by('id',$user_id); 
+    $user_email =   $user->user_email;
+  
+    $arguments=array();
+    wpestate_select_email_type($user_email,'downgrade_warning',$arguments);
+    
+    
+}
+endif;
+
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 /////////////////////////////////////////////////////////////////////////////////////
 /// downgrade to free
 /////////////////////////////////////////////////////////////////////////////////////
@@ -625,6 +858,7 @@ if( !function_exists('wpestate_downgrade_to_free') ):
 
     $free_pack_listings        = esc_html( get_option('wp_estate_free_mem_list','') );
     $free_pack_feat_listings   = esc_html( get_option('wp_estate_free_feat_list','') );
+<<<<<<< HEAD
 
     update_user_meta( $user_id, 'package_id', '') ;
     update_user_meta( $user_id, 'package_listings', $free_pack_listings) ;
@@ -635,6 +869,21 @@ if( !function_exists('wpestate_downgrade_to_free') ):
                'author'    => $user_id,
                'post_status'   => 'any' 
         );
+=======
+    $free_pack_images          = esc_html( get_option('free_pack_image_included','') );
+    
+    
+    update_user_meta( $user_id, 'package_id', '') ;
+    update_user_meta( $user_id, 'package_listings', $free_pack_listings) ;
+    update_user_meta( $user_id, 'package_featured_listings', $free_pack_feat_listings); 
+    update_user_meta( $user_id, 'pack_image_included', $free_pack_images); 
+    
+    $args = array(
+            'post_type' => 'estate_property',
+            'author'    => $user_id,
+            'post_status'   => 'any' 
+    );
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
     $query = new WP_Query( $args );    
     while( $query->have_posts()){
@@ -650,8 +899,13 @@ if( !function_exists('wpestate_downgrade_to_free') ):
       }
     wp_reset_query();
     
+<<<<<<< HEAD
     $user = get_user_by('id',$user_id); 
     $user_email=$user->user_email;
+=======
+    $user       =   get_user_by('id',$user_id); 
+    $user_email =   $user->user_email;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
   
     $arguments=array();
     wpestate_select_email_type($user_email,'membership_cancelled',$arguments);
@@ -672,6 +926,7 @@ function wpestate_upgrade_user_membership($user_id,$pack_id,$type,$paypal_tax_id
     $available_listings                  =   get_post_meta($pack_id, 'pack_listings', true);
     $featured_available_listings         =   get_post_meta($pack_id, 'pack_featured_listings', true);
     $pack_unlimited_list                 =   get_post_meta($pack_id, 'mem_list_unl', true);
+<<<<<<< HEAD
     
     
     $current_used_listings               =   get_user_meta($user_id, 'package_listings',true);
@@ -681,6 +936,18 @@ function wpestate_upgrade_user_membership($user_id,$pack_id,$type,$paypal_tax_id
     
     $user_curent_listings               =   wpestate_get_user_curent_listings_no_exp ( $user_id );
     $user_curent_future_listings        =   wpestate_get_user_curent_future_listings_no_exp( $user_id );
+=======
+    $available_images                    =   get_post_meta($pack_id, 'pack_image_included', true);
+    
+    $current_used_listings               =   get_user_meta($user_id, 'package_listings',true);
+    $curent_used_featured_listings       =   get_user_meta($user_id, 'package_featured_listings',true);  
+    $curent_images                       =   get_user_meta($user_id, 'pack_image_included',true);  
+    $current_pack                        =   get_user_meta($user_id, 'package_id',true);
+   
+    
+    $user_curent_listings                   =   wpestate_get_user_curent_listings_no_exp ( $user_id );
+    $user_curent_future_listings            =   wpestate_get_user_curent_future_listings_no_exp( $user_id );
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
 
     if( wpestate_check_downgrade_situation($user_id,$pack_id) ){
@@ -709,7 +976,11 @@ function wpestate_upgrade_user_membership($user_id,$pack_id,$type,$paypal_tax_id
    
     update_user_meta( $user_id, 'package_listings', $new_listings) ;
     update_user_meta( $user_id, 'package_featured_listings', $new_featured_listings);  
+<<<<<<< HEAD
         
+=======
+    update_user_meta( $user_id, 'pack_image_included', $available_images);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
     $time = time(); 
     $date = date('Y-m-d H:i:s',$time); 
@@ -784,11 +1055,21 @@ endif; // end   get_user_curent_listings
 
 if( !function_exists('wpestate_get_user_curent_listings_published') ):
 function wpestate_get_user_curent_listings_published($userid) {
+<<<<<<< HEAD
   $args = array(
         'post_type'     =>  'estate_property',
  //       'post_status'   =>  'any',  
             'post_status'     => 'publish',
         'author'        =>  $userid,
+=======
+    $agent_list     =  (array) get_user_meta($userid,'current_agent_list',true);
+    $agent_list[]   =   $userid;
+    
+    $args = array(
+        'post_type'     =>  'estate_property',
+        'post_status'   =>  'publish',
+        'author__in'    =>  $agent_list,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
        
     );
     $posts = new WP_Query( $args );
@@ -800,12 +1081,25 @@ endif; // end   get_user_curent_listings
 
 if( !function_exists('wpestate_get_user_curent_listings_no_exp') ):
 function wpestate_get_user_curent_listings_no_exp($userid) {
+<<<<<<< HEAD
     $args = array(
         'post_type'     => 'estate_property',
         'post_status' => array( 'pending', 'publish' ),  
         'author'        =>$userid,
         
     );
+=======
+    $agent_list     =   (array)get_user_meta($userid,'current_agent_list',true);
+    $agent_list[]   =   $userid;
+    
+    $args = array(
+        'post_type'     =>  'estate_property',
+        'post_status'   =>  array( 'pending', 'publish' ),  
+        'author__in'    =>  $agent_list,
+        
+    );
+    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     $posts = new WP_Query( $args );
     return $posts->found_posts;
     wp_reset_query();
@@ -820,11 +1114,20 @@ endif; // end   wpestate_get_user_curent_listings_no_exp
 
 if( !function_exists('wpestate_get_user_curent_future_listings_no_exp') ):
 function wpestate_get_user_curent_future_listings_no_exp($user_id){
+<<<<<<< HEAD
+=======
+    $agent_list     =   (array)get_user_meta($user_id,'current_agent_list',true);
+    $agent_list[]   =   $user_id;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
     $args = array(
         'post_type'     =>  'estate_property',
         'post_status'   =>  array( 'pending', 'publish' ),
+<<<<<<< HEAD
         'author'        =>  $user_id,
+=======
+        'author__in'    =>  $agent_list,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         'meta_query'    =>  array(   
                                 array(
                                     'key'   => 'prop_featured',
@@ -843,11 +1146,20 @@ endif; // end   wpestate_get_user_curent_future_listings_no_exp
 
 if( !function_exists('wpestate_get_user_curent_future_listings') ):
 function wpestate_get_user_curent_future_listings($user_id){
+<<<<<<< HEAD
     
     $args = array(
         'post_type'     =>  'estate_property',
         'post_status'   =>  'any',  
         'author'        =>  $user_id,
+=======
+    $agent_list     =  (array) get_user_meta($user_id,'current_agent_list',true);
+    $agent_list[]   =   $user_id;
+    $args = array(
+        'post_type'     =>  'estate_property',
+        'post_status'   =>  'any',  
+        'author__in'    =>  $agent_list,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         'meta_query'    =>  array(   
                                 array(
                                     'key'   => 'prop_featured',
@@ -880,12 +1192,17 @@ endif; // end   wpestate_update_user_recuring_profile
 ////////////////////////////////////////////////////////////////////////////////
 /// Ajax  Package Paypal function
 ////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 add_action( 'wp_ajax_nopriv_wpestate_ajax_make_prop_featured', 'wpestate_ajax_make_prop_featured');  
+=======
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 add_action( 'wp_ajax_wpestate_ajax_make_prop_featured', 'wpestate_ajax_make_prop_featured' );
 
 if( !function_exists('wpestate_ajax_make_prop_featured') ):
 function  wpestate_ajax_make_prop_featured(){
 
+<<<<<<< HEAD
     $prop_id=intval($_POST['propid']);
     global $current_user;
     get_currentuserinfo();
@@ -900,6 +1217,31 @@ function  wpestate_ajax_make_prop_featured(){
            update_post_meta($prop_id, 'prop_featured', 1);
            print 'done';
            die();
+=======
+    $prop_id        =   intval($_POST['propid']);
+    $current_user   =   wp_get_current_user();
+    $userID         =   $current_user->ID;
+    $parent_userID  =   wpestate_check_for_agency($userID);
+    $post           =   get_post($prop_id); 
+
+    $agent_list                     =   (array)get_user_meta($parent_userID,'current_agent_list',true);
+    
+    if ( !is_user_logged_in() ) {   
+        exit('ko');
+    }
+    if($userID === 0 ){
+        exit('out pls');
+    }
+
+    if( $post->post_author != $userID && !in_array($post->post_author , $agent_list) ) {
+        exit('get out of my cloud');
+    }else{
+        if(wpestate_get_remain_featured_listing_user($parent_userID) >0 ){
+            wpestate_update_featured_listing_no($parent_userID); 
+            update_post_meta($prop_id, 'prop_featured', 1);
+            print 'done';
+            die();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         }else{
             print 'no places';
             die();
@@ -921,10 +1263,20 @@ function wpestate_check_user_membership_status_function(){
         $user_id=$user->ID;
         $pack_id= get_user_meta ( $user_id, 'package_id', true);
         
+<<<<<<< HEAD
 
         if( $pack_id !='' ){ // if the pack is ! free
             $date =  strtotime ( get_user_meta($user_id, 'package_activation',true) );
             
+=======
+   
+
+        if( $pack_id !='' ){ // if the pack is ! free
+            $date =  strtotime ( get_user_meta($user_id, 'package_activation',true) );
+                
+         
+                 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $biling_period  =   get_post_meta($pack_id, 'biling_period', true);
             $billing_freq   =   get_post_meta($pack_id, 'billing_freq', true);  
             
@@ -942,6 +1294,7 @@ function wpestate_check_user_membership_status_function(){
                case 'Year':
                    $seconds=60*60*24*365;
                    break;    
+<<<<<<< HEAD
            }
            $time_frame=$seconds*$billing_freq;
             
@@ -950,6 +1303,22 @@ function wpestate_check_user_membership_status_function(){
            if( $now >$date+$time_frame ){ // if this moment is bigger than pack activation + billing period
                  wpestate_downgrade_to_free($user_id);                
            }
+=======
+            }
+            $time_frame=$seconds*$billing_freq;
+            
+            $now=time();
+           
+            if( $now > ( $date+$time_frame-(60*60*24*3))  &&  ($now <$date+$time_frame-(60*60*24*2)) ){ // if this moment is bigger than pack activation + billing period
+              
+                wpestate_downgrade_warning($user_id);
+            }
+       
+            
+            if( $now >$date+$time_frame ){ // if this moment is bigger than pack activation + billing period
+                 wpestate_downgrade_to_free($user_id);                
+            }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
         } // end if if pack !- free
         
@@ -1038,4 +1407,26 @@ if( !function_exists('wpestate_listing_set_to_expire') ):
 endif;
 
 
+<<<<<<< HEAD
+=======
+if(!function_exists('wpestate_check_for_agency')):
+function wpestate_check_for_agency($user_id){
+    $agent_id  = intval ( get_user_meta($user_id,'user_agent_id',true) ) ;
+    if($agent_id!=0){
+        $post=get_post($agent_id);
+        if($post->post_author!=1 && $post->post_author!=0){
+            return $post->post_author;
+        }else{
+            return $user_id;
+        }
+    }else{
+        return $user_id;
+    }
+    
+}
+endif;
+
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>

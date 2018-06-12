@@ -6,7 +6,11 @@ global $currency;
 global $current_user;
 ?>
 
+<<<<<<< HEAD
 <div class="col-md-12 invoice_unit " data-booking-confirmed="<?php echo esc_html(get_post_meta($post->ID, 'item_id', true));?>" data-invoice-confirmed="<?php echo $post->ID; ?>">
+=======
+<div class="col-md-12 invoice_unit " data-booking-confirmed="<?php echo esc_html(get_post_meta($post->ID, 'item_id', true));?>" data-invoice-confirmed="<?php echo intval($post->ID); ?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     <div class="col-md-2">
          <?php echo get_the_title(); ?> 
     </div>
@@ -16,11 +20,40 @@ global $current_user;
     </div>
     
     <div class="col-md-2">
+<<<<<<< HEAD
         <?php  echo esc_html(get_post_meta($post->ID, 'invoice_type', true)); ?>
     </div>
     
     <div class="col-md-2">
         <?php echo esc_html(get_post_meta($post->ID, 'biling_type', true));?>
+=======
+        <?php 
+            $invoice_type= esc_html(get_post_meta($post->ID, 'invoice_type', true)); 
+             //quick solution -  to be changed 
+            if($invoice_type == 'Listing'){
+                _e('Listing','wpestate');
+            }else if($invoice_type == 'Upgrade to Featured') {
+                _e('Upgrade to Featured','wpestate');
+            } else if($invoice_type == 'Publish Listing with Featured'){
+                _e('Publish Listing with Feature','wpestate');
+            }else if($invoice_type == 'Package'){
+                _e('Package','wpestate');
+            }
+        
+        ?>
+    </div>
+    
+    <div class="col-md-2">
+        <?php 
+            $bill_type = esc_html(get_post_meta($post->ID, 'biling_type', true));
+            //quick solution -  to be changed 
+            if($bill_type =='One Time' ){
+                _e('One Time','wpestate');
+            }else if( $bill_type == 'Recurring'){
+                 _e('Recurring','wpestate');
+            }
+        ?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     </div>
     
     <div class="col-md-2">

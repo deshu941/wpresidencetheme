@@ -19,10 +19,17 @@ if($options['content_class']=='col-md-12'){
         $unit_class="";
         if ($preview[0]!='') {
             $unit_class="has_thumb"; ?>
+<<<<<<< HEAD
             <div class="related_blog_unit_image" data-related-link="<?php print $link;?>">
                 <a href="<?php print $link;?>"><img src="<?php print $preview[0];?>" class=" lazyload img-responsive" alt="thumb"></a>
                     <?php print '<div class="listing-cover">
                     <div class="listing-cover-title"><a href="'.$link.'">'.$title.'</a><span class="listing-cover-plus-related ">+</span></div></div>';
+=======
+            <div class="related_blog_unit_image" data-related-link="<?php print esc_url($link);?>">
+                <a href="<?php print esc_url($link);?>"><img src="<?php print $preview[0];?>" class=" lazyload img-responsive" alt="thumb"></a>
+                    <?php print '<div class="prop_new_details_back"></div>
+                    <a href="'.$link.'" class="related_post_link">'.$title.'</a>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     ?>
             </div>                              
         <?php    

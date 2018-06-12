@@ -2,16 +2,27 @@
 // Template Name: Blog list page
 // Wp Estate Pack
 get_header();
+<<<<<<< HEAD
 $options            =   wpestate_page_details($post->ID);
 $blog_unit          =   esc_html ( get_option('wp_estate_blog_unit','') ); 
 
+=======
+global $no_listins_per_row;
+$options            =   wpestate_page_details($post->ID);
+$blog_unit          =   esc_html ( get_option('wp_estate_blog_unit','') ); 
+$no_listins_per_row =   intval( get_option('wp_estate_blog_listings_per_row', '') );
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 
 
 
 <div class="row">
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class=" <?php print $options['content_class'];?> ">
+=======
+    <div class=" <?php print esc_html($options['content_class']);?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <?php get_template_part('templates/ajax_container'); ?>
         <?php while (have_posts()) : the_post(); ?>
         <?php if (esc_html( get_post_meta($post->ID, 'page_show_title', true) ) == 'yes') { ?>

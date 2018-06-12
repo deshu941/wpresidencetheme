@@ -10,7 +10,11 @@ $options=wpestate_page_details($post->ID);
 
 <div class="row">
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class="col-xs-12 <?php print $options['content_class'];?> ">
+=======
+    <div class="col-xs-12 <?php print esc_html($options['content_class']);?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
          <?php get_template_part('templates/ajax_container'); ?>
         

@@ -1,10 +1,19 @@
 <?php
 class Featured_widget extends WP_Widget {
+<<<<<<< HEAD
 	
 	function Featured_widget(){
 		$widget_ops = array('classname' => 'featured_sidebar', 'description' => 'Put a featured listing on sidebar.');
 		$control_ops = array('id_base' => 'featured_widget');
 		$this->WP_Widget('featured_widget', 'Wp Estate: Featured Listing', $widget_ops, $control_ops);
+=======
+	function __construct(){
+	//function Featured_widget(){
+		$widget_ops = array('classname' => 'featured_sidebar', 'description' => 'Put a featured listing on sidebar.');
+		$control_ops = array('id_base' => 'featured_widget');
+		//$this->WP_Widget('featured_widget', 'Wp Estate: Featured Listing', $widget_ops, $control_ops);
+                parent::__construct('featured_widget', 'Wp Estate: Featured Listing', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 	
 	function form($instance){
@@ -55,10 +64,21 @@ class Featured_widget extends WP_Widget {
                         $link        =  get_permalink();
                         $thumb_id    =  get_post_thumbnail_id($instance['prop_id']);
                         $preview     =  wp_get_attachment_image_src($thumb_id, 'property_featured_sidebar'); 
+<<<<<<< HEAD
                         $display    .=  '<div class="featured_widget_image" data-link="'.get_permalink().'">
                                         <a href="'.get_permalink().'"><img  src="'.$preview[0].'" class="img-responsive" alt="slider-thumb" /></a>
                                             <div class="listing-cover"></div>
                                             <a href="'.$link.'"> <span class="listing-cover-plus">+</span></a>
+=======
+                        if($preview[0]==''){
+                            $preview[0]= get_template_directory_uri().'/img/defaults/default_property_featured_sidebar.jpg';
+                        }
+                        $display    .=  '<div class="featured_widget_image" data-link="'.get_permalink().'">
+                                          
+                                                <div class="prop_new_details_back"></div>
+                                                <a href="'.get_permalink().'"><img  src="'.$preview[0].'" class="img-responsive" alt="slider-thumb" /></a>
+                                                                                    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                                         </div>';
                         $display    .=  '<div class="featured_title"><a href="'.$link.'" class="featured_title_link">'.get_the_title().'</a></div>';
                 endwhile;

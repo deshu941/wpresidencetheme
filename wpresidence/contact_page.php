@@ -2,6 +2,7 @@
 // Template Name: Contact Page 
 // Wp Estate Pack
 get_header();
+<<<<<<< HEAD
                
 $options            =   wpestate_page_details($post->ID);
 $company_name       =   esc_html( get_option('wp_estate_company_name', '') );
@@ -16,6 +17,21 @@ if (function_exists('icl_translate') ){
     $co_address      =   icl_translate('wpestate','wp_estate_co_address_text', ( get_option('wp_estate_co_address') ) );
 }else{
     $co_address      = stripslashes ( get_option('wp_estate_co_address', '') );
+=======
+$options            =   wpestate_page_details($post->ID);
+$company_name       =   esc_html( stripslashes( get_option('wp_estate_company_name', '') ) );
+$company_picture    =   esc_html( stripslashes( get_option('wp_estate_company_contact_image', '') ) );
+$company_email      =   esc_html( stripslashes( get_option('wp_estate_email_adr', '') ) );
+$mobile_no          =   esc_html( stripslashes( get_option('wp_estate_mobile_no','') ) );
+$telephone_no       =   esc_html( stripslashes( get_option('wp_estate_telephone_no', '') ) );
+$fax_ac             =   esc_html( stripslashes( get_option('wp_estate_fax_ac', '') ) );
+$skype_ac           =   esc_html( stripslashes( get_option('wp_estate_skype_ac', '') ) );
+
+if (function_exists('icl_translate') ){
+    $co_address      =  esc_html( icl_translate('wpestate','wp_estate_co_address_text', ( get_option('wp_estate_co_address') ) ) );
+}else{
+    $co_address      = esc_html( stripslashes ( get_option('wp_estate_co_address', '') ) );
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 $facebook_link      =   esc_html( get_option('wp_estate_facebook_link', '') );
@@ -23,31 +39,55 @@ $twitter_link       =   esc_html( get_option('wp_estate_twitter_link', '') );
 $google_link        =   esc_html( get_option('wp_estate_google_link', '') );
 $linkedin_link      =   esc_html ( get_option('wp_estate_linkedin_link','') );
 $pinterest_link     =   esc_html ( get_option('wp_estate_pinterest_link','') );
+<<<<<<< HEAD
 $agent_email        =   $company_email;
 
 //wpestate_check_free_listing_expiration();
+=======
+$instagram_link     =   esc_html ( get_option('wp_estate_instagram_link','') );  
+$agent_email        =   $company_email;
+
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 
 
 <div class="row">
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class="<?php print $options['content_class'];?>">
         
          <?php get_template_part('templates/ajax_container'); ?>
+=======
+    <div class="<?php print esc_html($options['content_class']);?>">
+        
+       
+          
+        <?php get_template_part('templates/ajax_container'); ?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
         <?php while (have_posts()) : the_post(); ?>
             <?php if (esc_html( get_post_meta($post->ID, 'page_show_title', true) ) != 'no') { ?>
                 <h1 class="entry-title"><?php the_title(); ?></h1>
             <?php } ?>
          
+<<<<<<< HEAD
             <div class="contact-wrapper">    
+=======
+            <div class="contact-wrapper row">    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             <div class="col-md-4 contact_page_company_picture">
                 <?php print '<img src="'.$company_picture.'"  class="contact-comapany-logo img-responsive" alt="company logo"/> '; ?>    
             </div>
             
             <div class="col-md-8 contact_page_company_details">
                 <div class="company_headline ">   
+<<<<<<< HEAD
                     <h3><?php print $company_name;?></h3>
+=======
+                    <h3><?php print esc_html($company_name);?></h3>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     <div class="header_social">
                         <?php
                         if($facebook_link!=''){
@@ -69,6 +109,14 @@ $agent_email        =   $company_email;
                         if($pinterest_link!=''){
                              print ' <a href="'. $pinterest_link.'"><i class="fa fa-pinterest"></i></a>';
                         }
+<<<<<<< HEAD
+=======
+                        if($instagram_link!=''){
+                             print ' <a href="'. $instagram_link.'"><i class="fa fa-instagram"></i></a>';
+                        }
+                        
+                       
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                         ?>
                     </div>     
                 </div>   

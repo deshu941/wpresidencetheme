@@ -4,7 +4,11 @@ $social_tweet       =  esc_html( get_option('wp_estate_twitter_link','') );
 $social_google      =  esc_html( get_option('wp_estate_google_link','') );
 $linkedin_link      =  esc_html ( get_option('wp_estate_linkedin_link','') );
 $pinterest_link     =  esc_html ( get_option('wp_estate_pinterest_link','') );
+<<<<<<< HEAD
     
+=======
+$instagram_link     =   esc_html ( get_option('wp_estate_instagram_link','') );  
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 
 <div class="header_social">
@@ -30,5 +34,11 @@ if($pinterest_link!=''){
     print '<a href="'.$pinterest_link.'" class="social_pinterest" target="_blank"></a>';
 }
 
+<<<<<<< HEAD
+=======
+if($instagram_link!=''){
+    print '<a href="'.$instagram_link.'" class="social_instagram" target="_blank"></a>';
+}
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 </div>    

@@ -7,3 +7,17 @@
 
 .#{$fa-css-prefix}-flip-horizontal { @include fa-icon-flip(-1, 1, 0); }
 .#{$fa-css-prefix}-flip-vertical   { @include fa-icon-flip(1, -1, 2); }
+<<<<<<< HEAD
+=======
+
+// Hook for IE8-9
+// -------------------------
+
+:root .#{$fa-css-prefix}-rotate-90,
+:root .#{$fa-css-prefix}-rotate-180,
+:root .#{$fa-css-prefix}-rotate-270,
+:root .#{$fa-css-prefix}-flip-horizontal,
+:root .#{$fa-css-prefix}-flip-vertical {
+  filter: none;
+}
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

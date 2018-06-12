@@ -1,10 +1,18 @@
 <?php
 class Featured_Agent extends WP_Widget {
 	
+<<<<<<< HEAD
 	function Featured_Agent(){
 		$widget_ops = array('classname' => 'featured_sidebar', 'description' => 'Put a featured agent on sidebar.');
 		$control_ops = array('id_base' => 'featured_agent');
 		$this->WP_Widget('Featured_Agent', 'Wp Estate: Featured Agent', $widget_ops, $control_ops);
+=======
+	function __construct(){
+		$widget_ops = array('classname' => 'featured_sidebar', 'description' => 'Put a featured agent on sidebar.');
+		$control_ops = array('id_base' => 'featured_agent');
+		//$this->WP_Widget('Featured_Agent', 'Wp Estate: Featured Agent', $widget_ops, $control_ops);
+                parent::__construct('Featured_Agent', 'Wp Estate: Featured Agent', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 	 
 	function form($instance){

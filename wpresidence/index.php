@@ -17,7 +17,11 @@ $blog_unit          =   esc_html ( get_option('wp_estate_blog_unit','') );
 <div id="post" <?php post_class('row');?>>
     <?php get_template_part('templates/breadcrumbs'); ?>
     
+<<<<<<< HEAD
     <div class=" col-xs-12  <?php print $options['content_class'];?> ">
+=======
+    <div class=" col-xs-12  <?php print esc_html($options['content_class']);?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <?php get_template_part('templates/ajax_container'); ?>  
         <div class="single-content blog_list_wrapper">
 

@@ -19,7 +19,11 @@ if( isset( $_POST['zill_estimate_state'] )  ){
         $hasError = true;
         $error[] = __('The state field is empty !','wpestate');
     } else {
+<<<<<<< HEAD
         $sell_estimate_state = wp_kses( trim($_POST['zill_estimate_state']),$allowed_html );
+=======
+        $sell_estimate_state = esc_html(wp_kses( trim($_POST['zill_estimate_state']),$allowed_html ));
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     } 
 }
 
@@ -29,7 +33,11 @@ if( isset( $_POST['zill_estimate_city'] )  ){
         $hasError = true;
         $error[] = __('The City field is empty !','wpestate');
     } else {
+<<<<<<< HEAD
         $sell_estimate_city = wp_kses( trim($_POST['zill_estimate_city']),$allowed_html );
+=======
+        $sell_estimate_city = esc_html(wp_kses( trim($_POST['zill_estimate_city']),$allowed_html ));
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     }
 }
 
@@ -38,7 +46,11 @@ if( isset( $_POST['zill_estimate_adr'] )  ){
         $hasError = true;
         $error[] = __('Your address field is empty!','wpestate');
     } else {
+<<<<<<< HEAD
         $sell_estimate_adr = wp_kses( trim ($_POST['zill_estimate_adr'] ),$allowed_html );
+=======
+        $sell_estimate_adr =esc_html( wp_kses( trim ($_POST['zill_estimate_adr'] ),$allowed_html ));
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     }     
 }
 
@@ -73,7 +85,11 @@ if ($hasError) {
 
 <div class="row">
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class="<?php print $options['content_class'];?> ">
+=======
+    <div class="<?php print esc_html($options['content_class']);?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
          <?php get_template_part('templates/ajax_container'); ?>
         

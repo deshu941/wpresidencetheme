@@ -15,6 +15,7 @@ function initialize(){
     var listing_lat=jQuery('#property_latitude').val();
     var listing_lon=jQuery('#property_longitude').val();
     
+<<<<<<< HEAD
     if(listing_lat===''){
         listing_lat=google_map_submit_vars.general_latitude
     }
@@ -37,6 +38,51 @@ function initialize(){
     google.maps.visualRefresh = true;
     
     var point=new google.maps.LatLng( listing_lat, listing_lon);
+=======
+    if( jQuery('#agency_lat').length > 0){
+        listing_lat=jQuery('#agency_lat').val();
+        listing_lon=jQuery('#agency_long').val();
+    }
+    
+    if( jQuery('#developer_lat').length > 0){
+        listing_lat=jQuery('#developer_lat').val();
+        listing_lon=jQuery('#developer_long').val();
+    }
+    
+    if(listing_lat==='' || typeof  listing_lat==='undefined'){
+        listing_lat=google_map_submit_vars.general_latitude
+    }
+    
+     if(listing_lon===''|| typeof  listing_lon==='undefined'){
+        listing_lon= google_map_submit_vars.general_longitude
+    }
+    
+    
+ 
+    var mapOptions = {
+            flat:false,
+            noClear:false,
+            zoom: 17,
+            scrollwheel: false,
+            draggable: true,
+            disableDefaultUI:false,
+            center: new google.maps.LatLng( listing_lat, listing_lon),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            gestureHandling: 'cooperative'
+           };
+  
+    
+    if(  document.getElementById('googleMapsubmit') ){
+        map = new google.maps.Map(document.getElementById('googleMapsubmit'), mapOptions);
+    }else{
+        return;
+    }
+    
+    google.maps.visualRefresh = true;
+    
+    var point=new google.maps.LatLng( listing_lat, listing_lon);
+    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     placeSavedMarker(point);
     
     if(mapfunctions_vars.map_style !==''){
@@ -47,6 +93,12 @@ function initialize(){
     google.maps.event.addListener(map, 'click', function(event) {
         placeMarker(event.latLng);
     });
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
  
 
@@ -71,6 +123,7 @@ function placeSavedMarker(location) {
 
 
 function codeAddress() {
+<<<<<<< HEAD
   var address   = document.getElementById('property_address').value;
   //var e = document.getElementById("property_city_submit"); 
   //var city      = e.options[e.selectedIndex].text;
@@ -91,11 +144,31 @@ function codeAddress() {
  
   geocoder.geocode( { 'address': full_addr}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
+=======
+ 
+    var address     =   document.getElementById('property_address').value;
+    var city        =   jQuery ("#property_city_submit").val();
+    var full_addr   =   address+','+city;
+    var state       =   document.getElementById('property_county').value;
+    if(state){
+        var full_addr=full_addr +','+state;
+    }
+
+    var country   = document.getElementById('property_country').value;
+    if(country){
+        var full_addr=full_addr +','+country;
+    }
+
+
+    geocoder.geocode( { 'address': full_addr}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
             });
+<<<<<<< HEAD
                gmarkers.push(marker);
 
             var infowindow = new google.maps.InfoWindow({
@@ -109,11 +182,59 @@ function codeAddress() {
             alert(google_map_submit_vars.geo_fails + status);
     }
   });
+=======
+            gmarkers.push(marker);
+
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Latitude: ' + results[0].geometry.location.lat() + '<br>Longitude: ' + results[0].geometry.location.lng()  
+            });
+
+            infowindow.open(map,marker);
+            document.getElementById("property_latitude").value=results[0].geometry.location.lat();
+            document.getElementById("property_longitude").value=results[0].geometry.location.lng();
+        } else {
+            alert(google_map_submit_vars.geo_fails + status);
+        }
+    });
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 
 
 
+<<<<<<< HEAD
+=======
+function wpestate_codeAddress_agency(agency_adress , agency_city , agency_county,agency_lat,agency_long) {
+    var address     =   jQuery(agency_adress).val();
+    var city        =   jQuery(agency_city).val();
+    var full_addr   =   address+','+city;
+    var state       =   jQuery(agency_county).val();
+    if(state){
+        var full_addr=full_addr +','+state;
+    }
+ 
+    geocoder.geocode( { 'address': full_addr}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+            gmarkers.push(marker);
+
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Latitude: ' + results[0].geometry.location.lat() + '<br>Longitude: ' + results[0].geometry.location.lng()  
+            });
+
+            infowindow.open(map,marker);
+            jQuery(agency_lat).val( results[0].geometry.location.lat() );
+            jQuery(agency_long).val( results[0].geometry.location.lng() );
+        } else {
+            alert(google_map_submit_vars.geo_fails + status);
+        }
+    });
+}
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 
@@ -127,6 +248,7 @@ function codeAddress() {
 
 
 function placeMarker(location) {
+<<<<<<< HEAD
  "use strict";
   removeMarkers();
   var marker = new google.maps.Marker({
@@ -143,6 +265,39 @@ function placeMarker(location) {
    document.getElementById("property_latitude").value=location.lat();
    document.getElementById("property_longitude").value=location.lng();
 
+=======
+    "use strict";
+    removeMarkers();
+    var marker = new google.maps.Marker({
+       position: location,
+       map: map
+    });
+    gmarkers.push(marker);
+
+    var infowindow = new google.maps.InfoWindow({
+        content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()  
+    });
+
+    infowindow.open(map,marker);
+    var myElem = document.getElementById('property_latitude');
+    if (myElem !== null) {
+        document.getElementById("property_latitude").value=location.lat();
+        document.getElementById("property_longitude").value=location.lng();
+    }
+    
+    var myElem = document.getElementById('agency_lat');
+    if (myElem !== null) {
+        document.getElementById("agency_lat").value=location.lat();
+        document.getElementById("agency_long").value=location.lng();
+    }
+    
+    var myElem = document.getElementById('developer_lat');
+    if (myElem !== null) {
+
+        document.getElementById("developer_lat").value=location.lat();
+        document.getElementById("developer_long").value=location.lng();
+    }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 
@@ -176,12 +331,33 @@ jQuery('#google_capture').click(function(event){
     removeMarkers();
     codeAddress();  
 });  
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
+<<<<<<< HEAD
 
 
+=======
+jQuery('#google_agency_location').click(function(event){
+    event.preventDefault();
+    removeMarkers();
+    wpestate_codeAddress_agency('#agency_address', '#agency_city','#agency_county','#agency_lat','#agency_long');
+});  
+jQuery('#google_developer_location').click(function(event){
+    event.preventDefault();
+    removeMarkers();
+    wpestate_codeAddress_agency('#developer_address', '#developer_city','#developer_county','#developer_lat','#developer_long');
+});  
+
+
+   
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 jQuery(document).ready(function ($) {
@@ -234,6 +410,7 @@ jQuery(document).ready(function ($) {
 
 
     if ( google_map_submit_vars.enable_auto ==='yes' ){
+<<<<<<< HEAD
     
         autocomplete = new google.maps.places.Autocomplete(
           /** @type {HTMLInputElement} */(document.getElementById('property_address')),
@@ -255,6 +432,44 @@ jQuery(document).ready(function ($) {
              var place = autocomplete2.getPlace();
             fillInAddress(place);
         });
+=======
+        if(  document.getElementById('property_address') ){
+            autocomplete = new google.maps.places.Autocomplete(
+              /** @type {HTMLInputElement} */(document.getElementById('property_address')),
+                {   types: ['geocode'],
+                    "partial_match" : true
+                }
+            );
+
+        
+        
+            var input = document.getElementById('property_address');
+                google.maps.event.addDomListener(input, 'keydown', function(e) { 
+                    if (e.keyCode == 13) { 
+                        e.stopPropagation(); 
+                        e.preventDefault();
+                    }
+            }); 
+        
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function(event) {
+                var place = autocomplete.getPlace();
+
+                fillInAddress(place);
+            });
+       
+        
+            autocomplete2 = new google.maps.places.Autocomplete(
+                /** @type {HTMLInputElement} */(document.getElementById('property_city_submit')),
+                {    types: ['(cities)']        }
+            );
+
+            google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+                var place = autocomplete2.getPlace();
+                fillInAddress(place);
+            });
+        }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     }
     
     
@@ -264,6 +479,10 @@ jQuery(document).ready(function ($) {
     
     
     function fillInAddress(place) {
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $('#property_area').val('');
         $('#property_zip').val('');
         $('#property_county').val('');
@@ -301,7 +520,11 @@ jQuery(document).ready(function ($) {
             
           
         }
+<<<<<<< HEAD
         
+=======
+        codeAddress();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     }
     
     

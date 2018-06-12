@@ -46,6 +46,7 @@ while ($prop_selection->have_posts()): $prop_selection->the_post();
     $property['property_city']      =   get_the_term_list($post->ID, 'property_city', '', ', ', '');
     $property['property_area']      =   get_the_term_list($post->ID, 'property_area', '', ', ', '');
     $property['property_zip']       =   esc_html ( get_post_meta($post->ID, 'property_zip', true) );
+<<<<<<< HEAD
     $property['property_size']      =   floatval ( get_post_meta($post->ID, 'property_size', true) );
     $property['property_lot_size']  =   floatval( get_post_meta($post->ID, 'property_lot_size', true) );
     $property['property_size']      =   floatval(get_post_meta($post->ID, 'property_size', true));
@@ -58,10 +59,40 @@ while ($prop_selection->have_posts()): $prop_selection->the_post();
         $property['property_lot_size'] = number_format($property['property_lot_size']) .' '.$measure_sys.'<sup>2</sup>';
     }
 
+=======
+  //  $property['property_state']     =   esc_html ( get_post_meta($post->ID, 'property_state', true) );
+    $property['property_size']      =   wpestate_get_converted_measure( $post->ID, 'property_size' ) ;
+    $property['property_lot_size']  =   wpestate_get_converted_measure( $post->ID, 'property_lot_size' ) ;  
+    /*
+	$property['property_size']      =   floatval(get_post_meta($post->ID, 'property_size', true));
+    
+	if ($property['property_size'] != '') {
+        $property['property_size']  =   wpestate_sizes_no_format($property['property_size']) . ' '.$measure_sys.'<sup>2</sup>';                            
+    }
+	
+
+    $property['property_lot_size'] = floatval( get_post_meta($post->ID, 'property_lot_size', true));
+    if ($property['property_lot_size'] != '') {
+        $property['property_lot_size'] = wpestate_sizes_no_format($property['property_lot_size']) .' '.$measure_sys.'<sup>2</sup>';
+    }
+	*/
+	
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     $property['property_rooms']     =   floatval( get_post_meta($post->ID, 'property_rooms', true));
     $property['property_bedrooms']  =   floatval( get_post_meta($post->ID, 'property_bedrooms', true));
     $property['property_bathrooms'] =   floatval ( get_post_meta($post->ID, 'property_bathrooms', true));
    
+<<<<<<< HEAD
+=======
+   
+   // energy saving
+   $property['energy_index'] =   get_post_meta($post->ID, 'energy_index', true);
+   $property['energy_class'] =   get_post_meta($post->ID, 'energy_class', true);
+   
+   
+   // ee end
+   
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     if( floatval( get_post_meta($post->ID, 'property_price', true) ) !=0 ){
         $price =  wpestate_show_price($post->ID,$currency,$where_currency,1);
     }else{
@@ -88,7 +119,14 @@ wp_reset_postdata();
 
 
 <div class="row">
+<<<<<<< HEAD
         <?php get_template_part('templates/breadcrumbs'); ?>
+=======
+    <?php get_template_part('templates/breadcrumbs'); ?>
+    
+    <?php get_template_part('templates/ajax_container'); ?>
+    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <h1 class="entry-title compare_title"><?php _e('Compare Listings', 'wpestate'); ?></h1>
         <div class="compare_wrapper col-md-12"">
             
@@ -97,10 +135,17 @@ wp_reset_postdata();
                         for ($i = 0; $i <= $counter - 1; $i++) {
                             ?>
                             <div class="compare_item_head"> 
+<<<<<<< HEAD
                                 <a href="<?php print $properties[$i]['link']; ?>"><?php print $properties[$i]['image']; ?></a>				
                                 <h4><a href="<?php print $properties[$i]['link']; ?>"><?php print $properties[$i]['title']; ?></a> </h4>  
                          
                                 <div class="property_price"><?php print $properties[$i]['price']; ?></div>
+=======
+                                <a href="<?php print esc_url($properties[$i]['link']); ?>"><?php print $properties[$i]['image']; ?></a>				
+                                <h4><a href="<?php print esc_url($properties[$i]['link']); ?>"><?php print esc_html($properties[$i]['title']); ?></a> </h4>  
+                         
+                                <div class="property_price"><?php print ($properties[$i]['price']); ?></div>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                                 <div class="article_property_type"><?php print __('Type: ','wpestate').$properties[$i]['type']; ?></div>
                             </div>          
                             <?php
@@ -117,6 +162,11 @@ wp_reset_postdata();
                         'property_rooms'                    =>__('rooms','wpestate'),
                         'property_bedrooms'                 =>__('bedrooms','wpestate'),
                         'property_bathrooms'                =>__('bathrooms','wpestate'),
+<<<<<<< HEAD
+=======
+                        'energy_index'                		=>__('Energy Index','wpestate'),
+                        'energy_class'                		=>__('Energy Class','wpestate'),
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                        
                     );
 
@@ -146,7 +196,11 @@ wp_reset_postdata();
                                 $label     =   icl_translate('wpestate','wp_estate_property_custom_'.$label, $label ) ;
                             }
                             print '<div class="compare_item '.$slug.'"> 
+<<<<<<< HEAD
                             <div class="compare_legend_head_in">' .$label . '</div>';
+=======
+                            <div class="compare_legend_head_in">' .stripslashes($label) . '</div>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                             for ($i = 0; $i < count($id_array); $i++) {
                                print'<div class="prop_value">'. esc_html(get_post_meta($id_array[$i], $slug, true)) . '</div>';
                              }                        
@@ -163,7 +217,11 @@ wp_reset_postdata();
                         }
                         $post_var_name=  str_replace(' ','_', trim($value) );
                         print '<div class="compare_item '.$post_var_name.'"> 
+<<<<<<< HEAD
                                <div class="compare_legend_head_in">' . str_replace('_', ' ', str_replace('property_', '', $value)) . '</div>';
+=======
+                               <div class="compare_legend_head_in">' . str_replace('_', ' ', str_replace('property_', '',stripslashes( $value))) . '</div>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
                         for ($i = 0; $i <= $counter - 1; $i++) {
                             print'<div class="prop_value">';

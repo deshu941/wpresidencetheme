@@ -23,7 +23,11 @@ if (esc_html( get_post_meta($post->ID, 'group_pictures', true) ) != 'no') {
 
         if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed_video_id', true)) {  ?>   
 
+<<<<<<< HEAD
             <div id="carousel-example-generic" class="carousel slide post-carusel" data-ride="carousel" data-interval="false">
+=======
+            <div id="carousel-example-generic" class="owl-carousel carousel slide post-carusel" data-ride="carousel" data-interval="false">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
               <!-- Indicators -->
               <ol class="carousel-indicators">
                  <?php  
@@ -91,8 +95,13 @@ if (esc_html( get_post_meta($post->ID, 'group_pictures', true) ) != 'no') {
                     ?>
                  
                  <div class="item <?php print $active;?>">
+<<<<<<< HEAD
                         <a href="<?php print $full_prty[0]; ?>" rel="prettyPhoto[pp_gal]" class="prettygalery" > 
                             <img  src="<?php print $full_img[0];?>" alt="<?php print $attachment_meta['alt']; ?>" class="img-responsive" />
+=======
+                        <a href="<?php print $full_prty[0]; ?>" rel="prettyPhoto" title="<?php print $attachment_meta['caption']; ?>"   class="prettygalery" > 
+                            <img  src="<?php print $full_img[0];?>" alt="<?php print $attachment_meta['alt']; ?>" class="img-responsive lightbox_trigger" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                         </a>
                         <div class="carousel-caption">
                          <?php print $attachment_meta['caption'];?>
@@ -105,6 +114,7 @@ if (esc_html( get_post_meta($post->ID, 'group_pictures', true) ) != 'no') {
                   
               </div>
 
+<<<<<<< HEAD
               <!-- Controls -->
               <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                  <i class="fa fa-angle-left"></i>
@@ -112,6 +122,15 @@ if (esc_html( get_post_meta($post->ID, 'group_pictures', true) ) != 'no') {
               <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
                  <i class="fa fa-angle-right"></i>
               </a>
+=======
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <i class="demo-icon icon-left-open-big"></i>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <i class="demo-icon icon-right-open-big"></i>
+                </a>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             </div>
 
         <?php

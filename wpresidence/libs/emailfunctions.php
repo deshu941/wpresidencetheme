@@ -19,9 +19,21 @@ if( !function_exists('wpestate_emails_filter_replace')):
     function  wpestate_emails_filter_replace($user_email,$message,$subject,$arguments){
         $arguments ['website_url'] = get_option('siteurl');
         $arguments ['website_name'] = get_option('blogname');       
+<<<<<<< HEAD
         $arguments ['user_email'] = $user_email;     
         $user= get_user_by('email',$user_email);
         $arguments ['username'] = $user-> user_login;
+=======
+        $arguments ['user_email'] = $user_email;
+
+
+		
+        $user= get_user_by('email',$user_email);
+	if( isset($user->user_login) ){
+            $arguments ['username'] = $user->user_login;
+        }
+        
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
         foreach($arguments as $key_arg=>$arg_val){
             $subject = str_replace('%'.$key_arg, $arg_val, $subject);
@@ -36,11 +48,20 @@ endif;
 
 if( !function_exists('wpestate_send_emails') ):
     function wpestate_send_emails($user_email, $subject, $message ){
+<<<<<<< HEAD
         $headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
         @wp_mail(
             $user_email,
             $subject,
             $message,
+=======
+        $headers[] = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+        $headers[] = 'Content-Type: text/html; charset=UTF-8';
+        @wp_mail(
+            $user_email,
+            stripslashes($subject),
+            stripslashes($message),
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $headers
             );            
     };
@@ -72,11 +93,21 @@ if( !function_exists('wpestate_email_management') ):
             'featured_submission'       =>  __('Featured Submission','wpestate'),
             'account_downgraded'        =>  __('Account Downgraded','wpestate'),
             'membership_cancelled'      =>  __('Membership Cancelled','wpestate'),
+<<<<<<< HEAD
+=======
+            'downgrade_warning'         =>  __('Downgrade Warning','wpestate'),
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             'free_listing_expired'      =>  __('Free Listing Expired','wpestate'),
             'new_listing_submission'    =>  __('New Listing Submission','wpestate'),
             'listing_edit'              =>  __('Listing Edit','wpestate'),
             'recurring_payment'         =>  __('Recurring Payment','wpestate'),
             'membership_activated'      =>  __('Membership Activated','wpestate'),
+<<<<<<< HEAD
+=======
+            'agent_update_profile'      =>  __('Update Profile','wpestate'),
+            'agent_added'               =>  __('New Agent','wpestate')
+           
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
            
         );
         
@@ -94,7 +125,11 @@ if( !function_exists('wpestate_email_management') ):
             print '<input type="text" name="subject_'.$key.'" value="'.$value_subject.'" />';
 
             print '<label for="'.$key.'">'.__('Content for','wpestate').' '.$label.'</label>';
+<<<<<<< HEAD
             print '<textarea rows="10" name="'.$key.'">'.$value.'</textarea>';
+=======
+            print '<textarea rows="10" cc="111" name="'.$key.'">'.$value.'</textarea>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             print '<div class="extra_exp"> '.wpestate_emails_extra_details($key).'</div>';
             print '</div>';
 
@@ -130,7 +165,11 @@ if( !function_exists('wpestate_emails_extra_details') ):
                     break;
                 
             case "purchase_activated":
+<<<<<<< HEAD
                     $return_string=__('','wpestate');
+=======
+                    $return_string='';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     break;
                 
             case "approved_listing":
@@ -154,6 +193,7 @@ if( !function_exists('wpestate_emails_extra_details') ):
                     break;
                 
             case "paid_submissions":  
+<<<<<<< HEAD
                     $return_string=  __('','wpestate');
                     break;
                 
@@ -163,6 +203,17 @@ if( !function_exists('wpestate_emails_extra_details') ):
 
             case "account_downgraded":   
                     $return_string=  __('','wpestate');
+=======
+                    $return_string= '';
+                    break;
+                
+            case  "featured_submission":
+                    $return_string=  '';
+                    break;
+
+            case "account_downgraded":   
+                    $return_string=  '';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     break;
                 
             case "free_listing_expired":
@@ -182,7 +233,11 @@ if( !function_exists('wpestate_emails_extra_details') ):
                     break;
                 
             case "membership_activated":  
+<<<<<<< HEAD
                     $return_string=  __('','wpestate');
+=======
+                    $return_string=  '';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     break;    
         
                 

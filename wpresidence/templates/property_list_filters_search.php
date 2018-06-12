@@ -22,6 +22,14 @@ $listing_filter_array   = array(
                             "0"=>__('Default','wpestate')
                         );
 
+<<<<<<< HEAD
+=======
+
+if( isset($_GET['order_search']) ){
+    $listing_filter = intval($_GET['order_search']);
+}
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 foreach($listing_filter_array as $key=>$value){
     $listings_list.= '<li role="presentation" data-value="'.$key.'">'.$value.'</li>';
 
@@ -60,13 +68,21 @@ $order_class=' order_filter_single ';
         ?>    
         
         <div class="listing_filter_select listing_filter_views">
+<<<<<<< HEAD
             <div id="grid_view" class="<?php echo $prop_unit_grid_class; ?>"> 
+=======
+            <div id="grid_view" class="<?php echo esc_html($prop_unit_grid_class); ?>"> 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 <i class="fa fa-th"></i>
             </div>
         </div>
 
         <div class="listing_filter_select listing_filter_views">
+<<<<<<< HEAD
              <div id="list_view" class="<?php echo $prop_unit_list_class; ?>">
+=======
+             <div id="list_view" class="<?php echo esc_html($prop_unit_list_class); ?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                  <i class="fa fa-bars"></i>                   
              </div>
         </div>

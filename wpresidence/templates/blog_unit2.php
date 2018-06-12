@@ -5,11 +5,40 @@ global $align;
 global $show_remove_fav;
 global $is_shortcode;
 global $row_number_col;
+<<<<<<< HEAD
 
 $col_class  =   'col-md-4';
 if($options['content_class']=='col-md-12' && $show_remove_fav!=1){
     $col_class  =   'col-md-3';
     $col_org    =   3;
+=======
+global $no_listins_per_row;
+$col_class  =   'col-md-4';
+
+
+
+if($options['content_class']=='col-md-12' && $show_remove_fav!=1){
+    $col_class  =   'col-md-3';
+    $col_org    =   3;
+
+}
+
+if($no_listins_per_row==3){
+    $col_class  =   'col-md-6';
+    $col_org    =   6;
+    if($options['content_class']=='col-md-12'){
+        $col_class  =   'col-md-4';
+        $col_org    =   4;
+    }
+    
+}else{   
+    $col_class  =   'col-md-4';
+    $col_org    =   4;
+    if($options['content_class']=='col-md-12'){
+        $col_class  =   'col-md-3';
+        $col_org    =   3;
+    }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 // if template is vertical
@@ -24,8 +53,13 @@ $words          =   55;
 $link           =   get_permalink();
 $title          =   get_the_title();
 
+<<<<<<< HEAD
 if (strlen ($title)>90 ){
     $title          =   substr($title,0,90).'...';
+=======
+if (mb_strlen ($title)>90 ){
+    $title          =   mb_substr($title,0,90).'...';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 
@@ -36,8 +70,13 @@ if(isset($is_shortcode) && $is_shortcode==1 ){
 
 ?>  
 
+<<<<<<< HEAD
 <div  class="<?php echo $col_class;?>  listing_wrapper blog2v"> 
     <div class="property_listing" data-link="<?php echo $link; ?>">
+=======
+<div  class="<?php echo esc_html($col_class);?>  listing_wrapper blog2v"> 
+    <div class="property_listing" data-link="<?php echo esc_url($link); ?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <?php
         if (has_post_thumbnail()):
        
@@ -49,15 +88,26 @@ if(isset($is_shortcode) && $is_shortcode==1 ){
                 'class'	=> 'lazyload img-responsive',    
             );
          
+<<<<<<< HEAD
             $thumb_prop = get_the_post_thumbnail( $post->ID, 'property_listings',$extra );           
+=======
+            $thumb_prop = get_the_post_thumbnail( $post->ID, 'property_listings',$extra );    
+            if($thumb_prop ==''){
+                $thumb_prop_default =  get_template_directory_uri().'/img/defaults/default_property_listings.jpg';
+                $thumb_prop         =  '<img src="'.$thumb_prop_default.'" class="b-lazy img-responsive wp-post-image  lazy-hidden" alt="no thumb" />';   
+            }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $featured   = intval  ( get_post_meta( $post->ID, 'prop_featured', true ) );
         
             
             if( $thumb_prop!='' ){
                 print '<div class="blog_unit_image">';
                 print  $thumb_prop;
+<<<<<<< HEAD
                 print '<div class="listing-cover"></div>
                 <a href="'.$link.'"> <span class="listing-cover-plus">+</span></a>';
+=======
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 print '</div>'; 
             }
            
@@ -69,8 +119,13 @@ if(isset($is_shortcode) && $is_shortcode==1 ){
                <a href="<?php the_permalink(); ?>">
                 <?php 
                     $title=get_the_title();
+<<<<<<< HEAD
                     echo substr( $title,0,44); 
                     if(strlen($title)>44){
+=======
+                    echo mb_substr( $title,0,44); 
+                    if(mb_strlen($title)>44){
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                         echo '...';   
                     } 
                 ?>
@@ -86,9 +141,17 @@ if(isset($is_shortcode) && $is_shortcode==1 ){
                 <?php   
                
                 if( has_post_thumbnail() ){
+<<<<<<< HEAD
                     echo wpestate_strip_words( get_the_excerpt(),18).' ...';
                 } else{
                    echo wpestate_strip_words( get_the_excerpt(),40).' ...';
+=======
+                   //echo wpestate_strip_words( get_the_excerpt(),18).' ...';
+                   echo  wpestate_strip_excerpt_by_char(get_the_excerpt(),115,$post->ID);
+                } else{
+                    // echo wpestate_strip_words( get_the_excerpt(),40).' ...';
+                    echo  wpestate_strip_excerpt_by_char(get_the_excerpt(),200,$post->ID);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 } ?>
             </div>
        

@@ -21,7 +21,15 @@ register_post_type( 'wpestate_invoice',
                 'not_found_in_trash'    =>  __('No Invoices found','wpestate'),
                 'parent'                =>  __('Parent Invoice','wpestate')
 			),
+<<<<<<< HEAD
 		'public' => true,
+=======
+		'public' => false,
+                'show_ui'=>true,
+                'show_in_nav_menus'=>true,
+                'show_in_menu'=>true,
+                'show_in_admin_bar'=>true,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		'has_archive' => true,
 		'rewrite' => array('slug' => 'invoice'),
 		'supports' => array('title'),
@@ -121,9 +129,22 @@ function wpestate_invoice_details( $post ) {
         <input type="text" id="item_price" size="58" name="item_price" value="'.  esc_html(get_post_meta($post->ID, 'item_price', true)).'">
     </p>
 
+<<<<<<< HEAD
     <p class="meta-options">
         <label for="purchase_date">'.__('Purchase Date','wpestate').'</label><br />
         <input type="text" id="purchase_date" size="58" name="purchase_date" value="'.  esc_html(get_post_meta($post->ID, 'purchase_date', true)).'">
+=======
+   <p class="meta-options">
+        <label for="purchase_date">'.__('Purchase Date','wpestate').'</label><br />
+        <input type="text" id="purchase_date" size="58" name="purchase_date" value="';
+        
+            
+        $purchase_date  = esc_html(get_post_meta($post->ID, 'purchase_date', true));
+        $time_unix      = strtotime($purchase_date);
+        echo gmdate( 'Y-m-d H:i:s', ( $time_unix+ ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) );
+        
+        print'">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     </p>
 
     <p class="meta-options">
@@ -181,9 +202,15 @@ function wpestate_invoice_populate_columns( $column ) {
     }
     
     if ( 'invoice_user' == $column ) {
+<<<<<<< HEAD
          $user_id= get_post_meta($the_id, 'buyer_id', true);
          $user_info = get_userdata($user_id);
          echo $user_info->user_login;
+=======
+        $user_id= get_post_meta($the_id, 'buyer_id', true);
+        $user_info = get_userdata($user_id);
+        echo esc_html($user_info->user_login);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     }
     if ( 'invoice_status' == $column ) {
         $stat=get_post_meta($the_id, 'pay_status', 1);  
@@ -264,7 +291,11 @@ if( !function_exists('wpestate_insert_invoice') ):
     update_post_meta($post_id, 'txn_id', $paypal_tax_id);
     $my_post = array(
        'ID'             => $post_id,
+<<<<<<< HEAD
        'post_title'     => 'Invoice '.$post_id,
+=======
+       'post_title'     => __('Invoice','wpestate').' '.$post_id,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     );
     wp_update_post( $my_post );
     return $post_id;

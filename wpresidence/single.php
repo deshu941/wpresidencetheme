@@ -5,11 +5,22 @@ get_header();
 $options=wpestate_page_details($post->ID); 
 global $more;
 $more = 0;
+<<<<<<< HEAD
+=======
+
+if ( 'wpestate_message' == get_post_type() || 'wpestate_invoice' == get_post_type() ){
+    exit();
+}
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 
 <div id="post" <?php post_class('row');?>>
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class=" <?php print $options['content_class'];?> ">
+=======
+    <div class=" <?php print esc_html($options['content_class']);?> single_width_blog">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <?php get_template_part('templates/ajax_container'); ?>
         <?php 
         while ( have_posts() ) : the_post();
@@ -35,7 +46,11 @@ $more = 0;
                 <a href="http://twitter.com/home?status=<?php echo urlencode(get_the_title() .' '. get_permalink()); ?>" class="share_tweet" target="_blank"><i class="fa fa-twitter fa-2"></i></a>
                 <a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank" class="share_google"><i class="fa fa-google-plus fa-2"></i></a> 
                 <?php if (isset($pinterest[0])){ ?>
+<<<<<<< HEAD
                    <a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&amp;media=<?php echo $pinterest[0];?>&amp;description=<?php echo urlencode(get_the_title()); ?>" target="_blank" class="share_pinterest"> <i class="fa fa-pinterest fa-2"></i> </a>      
+=======
+                   <a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&amp;media=<?php echo esc_url($pinterest[0]);?>&amp;description=<?php echo urlencode(get_the_title()); ?>" target="_blank" class="share_pinterest"> <i class="fa fa-pinterest fa-2"></i> </a>      
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 <?php } ?>
 
 
@@ -44,7 +59,11 @@ $more = 0;
         </div> 
 
 
+<<<<<<< HEAD
         <div class="single-content">
+=======
+        <div class="single-content single-blog">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             <?php 
             global $more;
             $more=0;

@@ -1,5 +1,6 @@
 <!-- begin sidebar -->
 <div class="clearfix visible-xs"></div>
+<<<<<<< HEAD
 <?php  //print $options['sidebar_name'].' / '.$options['sidebar_class']  ;
 $sidebar_name   =   $options['sidebar_name'];
 $sidebar_class  =   $options['sidebar_class'];
@@ -10,6 +11,21 @@ if( ('no sidebar' != $options['sidebar_class']) && ('' != $options['sidebar_clas
         <?php 
         
         if(  'estate_property' == get_post_type() && !is_tax() ){
+=======
+<?php 
+$sidebar_name   =   $options['sidebar_name'];
+$sidebar_class  =   $options['sidebar_class'];
+
+
+ 
+if( ('no sidebar' != $options['sidebar_class']) && ('' != $options['sidebar_class'] ) && ('none' != $options['sidebar_class']) ){
+?>    
+    <div class="col-xs-12 <?php print esc_html($options['sidebar_class']);?> widget-area-sidebar" id="primary" >
+        <?php 
+        
+        if(  'estate_property' == get_post_type() && !is_tax() ){
+        
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $sidebar_agent_option_value=    get_post_meta($post->ID, 'sidebar_agent_option', true);
       
             if($sidebar_agent_option_value =='global'){

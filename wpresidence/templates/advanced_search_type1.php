@@ -6,7 +6,11 @@ $show_adv_search_visible    =   get_option('wp_estate_show_adv_search_visible','
 $close_class                =   '';
 
 if($show_adv_search_visible=='no'){
+<<<<<<< HEAD
     $close_class='adv-search-1-close';
+=======
+    $close_class=' float_search_closed ';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 $extended_search    =   get_option('wp_estate_show_adv_search_extended','');
@@ -29,6 +33,7 @@ if ( $extended_search =='yes' ){
  
 
 
+<<<<<<< HEAD
 <div class="adv-search-1 <?php echo $close_class.' '.$extended_class;?>" id="adv-search-1" > 
     <div id="adv-search-header-1"> <?php _e('Advanced Search','wpestate');?></div>   
     <form role="search" method="get"   action="<?php print $adv_submit; ?>" >
@@ -39,6 +44,41 @@ if ( $extended_search =='yes' ){
             if ( $custom_advanced_search == 'yes'){
                 foreach($adv_search_what as $key=>$search_field){
                     wpestate_show_search_field('mainform',$search_field,$action_select_list,$categ_select_list,$select_city_list,$select_area_list,$key,$select_county_state_list);
+=======
+<div class="adv-search-1 " id="adv-search-1" > 
+    <div id="adv-search-header-1"> <?php _e('Advanced Search','wpestate');?></div>   
+    <form role="search" method="get"  id="adv_search_form"  action="<?php esc_url(print $adv_submit); ?>" >
+        <?php
+        if (function_exists('icl_translate') ){
+            print do_action( 'wpml_add_language_form_field' );
+        }
+        ?>   
+        
+        
+        <div class="adv1-holder">
+            <?php
+            $custom_advanced_search         =   get_option('wp_estate_custom_advanced_search','');
+            $adv_search_fields_no_per_row   =   ( floatval( get_option('wp_estate_search_fields_no_per_row') ) );
+            if ( $custom_advanced_search == 'yes'){
+                foreach($adv_search_what as $key=>$search_field){
+                    $search_col         =   3;
+                    $search_col_price   =   6;
+                    if($adv_search_fields_no_per_row==2){
+                        $search_col         =   6;
+                        $search_col_price   =   12;
+                    }else  if($adv_search_fields_no_per_row==3){
+                        $search_col         =   4;
+                        $search_col_price   =   8;
+                    }
+                    if($search_field=='property price' &&  get_option('wp_estate_show_slider_price','')=='yes'){
+                        $search_col=$search_col_price;
+                    }
+                    
+                    print '<div class="col-md-'.$search_col.' '.str_replace(" ","_",$search_field).'">';
+                    wpestate_show_search_field('mainform',$search_field,$action_select_list,$categ_select_list,$select_city_list,$select_area_list,$key,$select_county_state_list);
+                    print '</div>';
+                    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 }
             }else{
                 $search_form = wpestate_show_search_field_classic_form('main',$action_select_list,$categ_select_list ,$select_city_list,$select_area_list);
@@ -51,6 +91,7 @@ if ( $extended_search =='yes' ){
             ?>
         </div>
        
+<<<<<<< HEAD
         <input name="submit" type="submit" class="wpb_button  wpb_btn_adv_submit wpb_btn-large" id="advanced_submit_2" value="<?php _e('SEARCH PROPERTIES','wpestate');?>">
         <?php if ($adv_search_type!=2) { ?>
         <div id="results">
@@ -61,4 +102,15 @@ if ( $extended_search =='yes' ){
 
     </form>   
        <div style="clear:both;"></div>
+=======
+        <input name="submit" type="submit" class="wpresidence_button" id="advanced_submit_2" value="<?php _e('SEARCH PROPERTIES','wpestate');?>">
+       
+        <?php get_template_part('templates/preview_template')?>
+     
+
+    </form>   
+       <div style="clear:both;"></div>
+   
+       
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 </div>  

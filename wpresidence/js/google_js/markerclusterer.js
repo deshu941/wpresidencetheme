@@ -162,6 +162,10 @@ ClusterIcon.prototype.onAdd = function () {
           mc.getMap().fitBounds(theBounds);
           // Don't zoom beyond the max zoom level
           if (mz !== null && (mc.getMap().getZoom() > mz)) {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             mc.getMap().setZoom(mz + 1);
           }
         }, 100);

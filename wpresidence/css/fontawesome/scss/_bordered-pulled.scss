@@ -7,6 +7,18 @@
   border-radius: .1em;
 }
 
+<<<<<<< HEAD
+=======
+.#{$fa-css-prefix}-pull-left { float: left; }
+.#{$fa-css-prefix}-pull-right { float: right; }
+
+.#{$fa-css-prefix} {
+  &.#{$fa-css-prefix}-pull-left { margin-right: .3em; }
+  &.#{$fa-css-prefix}-pull-right { margin-left: .3em; }
+}
+
+/* Deprecated as of 4.4.0 */
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 .pull-right { float: right; }
 .pull-left { float: left; }
 

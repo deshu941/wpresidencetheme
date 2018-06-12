@@ -8,7 +8,11 @@ if( !function_exists('wpestate_add_weekly_cron_schedule') ):
     function wpestate_add_weekly_cron_schedule( $schedules ) {
         $schedules['weekly'] = array(
             'interval' => 604800, // 1 week in seconds
+<<<<<<< HEAD
             'display'  => __( 'Once Weekly' ),
+=======
+            'display'  => __( 'Once Weekly','wpestate' ),
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         );
 
         return $schedules;
@@ -71,7 +75,12 @@ if( !function_exists('wpestate_cron_generate_pins') ):
 
             $path=estate_get_pin_file_path();
             if ( file_exists ($path) && is_writable ($path) ){
+<<<<<<< HEAD
                   wpestate_listing_pins();
+=======
+                //  wpestate_listing_pins();
+                   wpestate_listing_pins_for_file();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             }
 
         }
@@ -87,9 +96,15 @@ endif;
 
 if( !function_exists('wp_estate_schedule_email_events') ): 
     function wp_estate_schedule_email_events(){
+<<<<<<< HEAD
        $show_save_search            =   get_option('wp_estate_show_save_search','');
        $search_alert                =   intval( get_option('wp_estate_search_alert','') );
 
+=======
+        $show_save_search            =   get_option('wp_estate_show_save_search','');
+        $search_alert                =   intval( get_option('wp_estate_search_alert','') );
+        update_option('wpestate_cron_saved_search','none');
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         if($show_save_search=='yes'){
 
             if ($search_alert==0){ // is daily
@@ -108,6 +123,10 @@ if( !function_exists('wp_estate_schedule_email_events') ):
 endif;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //// schedule daily event
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -190,17 +209,30 @@ if( !function_exists('wpestate_saved_search_checks') ):
                 while ($prop_selection->have_posts()): $prop_selection->the_post(); 
                     $post_id=get_the_id();
                     $arguments      =   get_post_meta($post_id, 'search_arguments', true) ;
+<<<<<<< HEAD
                     $user_email     =   get_post_meta($post_id, 'user_email', true) ;
                     $mail_content   =   wpestate_compose_send_email($arguments);
+=======
+                    $meta_arguments =   get_post_meta($post_id, 'meta_arguments', true) ;
+                    $user_email     =   get_post_meta($post_id, 'user_email', true) ;
+                    $mail_content   =   wpestate_compose_send_email($arguments,$meta_arguments);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                  
                     
                     
                     if($user_email!='' && $mail_content!=''){
                         $arguments=array(
+<<<<<<< HEAD
                             'matching_criteria' => $mail_content
                         );
                         
                         wpestate_select_email_type($user_email,'password_reseted',$arguments);
+=======
+                            'matching_submissions' => $mail_content
+                        );
+                        
+                        wpestate_select_email_type($user_email,'matching_submissions',$arguments);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                         
                     }
 
@@ -217,6 +249,7 @@ endif;
 /////////////////////////////////////////////////////////////////////////////////
 
 if( !function_exists('wpestate_compose_send_email') ): 
+<<<<<<< HEAD
     function wpestate_compose_send_email($args){
         $mail_content=''; 
      //   $mail_content .= __('Hello,','wpestate')."\r\n".__('A new submission matching your chosen criteria has been published at ', 'wpestate').$_SERVER['HTTP_HOST']." \r\n ";
@@ -229,6 +262,28 @@ if( !function_exists('wpestate_compose_send_email') ):
 
         $prop_selection = new WP_Query($arguments);
 
+=======
+    function wpestate_compose_send_email($args,$meta_arguments){
+        $mail_content=''; 
+     //   $mail_content .= __('Hello,','wpestate')."\r\n".__('A new submission matching your chosen criteria has been published at ', 'wpestate').$_SERVER['HTTP_HOST']." \r\n ";
+     //   $mail_content .=__('These are the new submissions:','wpestate')." \r\n ";
+        $arguments  = objectToArray( json_decode($args) );
+        $metas      = objectToArray( json_decode($meta_arguments) );
+
+        $arguments['date_query']=     $date_query_array=get_alert_period();
+
+    
+        unset($arguments['post__in']);
+     
+        if(!empty($metas) ){
+            $meta_ids = wpestate_add_meta_post_to_search($metas);
+            if(!empty($meta_ids)){
+                $arguments['post__in']=$meta_ids;
+            }
+        }
+        
+        $prop_selection = new WP_Query($arguments);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         if($prop_selection->have_posts()){ 
 
             while ($prop_selection->have_posts()): $prop_selection->the_post(); 
@@ -301,6 +356,7 @@ endif;
 
 
 
+<<<<<<< HEAD
 function estate_get_currency_values(){
     $custom_fields = get_option( 'wp_estate_multi_curr', true);    
     $i=0;
@@ -345,21 +401,66 @@ function estate_parse_curency(){
     $custom_fields = get_option( 'wp_estate_multi_curr', true);    
       
 
+=======
+
+
+function estate_parse_curency(){
+    $base                =   esc_html( get_option('wp_estate_currency_label_main') );
+    $custom_fields = get_option( 'wp_estate_multi_curr', true);    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
     $i=0;
     if( !empty($custom_fields)){    
         while($i< count($custom_fields) ){
             $symbol=$custom_fields[$i][0];
+<<<<<<< HEAD
             if ( isset($exchange[$symbol]) ){
               $custom_fields[$i][2]=  $exchange[$symbol];
             }  
+=======
+            $custom_fields[$i][2]=  wpestate_currencyconverterapi_load_data($base, $symbol);
+            
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $i++;
         }
     }
     
+<<<<<<< HEAD
  
     update_option( 'wp_estate_multi_curr', $custom_fields ); 
 }
+=======
+   update_option( 'wp_estate_multi_curr', $custom_fields ); 
+}
+
+
+function wpestate_currencyconverterapi_load_data($base, $symbol){
+
+    $link='https://free.currencyconverterapi.com/api/v5/convert?q='.$base.'_'.$symbol.'&compact=y';
+    $data = (array)json_decode(file_get_contents($link));
+ 
+    return( $data[$base.'_'.$symbol]->val);
+}
+
+
+
+
+
+
+function wpestate_google_convertCurrency($amount, $from, $to){
+   print $link="https://finance.google.com/finance/converter?a=1&from=".$from."&to=".$to;
+    $data = file_get_contents($link);
+
+    preg_match("/<span class=bld>(.*)<\/span>/",$data, $converted);
+    if(isset($converted[1])){
+        $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+    }
+    return number_format(round($converted, 3),2);
+}
+//echo convertCurrency("1.00", "GBP", "USD");
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 function wp_estate_enable_load_exchange(){
      if ( ! wp_next_scheduled( 'wpestate_load_exchange_action' ) ) {

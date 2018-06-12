@@ -1,4 +1,141 @@
+<<<<<<< HEAD
 /////////////////////////////////////////////////////////////////////////////////////////
+=======
+///////////////////////////////////////////////////////////////////////////////////////////
+///  shortcode - property_page_tab
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+(function () {
+    "use strict";
+    tinymce.create('tinymce.plugins.estate_property_page_tab', {
+        init: function (ed, url) {
+            ed.addButton('estate_property_page_tab', {
+                title: 'estate_property_page_tab',
+                image: url + '/tiny_icons/recent_posts.png',
+                onclick: function () {
+                    ed.selection.setContent('[estate_property_page_tab description="" property_address="" property_details="" amenities_features="" map=""][/estate_property_page_tab]');
+                }
+            });
+        },
+        createControl: function (n, cm) {
+            return null;
+        }
+    });
+    tinymce.PluginManager.add('estate_property_page_tab', tinymce.plugins.estate_property_page_tab);
+})();
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///  shortcode - property_page_map
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+(function () {
+    "use strict";
+    tinymce.create('tinymce.plugins.property_page_map', {
+        init: function (ed, url) {
+            ed.addButton('property_page_map', {
+                title: 'Google Map with Property marker',
+                image: url + '/tiny_icons/recent_posts.png',
+                onclick: function () {
+                    ed.selection.setContent('[property_page_map propertyid="Property Id" ][/property_page_map]');
+                }
+            });
+        },
+        createControl: function (n, cm) {
+            return null;
+        }
+    });
+    tinymce.PluginManager.add('property_page_map', tinymce.plugins.property_page_map);
+})();
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///  shortcode - listings_per_agent
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+(function () {
+    "use strict";
+    tinymce.create('tinymce.plugins.listings_per_agent', {
+        init: function (ed, url) {
+            ed.addButton('listings_per_agent', {
+                title: 'Listings per agent List',
+                image: url + '/tiny_icons/recent_posts.png',
+                onclick: function () {
+                    ed.selection.setContent('[listings_per_agent agentid="Agent ID here" nooflisting="Number of listings to dsiplay"][/listings_per_agent]');
+                }
+            });
+        },
+        createControl: function (n, cm) {
+            return null;
+        }
+    });
+    tinymce.PluginManager.add('listings_per_agent', tinymce.plugins.listings_per_agent);
+})();
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///  shortcode - places list
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+(function () {
+    "use strict";
+    tinymce.create('tinymce.plugins.places_list', {
+        init: function (ed, url) {
+            ed.addButton('places_list', {
+                title: 'Places List',
+                image: url + '/tiny_icons/recent_posts.png',
+                onclick: function () {
+                    ed.selection.setContent('[places_list place_list="ID,s of places separated by comma" place_per_row="4" ][/places_list]');
+                }
+            });
+        },
+        createControl: function (n, cm) {
+            return null;
+        }
+    });
+    tinymce.PluginManager.add('places_list', tinymce.plugins.places_list);
+})();
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///  shortcode - lsit agents
+/////////////////////////////////////////////////////////////////////////////////////////
+
+(function() {
+   tinymce.create('tinymce.plugins.list_agents', {
+      init : function(ed, url) {
+	        ed.addButton('list_agents', {
+            title : 'Recent Items', 
+            image : url+'/tiny_icons/recent_posts.png',
+
+         	 onclick : function() {  
+                    ed.selection.setContent('[list_agents  title="Title Here" category_ids="" action_ids="" city_ids="" area_ids="" number="how many items" rownumber="no of items per row" link="link to global listing" show_featured_only="yes/no" random_pick="yes/no"][/list_agents]');                
+                 } 
+         });
+      },
+    createControl : function(n, cm) {  
+        return null;  
+        },  
+
+    });  
+    tinymce.PluginManager.add('list_agents', tinymce.plugins.list_agents);
+})();
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ///  shortcode - recent_posts_slider_pictures
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -330,6 +467,30 @@
 })();
 
 
+<<<<<<< HEAD
+=======
+(function() {
+   tinymce.create('tinymce.plugins.testimonials_slider', {
+      init : function(ed, url) {
+	        ed.addButton('testimonials_slider', {
+            title : 'Insert Testimonials', 
+            image : url+'/tiny_icons/testimonial.png',
+
+         	 onclick : function() {  
+                     ed.selection.setContent('[testimonial_slider][/testimonial_slider]');
+                     
+                } 
+         });
+      },
+    createControl : function(n, cm) {  
+        return null;  
+        },  
+
+    });  
+    tinymce.PluginManager.add('testimonials_slider', tinymce.plugins.testimonials_slider);
+})();
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////..
 ///  shortcode - font awesome
@@ -812,6 +973,10 @@ function fontawesomeMenu(){
         jQuery("#TB_window").css("height","415");
         jQuery("#TB_window").css("overflow-y","auto");
         jQuery("#TB_window").css("overflow-x","hidden");
+<<<<<<< HEAD
+=======
+        jQuery("#TB_window").css("z-index","9999999");
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         jQuery("#TB_ajaxContent").css( "width","auto");
         jQuery("#TB_ajaxContent").css( "height","auto");
           
@@ -824,4 +989,59 @@ function fontawesomeMenu(){
 function insertShortcode(daclass){
 	tinyMCE.activeEditor.execCommand('mceInsertContent', 0, "[font_awesome icon='"+daclass+"' size='15px']");
 	tb_remove();
+<<<<<<< HEAD
 }
+=======
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///  shortcode - wpestate_membership_packages_function
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+(function () {
+    "use strict";
+    tinymce.create('tinymce.plugins.estate_membership_packages', {
+        init: function (ed, url) {
+            ed.addButton('estate_membership_packages', {
+                title: 'Membership packages shortcode',
+                image: url + '/tiny_icons/recent_posts.png',
+                onclick: function () {
+                    ed.selection.setContent('[estate_membership_packages package_id="" package_content="type content here" pack_featured_sh="yes/no"][/estate_membership_packages]');
+                }
+            });
+        },
+        createControl: function (n, cm) {
+            return null;
+        }
+    });
+    tinymce.PluginManager.add('estate_membership_packages', tinymce.plugins.estate_membership_packages);
+})();
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////  shortcode - places_slider
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////..
+(function() {
+   tinymce.create('tinymce.plugins.places_slider', {
+      init : function(ed, url) {
+	        ed.addButton('places_slider', {
+            title : 'Insert Places Slider', 
+            image : url+'/tiny_icons/slider.png',
+
+         	 onclick : function() {  
+                     ed.selection.setContent('[places_slider place_list="" place_per_row="3"  ]');  
+                } 
+         });
+      },
+    createControl : function(n, cm) {  
+        return null;  
+        },  
+
+    });  
+    tinymce.PluginManager.add('places_slider', tinymce.plugins.places_slider);
+})();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

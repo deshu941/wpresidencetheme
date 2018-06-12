@@ -21,11 +21,20 @@ register_post_type( 'wpestate_search',
                 'not_found_in_trash'    =>  __('No Searches found','wpestate'),
                 'parent'                =>  __('Parent Searches','wpestate')
 			),
+<<<<<<< HEAD
 		'public' => false,
 		'has_archive' => false,
 		'rewrite' => array('slug' => 'searches'),
 		'supports' => array('title'),
 		'can_export' => true,
+=======
+		'public'        =>  false,
+                'show_ui'       =>  true,
+		'has_archive'   =>  false,
+		'rewrite'       =>  array('slug' => 'searches'),
+		'supports'      =>  array('title'),
+		'can_export'    =>  true,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		'register_meta_box_cb' => 'wpestate_add_searches',
                  'menu_icon'=>get_template_directory_uri().'/img/searches.png'
 		)
@@ -59,4 +68,50 @@ function wpestate_search_details( $post ) {
 endif; // end   wpestate_invoice_details  
 
 
+<<<<<<< HEAD
+=======
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/// populate the invoice list with extra columns
+/////////////////////////////////////////////////////////////////////////////////////
+
+add_filter( 'manage_edit-wpestate_search_columns', 'wpestate_search_my_columns' );
+
+if( !function_exists('wpestate_search_my_columns') ):
+function wpestate_search_my_columns( $columns ) {
+ 
+    $columns['by_email']        = __('Email to','wpestate');
+    $columns['parameters']      = __('Search parameters','wpestate');
+  
+    return  $columns;
+}
+endif; // end   wpestate_invoice_my_columns  
+
+
+
+add_action( 'manage_posts_custom_column', 'wpestate_search_populate_columns' );
+
+if( !function_exists('wpestate_search_populate_columns') ):
+function wpestate_search_populate_columns( $column ) {
+    $the_id=get_the_ID();
+    if ( 'by_email' == $column ) {
+        echo get_post_meta($the_id, 'user_email', true);
+    } 
+    if ( 'parameters' == $column ) {
+        $search_arguments           =  get_post_meta($the_id, 'search_arguments', true) ;
+        $search_arguments_decoded   = (array)json_decode($search_arguments,true);
+        $meta_arguments             =  get_post_meta($the_id, 'meta_arguments', true) ;
+        $meta_arguments             = (array)json_decode($meta_arguments,true);
+        $custom_advanced_search         =   get_option('wp_estate_custom_advanced_search','');
+        $adv_search_what                =   get_option('wp_estate_adv_search_what','');
+        $adv_search_how                 =   get_option('wp_estate_adv_search_how','');
+        $adv_search_label               =   get_option('wp_estate_adv_search_label','');     
+        wpestate_show_search_params_new($meta_arguments,$search_arguments_decoded,$custom_advanced_search, $adv_search_what,$adv_search_how,$adv_search_label);
+    } 
+
+    
+}  
+endif;    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>

@@ -18,7 +18,11 @@
     <custom-field action="copy">agent_mobile</custom-field>
     <custom-field action="copy">agent_phone</custom-field>
     <custom-field action="copy">agent_pinterest</custom-field>
+<<<<<<< HEAD
     <custom-field action="copy">agent_position</custom-field>
+=======
+    <custom-field action="copy">agent_instagram</custom-field>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     <custom-field action="copy">agent_skype</custom-field>
     <custom-field action="copy">agent_twitter</custom-field>
     <custom-field action="copy">property-basement</custom-field>
@@ -29,7 +33,11 @@
     <custom-field action="copy">property-roofing</custom-field>
     <custom-field action="copy">property-year</custom-field>
     <custom-field action="copy">property_address</custom-field>
+<<<<<<< HEAD
     <custom-field action="copy">property_agent</custom-field>
+=======
+    <custom-field action="translate">property_agent</custom-field>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     <custom-field action="copy">property_area</custom-field>
     <custom-field action="copy">property_basement</custom-field>
     <custom-field action="copy">property_bathrooms</custom-field>
@@ -43,6 +51,10 @@
     <custom-field action="copy">property_garage_size</custom-field>
     <custom-field action="copy">property_google_view</custom-field>
     <custom-field action="translate">property_label</custom-field>
+<<<<<<< HEAD
+=======
+    <custom-field action="translate">property_label_before</custom-field>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     <custom-field action="copy">property_latitude</custom-field>
     <custom-field action="copy">property_longitude</custom-field>
     <custom-field action="copy">property_lot_size</custom-field>
@@ -57,6 +69,53 @@
   </custom-fields>
   <admin-texts>
     <key name="wp_estate_property_features_text"/>
+<<<<<<< HEAD
   </admin-texts>
 </wpml-config>
 
+=======
+    <key name="wp_estate_property_features_text"/>
+    <key name="wp_estate_copyright_message"/>
+  </admin-texts>
+  <shortcodes>
+      <shortcode>
+            <tag>estate_property_design_agent_details_intext_details</tag>
+        </shortcode>
+        <shortcode>
+            <tag>estate_property_design_intext_details</tag>
+        </shortcode>
+        <shortcode>
+            <tag>estate_property_simple_detail</tag>
+            <attributes>
+                <attribute>label</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>estate_property_page_acc</tag>
+            <attributes>
+                <attribute>description</attribute>
+                <attribute>property_address</attribute>
+                <attribute>property_details</attribute>
+                <attribute>amenities_features</attribute>
+                <attribute>map</attribute>
+                <attribute>walkscore</attribute>
+                <attribute>floor_plans</attribute>
+                <attribute>page_views</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>estate_property_page_tab</tag>
+            <attributes>
+                <attribute>description</attribute>
+                <attribute>property_address</attribute>
+                <attribute>property_details</attribute>
+                <attribute>amenities_features</attribute>
+                <attribute>map</attribute>
+                <attribute>walkscore</attribute>
+                <attribute>floor_plans</attribute>
+                <attribute>page_views</attribute>
+            </attributes>
+        </shortcode>
+  </shortcodes>
+</wpml-config>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

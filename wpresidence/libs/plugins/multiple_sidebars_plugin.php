@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 class sidebar_generator {
+<<<<<<< HEAD
 	
 	public  function sidebar_generator(){
 		add_action('init',array('sidebar_generator','init'));
@@ -38,17 +39,34 @@ class sidebar_generator {
 		//edit posts/pages
 	//	add_action('edit_form_advanced', array('sidebar_generator', 'edit_form'));
 	//	add_action('edit_page_form', array('sidebar_generator', 'edit_form'));
+=======
+	public function __construct(){
+            add_action('init',array('sidebar_generator','init'));
+            add_action('admin_print_scripts', array('sidebar_generator','admin_print_scripts'));
+            if ( current_user_can('manage_options') ){  
+		add_action('admin_menu',array('sidebar_generator','admin_menu'));
+		add_action('wp_ajax_add_sidebar', array('sidebar_generator','add_sidebar') );
+		add_action('wp_ajax_remove_sidebar', array('sidebar_generator','remove_sidebar') );
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		
 		//save posts/pages
 		add_action('edit_post', array('sidebar_generator', 'save_form'));
 		add_action('publish_post', array('sidebar_generator', 'save_form'));
 		add_action('save_post', array('sidebar_generator', 'save_form'));
 		add_action('edit_page_form', array('sidebar_generator', 'save_form'));
+<<<<<<< HEAD
 
 	}
 	
 	public static function init(){
 		//go through each sidebar and register it
+=======
+          }
+	}
+	
+	public static function init(){
+            //go through each sidebar and register it
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		
 	    $sidebars = sidebar_generator::get_sidebars();
 	    
@@ -70,16 +88,31 @@ class sidebar_generator {
 	
 public static	function admin_print_scripts(){
 		wp_print_scripts( array( 'sack' ));
+<<<<<<< HEAD
+=======
+          
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		?>
 			<script>
 				function add_sidebar( sidebar_name )
 				{
+<<<<<<< HEAD
 					
+=======
+					var nonce = document.getElementById('sidebar_generator_nonce').value;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 					var mysack = new sack("<?php  echo site_url(); ?>/wp-admin/admin-ajax.php" );    
 				
 				  	mysack.execute = 1;
 				  	mysack.method = 'POST';
+<<<<<<< HEAD
 				  	mysack.setVar( "action", "add_sidebar" );
+=======
+                                        
+                                        mysack.setVar( "sidebar_generator_nonce",nonce );
+				  	
+                                        mysack.setVar( "action", "add_sidebar" );
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 				  	mysack.setVar( "sidebar_name", sidebar_name );
 				  	mysack.encVar( "cookie", document.cookie, false );
 				  	mysack.onError = function() { alert('Ajax error. Cannot add sidebar' )};
@@ -90,10 +123,20 @@ public static	function admin_print_scripts(){
 				function remove_sidebar( sidebar_name,num )
 				{
 					
+<<<<<<< HEAD
+=======
+                                        var nonce = document.getElementById('remove_sidebar_generator_nonce').value;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 					var mysack = new sack("<?php echo site_url(); ?>/wp-admin/admin-ajax.php" );    
 				
 				  	mysack.execute = 1;
 				  	mysack.method = 'POST';
+<<<<<<< HEAD
+=======
+                                        
+                                        mysack.setVar( "sidebar_generator_nonce",nonce );
+                                          
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 				  	mysack.setVar( "action", "remove_sidebar" );
 				  	mysack.setVar( "sidebar_name", sidebar_name );
 				  	mysack.setVar( "row_number", num );
@@ -108,6 +151,16 @@ public static	function admin_print_scripts(){
 	}
 	
 	 public static function add_sidebar(){
+<<<<<<< HEAD
+=======
+             
+                //check_admin_referer( 'add_sidebar', 'sidebar_generator_nonce' );
+                $nonce = $_POST['sidebar_generator_nonce'];
+                if ( ! wp_verify_nonce( $nonce, 'add_sidebar' ) ) {
+                     die();//failed nonce
+                }
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		$sidebars = sidebar_generator::get_sidebars();
 		$name = str_replace(array("\n","\r","\t"),'',$_POST['sidebar_name']);
 		$id = sidebar_generator::name_to_class($name);
@@ -156,13 +209,33 @@ public static	function admin_print_scripts(){
 	}
 	
 	public static function remove_sidebar(){
+<<<<<<< HEAD
 		$sidebars = sidebar_generator::get_sidebars();
 		$name = str_replace(array("\n","\r","\t"),'',$_POST['sidebar_name']);
+=======
+                if(!is_admin()){
+                    exit('out pls');
+                }
+                
+                $nonce = $_POST['sidebar_generator_nonce'];
+                if ( ! wp_verify_nonce( $nonce, 'remove_sidebar' ) ) {
+                     die();//failed nonce
+                }
+                
+                
+		$sidebars = sidebar_generator::get_sidebars();
+		$name = ( str_replace( array("\n","\r","\t"),'',$_POST['sidebar_name']) );
+                
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		$id = sidebar_generator::name_to_class($name);
 		if(!isset($sidebars[$id])){
 			die("alert('Sidebar does not exist.')");
 		}
+<<<<<<< HEAD
 		$row_number = $_POST['row_number'];
+=======
+		$row_number = intval($_POST['row_number']);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		unset($sidebars[$id]);
 		sidebar_generator::update_sidebars($sidebars);
 		$js = "
@@ -204,6 +277,12 @@ public static	function admin_print_scripts(){
 				
 			</p>
 			<br />
+<<<<<<< HEAD
+=======
+                        
+                        <?php wp_nonce_field( 'add_sidebar', 'sidebar_generator_nonce' );?>
+                        <?php wp_nonce_field( 'remove_sidebar', 'remove_sidebar_generator_nonce' );?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 			<div class="add_sidebar">
 				<a href="javascript:void(0);" onclick="return add_sidebar_link()" title="Add a sidebar">+ Add Sidebar</a>
 			</div>
@@ -222,10 +301,17 @@ public static	function admin_print_scripts(){
 					foreach($sidebars as $sidebar){
 						$alt = ($cnt%2 == 0 ? 'alternate' : '');
 				?>
+<<<<<<< HEAD
 				<tr class="<?php echo $alt?>">
 					<td><?php echo $sidebar; ?></td>
 					<td><?php echo sidebar_generator::name_to_class($sidebar); ?></td>
 					<td><a href="javascript:void(0);" onclick="return remove_sidebar_link('<?php echo $sidebar; ?>',<?php echo $cnt+1; ?>);" title="Remove this sidebar">remove</a></td>
+=======
+				<tr class="<?php echo esc_attr($alt);?>">
+					<td><?php echo esc_html($sidebar); ?></td>
+					<td><?php echo esc_html ( sidebar_generator::name_to_class($sidebar)); ?></td>
+					<td><a href="javascript:void(0);" onclick="return remove_sidebar_link('<?php echo esc_html($sidebar); ?>',<?php echo $cnt+1; ?>);" title="Remove this sidebar">remove</a></td>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 				</tr>
 				<?php
 						$cnt++;

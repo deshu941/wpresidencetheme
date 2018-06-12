@@ -25,6 +25,10 @@ var curent_gview_long   =   jQuery('#gmap_wrapper').attr('data-cur_long');
 var heading=0;
 var panorama;
 var oms;
+<<<<<<< HEAD
+=======
+var bounds;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 function initialize(){
@@ -48,7 +52,12 @@ function initialize(){
         center: new google.maps.LatLng(curent_gview_lat,curent_gview_long ),
         streetViewControl:false,
         mapTypeId: googlecode_property_vars.type.toLowerCase(),
+<<<<<<< HEAD
         disableDefaultUI: true
+=======
+        disableDefaultUI: true,
+        gestureHandling: 'cooperative'
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     };
     var mapOptions_intern = {
         flat:false,
@@ -59,17 +68,31 @@ function initialize(){
         center: new google.maps.LatLng(curent_gview_lat,curent_gview_long ),
         streetViewControl:false,
         mapTypeId: googlecode_property_vars.type.toLowerCase(),
+<<<<<<< HEAD
        disableDefaultUI: true
+=======
+        disableDefaultUI: true,
+         gestureHandling: 'cooperative'
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     };
            
     
     if(  document.getElementById('googleMap') ){
+<<<<<<< HEAD
           map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
     }  else if( document.getElementById('googleMapSlider') ){
           map = new google.maps.Map(document.getElementById('googleMapSlider'), mapOptions_intern);
     }   else{
           return;
     }  
+=======
+        map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+    }else if( document.getElementById('googleMapSlider') ){
+        map = new google.maps.Map(document.getElementById('googleMapSlider'), mapOptions_intern);
+    } else{
+        return;
+    }   
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
  
    
     google.maps.visualRefresh = true;
@@ -84,6 +107,7 @@ function initialize(){
         jQuery('#gmap-loading').remove();
     });
     
+<<<<<<< HEAD
     if (Modernizr.mq('only all and (max-width: 1025px)')) {
         map.setOptions({'draggable': false});
     }
@@ -98,18 +122,33 @@ function initialize(){
             markers = jQuery.parseJSON(pins);                 
         }           
     }
+=======
+    
+    
+   
+    if( typeof( googlecode_property_vars2) !== 'undefined' && googlecode_property_vars2.markers2.length > 2){          
+        pins=googlecode_property_vars2.markers2;
+        markers = jQuery.parseJSON(pins);                 
+    }           
+   
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
   
     if (markers.length>0){
         setMarkers(map, markers);
     }
     
     if(googlecode_property_vars.idx_status==='1'){
+<<<<<<< HEAD
         placeidx(map,markers);
+=======
+     //   placeidx(map,markers);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     }
     
     if(mapfunctions_vars.show_g_search_status==='yes' && googlecode_property_vars.small_map!=='1'){
         set_google_search(map);
     }
+<<<<<<< HEAD
   
     
     google.maps.event.trigger(gmarkers[found_id], 'click');
@@ -119,12 +158,16 @@ function initialize(){
   
     //  set map cluster
     map_cluster();
+=======
+    google.maps.event.trigger(gmarkers[0], 'click');
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
     panorama = map.getStreetView();
     panorama.setPosition(viewPlace);
     heading  = parseInt(googlecode_property_vars.camera_angle);
 
     panorama.setPov(/** @type {google.maps.StreetViewPov} */({
+<<<<<<< HEAD
       heading: heading,
       pitch: 0
     }));
@@ -142,6 +185,12 @@ function initialize(){
         google.maps.event.addDomListener(document.getElementById('googleMap'), 'DOMMouseScroll', scrollwhel);
     }
     */
+=======
+        heading: heading,
+        pitch: 0
+    }));
+  
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     google.maps.event.addListener(panorama, "closeclick", function() {
         jQuery('#gmap-next,#gmap-prev ,#geolocation-button,#gmapzoomminus,#gmapzoomplus').show();
         jQuery('#street-view').removeClass('mapcontrolon');
@@ -149,6 +198,7 @@ function initialize(){
     
 
     oms = new OverlappingMarkerSpiderfier(map);   
+<<<<<<< HEAD
       setOms(gmarkers);
       
       
@@ -159,6 +209,11 @@ function initialize(){
     });
    */
   
+=======
+    setOms(gmarkers);
+    
+    wpestate_initialize_poi(map,1);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
   
 }
 ///////////////////////////////// end initialize

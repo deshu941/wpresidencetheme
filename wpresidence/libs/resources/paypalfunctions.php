@@ -117,7 +117,15 @@ function getExpressCheckout($token)
 
     if("SUCCESS" == strtoupper($httpParsedResponseAr["ACK"]) || "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])) {
             // Extract the response details.
+<<<<<<< HEAD
             $payerID        = $httpParsedResponseAr['PAYERID'];
+=======
+            $payerID='';
+            if(isset($httpParsedResponseAr['PAYERID'])){
+            $payerID        = $httpParsedResponseAr['PAYERID'];
+            }
+            
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             if(array_key_exists("SHIPTOSTREET", $httpParsedResponseAr)) {
                  $street1        = $httpParsedResponseAr["SHIPTOSTREET"];
             }
@@ -228,7 +236,11 @@ function doExpressCheckout($payerID,$token){
             }
             //	exit('Express Checkout Payment Completed Successfully: '.print_r($httpParsedResponseAr, true));
     } else  {
+<<<<<<< HEAD
              $dash_profile_link = get_dashboard_profile_link();
+=======
+             $dash_profile_link = wpestate_get_template_link('user_dashboard_profile.php');
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
              wp_redirect( $dash_profile_link ); 
              exit('DoExpressCheckoutPayment failed dd1: ' . print_r($httpParsedResponseAr, true));
     }

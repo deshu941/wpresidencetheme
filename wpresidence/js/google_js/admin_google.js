@@ -32,9 +32,33 @@ function initialize(){
 
     marker.setMap(map);
     gmarkers.push(marker);
+<<<<<<< HEAD
     google.maps.event.addListener(map, 'click', function(event) {
     placeMarker(event.latLng);
 });
+=======
+   
+    google.maps.event.addListener(map, 'click', function(event) {
+        placeMarker(event.latLng);
+        google.maps.visualRefresh = true;
+    });
+    
+    var myElem = document.getElementById('property_map_trigger');
+    if (myElem !== null) {
+        google.maps.event.addDomListener(document.getElementById('property_map_trigger'), 'click', function () {
+
+            google.maps.event.trigger(map, 'resize');     
+            map.setCenter(myPlace);
+
+        });
+    }   
+    
+   
+    
+    
+    
+    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 
@@ -52,8 +76,32 @@ function placeMarker(location) {
     });
   
    infowindow.open(map,marker);
+<<<<<<< HEAD
    document.getElementById("property_latitude").value=location.lat();
    document.getElementById("property_longitude").value=location.lng();
+=======
+   
+   
+    var myElem = document.getElementById('property_latitude');
+    if (myElem !== null) {
+        document.getElementById("property_latitude").value=location.lat();
+        document.getElementById("property_longitude").value=location.lng();
+    }
+    
+    var myElem = document.getElementById('agency_lat');
+    if (myElem !== null) {
+        document.getElementById("agency_lat").value=location.lat();
+        document.getElementById("agency_long").value=location.lng();
+    }
+    
+    var myElem = document.getElementById('developer_lat');
+    if (myElem !== null) {
+        document.getElementById("developer_lat").value=location.lat();
+        document.getElementById("developer_long").value=location.lng();
+    }
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
 
 function removeMarkersadmin(){
@@ -62,10 +110,13 @@ function removeMarkersadmin(){
     }
 }
  
+<<<<<<< HEAD
     google.maps.event.addDomListener(document.getElementById('estate_property-googlemap').getElementsByClassName("handlediv")[0], 'click', function () {
         google.maps.event.trigger(map, "resize");
     });
 
+=======
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
     google.maps.event.addDomListener(window, 'load', initialize);

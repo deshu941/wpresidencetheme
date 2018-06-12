@@ -1,11 +1,23 @@
 <?php
 class Multiple_currency_widget extends WP_Widget {
+<<<<<<< HEAD
 	
 	function Multiple_currency_widget(){
 		$widget_ops = array('classname' => 'multiple_currency_widget', 'description' => 'Put multiple currency demo on a sidebar');
 		$control_ops = array('id_base' => 'multiple_currency_widget');
 		$this->WP_Widget('multiple_currency_widget', 'Wp Estate: Multiple currency widget', $widget_ops, $control_ops);
 	}
+=======
+	function __construct(){
+	//function Multiple_currency_widget(){
+		$widget_ops = array('classname' => 'multiple_currency_widget', 'description' => 'Put multiple currency demo on a sidebar');
+		$control_ops = array('id_base' => 'multiple_currency_widget');
+//		$this->WP_Widget('multiple_currency_widget', 'Wp Estate: Multiple currency widget', $widget_ops, $control_ops);
+		parent::__construct('multiple_currency_widget', 'Wp Estate: Multiple currency widget', $widget_ops, $control_ops);
+	
+                
+        }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	
 	function form($instance){
 		$defaults = array(

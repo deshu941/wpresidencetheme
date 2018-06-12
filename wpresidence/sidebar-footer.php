@@ -4,12 +4,100 @@ if (!is_active_sidebar('first-footer-widget-area') && !is_active_sidebar('second
   return;  
 }
 
+<<<<<<< HEAD
+=======
+$footer_type  =   get_option('wp_estate_footer_type','');
+/*
+ $wide_array=array(
+        "1"  =>     __("4 equal columns","wpestate"),
+        "2"  =>     __("3 equal columns","wpestate"),
+        "3"  =>     __("2 equal columns","wpestate"),
+        "4"  =>     __("1 100% width column","wpestate"),
+        "5"  =>     __("3 columns: 1/2 + 1/4 + 1/4","wpestate"),
+        "6"  =>     __("3 columns: 1/4 + 1/2 + 1/4","wpestate"),
+        "7"  =>     __("3 columns: 1/4 + 1/4 + 1/2","wpestate"),
+        "8"  =>     __("2 columns: 2/3 + 1/3","wpestate"),
+        "9"  =>     __("2 columns: 1/3 + 2/3","wpestate"),
+        );
+     */
+
+
+$class1 =   '';
+$class2 =   '';
+$class3 =   '';
+$class4 =   '';
+
+switch ($footer_type) {
+    case 1:
+        $class1 =   'col-md-3';
+        $class2 =   'col-md-3';
+        $class3 =   'col-md-3';
+        $class4 =   'col-md-3';
+        break;
+    case 2:
+        $class1 =   'col-md-4';
+        $class2 =   'col-md-4';
+        $class3 =   'col-md-4';
+        $class4 =   '';
+        break;
+    case 3:
+        $class1 =   'col-md-6';
+        $class2 =   'col-md-6';
+        $class3 =   '';
+        $class4 =   '';
+        break;
+    case 4:
+        $class1 =   'col-md-12';
+        $class2 =   '';
+        $class3 =   '';
+        $class4 =   '';
+        break;
+    case 5:
+        $class1 =   'col-md-6';
+        $class2 =   'col-md-3';
+        $class3 =   'col-md-3';
+        $class4 =   '';
+        break;
+    case 6:
+        $class1 =   'col-md-3';
+        $class2 =   'col-md-6';
+        $class3 =   'col-md-3';
+        $class4 =   '';
+        break;
+    case 7:
+        $class1 =   'col-md-3';
+        $class2 =   'col-md-3';
+        $class3 =   'col-md-6';
+        $class4 =   '';
+        break;
+    case 8:
+        $class1 =   'col-md-8';
+        $class2 =   'col-md-4';
+        $class3 =   '';
+        $class4 =   '';
+        break;
+    case 9:
+        $class1 =   'col-md-4';
+        $class2 =   'col-md-8';
+        $class3 =   '';
+        $class4 =   '';
+        break;
+    
+}
+
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 
 
 
+<<<<<<< HEAD
 <?php if (is_active_sidebar('first-footer-widget-area')) : ?>
     <div id="first" class="widget-area col-md-3">
+=======
+<?php if (is_active_sidebar('first-footer-widget-area') && $class1!='' ) : ?>
+    <div id="first" class="widget-area <?php echo $class1;?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <ul class="xoxo">
             <?php dynamic_sidebar('first-footer-widget-area'); ?>
         </ul>
@@ -18,8 +106,13 @@ if (!is_active_sidebar('first-footer-widget-area') && !is_active_sidebar('second
 
     
     
+<<<<<<< HEAD
 <?php if (is_active_sidebar('second-footer-widget-area')) : ?>
     <div id="second" class="widget-area col-md-3">
+=======
+<?php if (is_active_sidebar('second-footer-widget-area') && $class2!='' ) : ?>
+    <div id="second" class="widget-area <?php echo $class2;?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <ul class="xoxo">
         <?php dynamic_sidebar('second-footer-widget-area'); ?>
         </ul>
@@ -29,8 +122,13 @@ if (!is_active_sidebar('first-footer-widget-area') && !is_active_sidebar('second
     
     
     
+<<<<<<< HEAD
 <?php if (is_active_sidebar('third-footer-widget-area')) : ?>
     <div id="third" class="widget-area col-md-3">
+=======
+<?php if (is_active_sidebar('third-footer-widget-area') && $class3!='') : ?>
+    <div id="third" class="widget-area <?php echo $class3;?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <ul class="xoxo">
         <?php dynamic_sidebar('third-footer-widget-area'); ?>
         </ul>
@@ -40,8 +138,13 @@ if (!is_active_sidebar('first-footer-widget-area') && !is_active_sidebar('second
     
     
 
+<<<<<<< HEAD
 <?php if (is_active_sidebar('fourth-footer-widget-area')) : ?>
     <div id="fourth" class="widget-area col-md-3">
+=======
+<?php if ( is_active_sidebar('fourth-footer-widget-area') && $class4!='' ) : ?>
+    <div id="fourth" class="widget-area <?php echo $class4;?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <ul class="xoxo">
         <?php dynamic_sidebar('fourth-footer-widget-area'); ?>
         </ul>

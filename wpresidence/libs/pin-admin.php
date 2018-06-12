@@ -61,7 +61,14 @@ function wpestate_show_pins(){
     $taxonomy_cat = 'property_category';
     $categories = get_terms($taxonomy_cat,'hide_empty=0');
 
+<<<<<<< HEAD
     print'<p class="admin-exp">'.__('Add new Google Maps pins for single actions / single categories.','wpestate').'</p>
+=======
+    print'<p class="admin-exp">'.__('Add new Google Maps pins for single actions / single categories.','wpestate').'</p>';
+    print '<p class="admin-exp" >'.__('If you add images directly into the input fields (without Upload button) please use the full image path. For ex: http://www.wpresidence..... . If you use the "upload"  button use also "Insert into Post" button from the pop up window.','wpestate');
+    print '<p class="admin-exp" >'.__('The Retina pins should be uploaded in the same place as the original pin and the name of the file should be with_2x','wpestate').'
+      
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <table class="form-table">';
 
     foreach ($tax_terms as $tax_term) { 

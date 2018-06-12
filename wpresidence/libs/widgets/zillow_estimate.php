@@ -1,11 +1,20 @@
 <?php
 
 class Zillow_Estimate_Widget extends WP_Widget {	
+<<<<<<< HEAD
 	function Zillow_Estimate_Widget()
 	{
 		$widget_ops = array('classname' => 'zillow_widget', 'description' => 'estimate your property');
 		$control_ops = array('id_base' => 'zillow_estimate_widget');
 		$this->WP_Widget('zillow_estimate_widget', 'Wp Estate Zillow Estimate Widget', $widget_ops, $control_ops);
+=======
+	function __construct(){
+        //function Zillow_Estimate_Widget()	{
+		$widget_ops = array('classname' => 'zillow_widget boxed_widget', 'description' => 'estimate your property');
+		$control_ops = array('id_base' => 'zillow_estimate_widget');
+		//$this->WP_Widget('zillow_estimate_widget', 'Wp Estate Zillow Estimate Widget', $widget_ops, $control_ops);
+                parent::__construct('zillow_estimate_widget', 'Wp Estate Zillow Estimate Widget', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 
 	function form($instance)
@@ -57,6 +66,7 @@ class Zillow_Estimate_Widget extends WP_Widget {
                 if($zillow_submit!=''){
                     if( $zillow_api_key!=''){
                        print '
+<<<<<<< HEAD
                        <div class="zillow-wrapper">    
                        <form method="post" action="'.$zillow_submit.'">
                        <input type="text" class="form-control" id="zill_estimate_adr1"   name="zill_estimate_adr"    placeholder="'.__('Your Address','wpestate').'">
@@ -66,6 +76,26 @@ class Zillow_Estimate_Widget extends WP_Widget {
                        <button class="wpb_button  wpb_btn-info wpb_btn-large" id="zill_submit_estimate">'.__('Get Estimation','wpestate').'</button>
                        </form>
                        </div>
+=======
+                        <div class="zillow-wrapper">    
+                        <form method="post" action="'.$zillow_submit.'">
+                       
+                        <div class="zill_estimate_adr1-wrapper">    
+                            <input type="text" class="form-control" id="zill_estimate_adr1"   name="zill_estimate_adr"    placeholder="'.__('Your Address','wpestate').'">
+                        </div>
+                        
+                        <div class="zill_estimate_city1-wrapper">
+                            <input type="text" class="form-control" id="zill_estimate_city1"  name="zill_estimate_city"   placeholder="'.__('Your City','wpestate').'">
+                        </div>
+                        
+                        <div class="zill_estimate_state1-wrapper">                       
+                            <input type="text" class="form-control" id="zill_estimate_state1" name="zill_estimate_state"  placeholder="'.__('Your State Code (ex CA)','wpestate').'">
+                        </div>
+                        
+                        <button class="wpresidence_button" id="zill_submit_estimate">'.__('Get Estimation','wpestate').'</button>
+                        </form>
+                        </div>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                         ';       
                     }
                     else{

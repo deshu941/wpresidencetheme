@@ -16,10 +16,17 @@ function wpestate_required_plugins() {
                     'name'     			=> 'Revolution Slider', 
                     'slug'     			=> 'revslider', 
                     'source'   			=> get_template_directory_uri()  . '/libs/plugins/revslider.zip',
+<<<<<<< HEAD
                     'required' 			=> true,
                     'version' 			=> '',
                     'force_activation' 		=> true, 
                     'force_deactivation' 	=> true,
+=======
+                    'required' 			=> false,
+                    'version' 			=> '5.4.7.4',
+                    'force_activation' 		=> false, 
+                    'force_deactivation' 	=> false,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     'external_url' 		=> '',
 		),
                 array(
@@ -27,19 +34,42 @@ function wpestate_required_plugins() {
                     'slug'     			=> 'js_composer', 
                     'source'   			=> get_template_directory_uri()  . '/libs/plugins/js_composer.zip',
                     'required' 			=> true,
+<<<<<<< HEAD
                     'version' 			=> '',
                     'force_activation' 		=> true, 
                     'force_deactivation' 	=> true,
+=======
+                    'version' 			=> '5.4.7',
+                    'force_activation' 		=> false, 
+                    'force_deactivation' 	=> false,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     'external_url' 		=> '',
 		),
                 array(
                     'name'     			=> 'Ultimate Addons for Visual Composer', 
                     'slug'     			=> 'Ultimate_VC_Addons', 
                     'source'   			=> get_template_directory_uri()  . '/libs/plugins/Ultimate_VC_Addons.zip',
+<<<<<<< HEAD
                     'required' 			=> true,
                     'version' 			=> '',
                     'force_activation' 		=> true, 
                     'force_deactivation' 	=> true,
+=======
+                    'required' 			=> false,
+                    'version' 			=> '3.16.24',
+                    'force_activation' 		=> false, 
+                    'force_deactivation' 	=> false,
+                    'external_url' 		=> '',
+		),
+                array(
+                    'name'     			=> 'EWWW Image Optimizer', 
+                    'slug'     			=> 'ewww-image-optimizer', 
+                    'source'   			=> get_template_directory_uri()  . '/libs/plugins/ewww-image-optimizer.4.0.2.zip',
+                    'required' 			=> false,
+                    'version' 			=> '3.6.1',
+                    'force_activation' 		=> false, 
+                    'force_deactivation' 	=> false,
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     'external_url' 		=> '',
 		)
            
@@ -50,8 +80,12 @@ function wpestate_required_plugins() {
 		$config = array(
 		'domain'       		=> 'wpestate',         	
 		'default_path' 		=> '',                         	
+<<<<<<< HEAD
 		'parent_menu_slug' 	=> 'themes.php', 				
 		'parent_url_slug' 	=> 'themes.php', 				
+=======
+		'parent_slug'           => 'themes.php', 				
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		'menu'         		=> 'install-required-plugins', 	
 		'has_notices'      	=> true,                       
 		'is_automatic'    	=> true,					   
@@ -80,4 +114,8 @@ function wpestate_required_plugins() {
 tgmpa($plugins, $config);
 }
 endif; // end   wpestate_required_plugins  
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48

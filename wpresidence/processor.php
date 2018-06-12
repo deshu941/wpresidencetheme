@@ -2,9 +2,17 @@
 // Template Name: Paypal Processor
 // Wp Estate Pack
 
+<<<<<<< HEAD
  $paid_submission_status    = esc_html ( get_option('wp_estate_paid_submission','') );
  if($paid_submission_status !='per listing'){
      exit();
+=======
+ 
+    
+ $paid_submission_status    = esc_html ( get_option('wp_estate_paid_submission','') );
+ if($paid_submission_status !='per listing'){
+   // exit();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
  }
 
 $paypal_status  =   esc_html( get_option('wp_estate_paypal_api','') );
@@ -13,9 +21,14 @@ if($paypal_status == 'live'){
     $host='https://api.paypal.com';
 }
 
+<<<<<<< HEAD
 global $current_user;
 get_currentuserinfo();     
 $processor_link                 =   get_procesor_link();
+=======
+$current_user = wp_get_current_user();     
+$processor_link                 =   wpestate_get_template_link('processor.php');
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 $clientId                       =   esc_html( get_option('wp_estate_paypal_client_id','') );
 $clientSecret                   =   esc_html( get_option('wp_estate_paypal_client_secret','') );
 $price_submission               =   floatval( get_option('wp_estate_price_submission','') );
@@ -27,8 +40,13 @@ $allowed_html   =   array();
 
 
 if (isset($_GET['token']) && isset($_GET['PayerID']) ){
+<<<<<<< HEAD
         $token     =   wp_kses ( $_GET['token'],$allowed_html );
         $payerId   =   wp_kses ( $_GET['PayerID'] ,$allowed_html);
+=======
+        $token     =    esc_html    ( wp_kses($_GET['token'], $allowed_html) );
+        $payerId   =    esc_html    ( wp_kses($_GET['PayerID'], $allowed_html) );
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
         // get transfer data
         $save_data=get_option('paypal_transfer');
@@ -90,8 +108,13 @@ if (isset($_GET['token']) && isset($_GET['PayerID']) ){
          }
        
        
+<<<<<<< HEAD
         $redirect = get_dashboard_link();
       wp_redirect($redirect);
+=======
+        $redirect = wpestate_get_template_link('user_dashboard.php');
+        wp_redirect($redirect);exit;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
    
 }
 $token = '';
@@ -105,9 +128,23 @@ $token = '';
 //////////////////////////////////////////////////////////////////////////////////////
 define('DEBUG',0);
 
+<<<<<<< HEAD
 $raw_post_data = file_get_contents('php://input');
 $raw_post_array = explode('&', $raw_post_data);
 $myPost = array();
+=======
+
+$headers = 'From: noreply  <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n".
+                        'Reply-To: noreply@'.$_SERVER['HTTP_HOST']. "\r\n" .
+                        'X-Mailer: PHP/' . phpversion();
+
+
+      
+$raw_post_data = file_get_contents('php://input');
+$raw_post_array = explode('&', $raw_post_data);
+$myPost = array();
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 foreach ($raw_post_array as $keyval) {
         $keyval = explode ('=', $keyval);
         if (count($keyval) == 2)
@@ -191,6 +228,7 @@ if (curl_errno($ch) != 0) // cURL error
 //$res= "VERIFIED";
 
 if (strcmp ($res, "VERIFIED") == 0) {
+<<<<<<< HEAD
 
         $allowed_html   =   array();
         $payment_status         =   wp_kses ( $_POST['payment_status'],$allowed_html );
@@ -234,6 +272,59 @@ if (strcmp ($res, "VERIFIED") == 0) {
                 exit(); 
            }
            
+=======
+ 
+        $allowed_html   =   array();
+        $payment_status         =   wp_kses ( esc_html( $_POST['payment_status'] ),$allowed_html );
+        $txn_id                 =   wp_kses ( esc_html ($_POST['txn_id']),$allowed_html );
+        $txn_type               =   wp_kses ( esc_html($_POST['txn_type']),$allowed_html );   
+        $paypal_rec_email       =   esc_html( get_option('wp_estate_paypal_rec_email','') );
+        $receiver_email         =   wp_kses ( esc_html($_POST['receiver_email']),$allowed_html );
+        $payer_id               =   wp_kses ( esc_html($_POST['payer_id']),$allowed_html );
+  
+        $payer_email            =   wp_kses ( esc_html($_POST['payer_email']) ,$allowed_html);
+        $amount                 =   wp_kses ( esc_html($_POST['amount']),$allowed_html );
+        $recurring_payment_id   =   wp_kses ( esc_html($_POST['recurring_payment_id']),$allowed_html );
+        
+        //$user_id                =   retrive_user_by_profile($recurring_payment_id) ; 
+        $user_id                =   wpestate_retrive_user_by_recurring_payment_id($recurring_payment_id);
+        
+        $pack_id                =   get_user_meta($user_id, 'package_id',true);
+        $price                  =   get_post_meta($pack_id, 'pack_price', true);
+        
+        
+        $mailm='';
+        foreach ($_POST as $key => $value){
+            $key    =   sanitize_key($key);
+            $value  =   wp_kses(esc_html($value),$allowed_html);
+            $mailm.='['.$key.']='.$value.'</br>';
+        }  
+      
+        
+        if( $payment_status=='Completed' ){
+        
+            
+//            if($receiver_email!=$paypal_rec_email){
+//       
+//                exit();
+//            }
+               
+          
+            
+            if(retrive_invoice_by_taxid($txn_id)){// payment already processd
+                exit();
+            }
+        
+            
+            if( $user_id==0 ){ // no user with such profile id
+                exit();
+            }
+           
+            if( $amount != $price){ // received payment diffrent than pack value
+                exit(); 
+            }
+            
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             wpestate_upgrade_user_membership($user_id,$pack_id,2,$txn_id);
             $arguments=array(
                 'recurring_pack_name'   => get_the_title($pack_id),
@@ -245,6 +336,7 @@ if (strcmp ($res, "VERIFIED") == 0) {
         }else{ // payment not completed
            
             if($txn_type!='recurring_payment_profile_created'){
+<<<<<<< HEAD
                   wpestate_downgrade_to_free($user_id);
             }
           
@@ -252,6 +344,14 @@ if (strcmp ($res, "VERIFIED") == 0) {
  
 } else if (strcmp ($res, "INVALID") == 0) {
       exit('invalid');    
+=======
+             //   wpestate_downgrade_to_free($user_id);
+            }
+        }
+ 
+} else if (strcmp ($res, "INVALID") == 0) {
+    exit('invalid');    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 }
  
 
@@ -259,6 +359,7 @@ if (strcmp ($res, "VERIFIED") == 0) {
 /////////////////////////////////////////////////////////////////////////////////////
 // get user by paypal recurring profile
 /////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 if( !function_exists('retrive_user_by_profile') ):
 function retrive_user_by_profile($recurring_payment_id){   
     $recurring_payment_id=  str_replace('-', 'xxx', $recurring_payment_id);
@@ -277,6 +378,30 @@ function retrive_user_by_profile($recurring_payment_id){
     return $userid;
 }
 endif; // end   retrive_user_by_profile  
+=======
+
+function retrive_user_by_profile($recurring_payment_id){ 
+    if($recurring_payment_id!=''){
+        $recurring_payment_id=  str_replace('-', 'xxx', $recurring_payment_id);
+        $arg=array(
+            'role'         => 'subscriber',
+            'meta_key'     => 'profile_id',
+            'meta_value'   => $recurring_payment_id,
+            'meta_compare' => '='
+            );
+     
+        $userid=0;
+        $blogusers = get_users($arg);
+        foreach ($blogusers as $user) {
+           $userid=$user->ID;
+        }
+        return $userid;
+    }else{
+        return 0;
+    }
+}
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 
 
@@ -285,7 +410,11 @@ endif; // end   retrive_user_by_profile
 /////////////////////////////////////////////////////////////////////////////////////
 
 
+<<<<<<< HEAD
 if( !function_exists('retrive_invoice_by_taxid') ):
+=======
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 function retrive_invoice_by_taxid($tax_id){
     $args = array(
 	'post_type' => 'wpestate_invoice',
@@ -307,6 +436,27 @@ function retrive_invoice_by_taxid($tax_id){
     }
 
 }
+<<<<<<< HEAD
 endif; // end   retrive_invoice_by_taxid  
+=======
+
+
+
+function wpestate_retrive_user_by_recurring_payment_id($recurring_payment_id){   
+    $arg=array(
+        'meta_key'     => 'paypal_agreement',
+	'meta_value'   => trim($recurring_payment_id),
+        'meta_compare' => '=',
+    );
+    $userid=0;
+    $blogusers = get_users($arg);
+    
+    foreach ($blogusers as $user) {
+       $userid=$user->ID;
+    }
+    return $userid;
+}
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
 ?>

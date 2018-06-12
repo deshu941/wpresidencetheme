@@ -20,7 +20,12 @@ jQuery(document).ready(function ($) {
     });
     
     
+<<<<<<< HEAD
     $('#add_curency').click(function () {
+=======
+    $('#add_curency').click(function (event) {
+        event.preventDefault();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         var newfield, field_name, field_value, field_order,field_label;
         newfield = '';
         field_name  =   $('#currency_name').val();
@@ -47,7 +52,12 @@ jQuery(document).ready(function ($) {
 
 
 
+<<<<<<< HEAD
     $('#add_field').click(function () {
+=======
+    $('#add_field').click(function (event) {
+        event.preventDefault();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         var newfield, field_name, field_label, field_order, drodown_values;
         newfield = '';
         field_name  =   $('#field_name').val();
@@ -64,18 +74,35 @@ jQuery(document).ready(function ($) {
         newfield += '<a class="deletefieldlink" href="#">delete</a>';
         newfield += '</div>';
 
+<<<<<<< HEAD
         $('#custom_fields').append(newfield);
+=======
+
+        $('#custom_fields_wrapper').append(newfield);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $('#field_name').val('');
         $('#field_label').val('');
         $('#field_order').val('');
         $('#drodown_values').val('');
     });
+<<<<<<< HEAD
+=======
+    
+    
+    
+    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 
     $('#new_feature, #new_status').focus(function () {
         $(this).val('');
     });
 
+<<<<<<< HEAD
     $('#add_feature').click(function () {
+=======
+    $('#add_feature').click(function (event) {
+        event.preventDefault();
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         new_feature = $('#new_feature').val();
         if (new_feature !== '') {
             //feature_list

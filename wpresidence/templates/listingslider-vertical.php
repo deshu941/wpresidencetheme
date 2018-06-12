@@ -21,7 +21,11 @@ $post_attachments   = get_posts($arguments);
 $video_id           = esc_html( get_post_meta($post->ID, 'embed_video_id', true) );
 $video_type         = esc_html( get_post_meta($post->ID, 'embed_video_type', true) );
       
+<<<<<<< HEAD
 $prop_stat = esc_html( get_post_meta($post->ID, 'property_status', true) );    
+=======
+$prop_stat = stripslashes ( esc_html( get_post_meta($post->ID, 'property_status', true) ) );    
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 if (function_exists('icl_translate') ){
     $prop_stat     =   icl_translate('wpestate','wp_estate_property_status_'.$prop_stat, $prop_stat ) ;                                      
 }
@@ -42,6 +46,10 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
         $slides ='';
         $captions='';
         $counter=0;
+<<<<<<< HEAD
+=======
+        $counter_lightbox=0;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         $has_video=0;
         if($video_id!=''){
             $has_video  =   1; 
@@ -53,7 +61,11 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
           
             
             $indicators.='<li data-target="#carousel-listing"  data-video_data="'.$video_type.'" data-video_id="'.$video_id.'"  data-slide-to="0" class="active video_thumb_force">
+<<<<<<< HEAD
                          <img src= "'.get_video_thumb($post->ID).'" alt="video_thumb" class="img-responsive"/>
+=======
+                         <img src= "'.get_video_thumb($post->ID).'" alt="video_thumb" class="img-responsive lightbox_trigger"/>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                          <span class="estate_video_control"><i class="fa fa-play"></i> </span>
                          </li>'; 
 
@@ -72,7 +84,12 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
         }
 
         if( has_post_thumbnail() ){
+<<<<<<< HEAD
               $counter++;
+=======
+            $counter++;
+            $counter_lightbox++;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $active='';
             if($counter==1 && $has_video!=1){
                 $active=" active ";
@@ -98,8 +115,13 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
 
             $round_indicators   .=  ' <li data-target="#carousel-listing" data-slide-to="'.($counter-1).'" class="'. $active.'" ></li>';
             $slides .= '<div class="item '.$active.' ">
+<<<<<<< HEAD
                            <a href="'.$full_prty[0].'" rel="prettyPhoto[pp_gal]" class="prettygalery"> 
                                 <img  src="'.$full_img[0].'"  alt="'.$attachment_meta['alt'].'" class="img-responsive" />
+=======
+                           <a href="'.$full_prty[0].'" title="'.get_post($post_thumbnail_id)->post_excerpt.'" rel="prettyPhoto" class="prettygalery"> 
+                                <img  src="'.$full_img[0].'" data-slider-no="'.$counter_lightbox.'"  alt="'.$attachment_meta['alt'].'" class="img-responsive lightbox_trigger" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                            </a>
                         </div>';
 
@@ -111,6 +133,10 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
 
         foreach ($post_attachments as $attachment) {
             $counter++;
+<<<<<<< HEAD
+=======
+            $counter_lightbox++;
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             $active='';
             if($counter==1 && $has_video!=1){
                 $active=" active ";
@@ -128,13 +154,22 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
             $attachment_meta    = wp_get_attachment($attachment->ID);
 
             $indicators.= ' <li data-target="#carousel-listing" data-slide-to="'.($counter-1).'" class="'. $active.'">
+<<<<<<< HEAD
                                 <img  src="'.$preview[0].'"  alt="slider" />
+=======
+                                <img  src="'.$preview[0].'"  data-slider-no="'.$counter.'" alt="slider" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                             </li>';
             $round_indicators   .=  ' <li data-target="#carousel-listing" data-slide-to="'.($counter-1).'" class="'. $active.'"></li>';
 
             $slides .= '<div class="item '.$active.'">
+<<<<<<< HEAD
                         <a href="'.$full_prty[0].'" rel="prettyPhoto[pp_gal]" class="prettygalery" > 
                             <img  src="'.$full_img[0].'" alt="item" class="img-responsive" />
+=======
+                        <a href="'.$full_prty[0].'" rel="prettyPhoto" class="prettygalery" title="'.$attachment_meta['caption'].'" > 
+                            <img  src="'.$full_img[0].'"  data-slider-no="'.$counter_lightbox.'" alt="'.$attachment_meta['alt'].'"  class="img-responsive lightbox_trigger" />
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                          </a>
                         </div>';
 
@@ -154,20 +189,36 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
                 $gmap_long                  =   esc_html( get_post_meta($post->ID, 'property_longitude', true));
                 $property_add_on            =   ' data-post_id="'.$post->ID.'" data-cur_lat="'.$gmap_lat.'" data-cur_long="'.$gmap_long.'" ';
                 ?>
+<<<<<<< HEAD
                 <div id="slider_enable_map">    <i class="fa fa-map-marker"></i>        </div>
                 <?php 
                 $no_street=' no_stret ';
                 if ( get_post_meta($post->ID, 'property_google_view', true) ==1){
                     print '  <div id="slider_enable_street"> <i class="fa fa-location-arrow"></i>    </div>';
+=======
+                <div id="slider_enable_map" data-placement="bottom" data-original-title="<?php _e('Map','wpestate');?>">    <i class="fa fa-map-marker"></i>        </div>
+                <?php 
+                $no_street=' no_stret ';
+                if ( get_post_meta($post->ID, 'property_google_view', true) ==1){
+                    print '  <div id="slider_enable_street" data-placement="bottom" data-original-title="'.__('Street View','wpestate').'"> <i class="fa fa-location-arrow"></i>    </div>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                       $no_street='';
                 }
                 ?>
               
+<<<<<<< HEAD
                 <div id="slider_enable_slider" class="slideron <?php echo   $no_street; ?>"> <i class="fa fa-picture-o"></i>         </div>
                 
                 <div id="gmapzoomplus"  class="smallslidecontrol"><i class="fa fa-plus"></i> </div>
                 <div id="gmapzoomminus" class="smallslidecontrol"><i class="fa fa-minus"></i></div>
         
+=======
+                <div id="slider_enable_slider" data-placement="bottom" data-original-title="<?php _e('Image Gallery','wpestate');?>" class="slideron <?php echo   $no_street; ?>"> <i class="fa fa-picture-o"></i>         </div>
+                
+                <div id="gmapzoomplus"  class="smallslidecontrol"><i class="fa fa-plus"></i> </div>
+                <div id="gmapzoomminus" class="smallslidecontrol"><i class="fa fa-minus"></i></div>
+                <?php echo wpestate_show_poi_onmap();?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 <div id="googleMapSlider" <?php print $property_add_on; ?> >              
                 </div> 
         <?php       
@@ -178,6 +229,7 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
                 $gmap_long                  =   esc_html( get_post_meta($post->ID, 'property_longitude', true));
                 $property_add_on            =   ' data-post_id="'.$post->ID.'" data-cur_lat="'.$gmap_lat.'" data-cur_long="'.$gmap_long.'" ';
                 ?>
+<<<<<<< HEAD
                 <div id="slider_enable_map">    <i class="fa fa-map-marker"></i>        </div>
                 <?php 
                 $no_street=' no_stret ';
@@ -191,6 +243,21 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
                 <div id="gmapzoomplus"  class="smallslidecontrol" ><i class="fa fa-plus"></i> </div>
                 <div id="gmapzoomminus" class="smallslidecontrol" ><i class="fa fa-minus"></i></div>
                 
+=======
+                <div id="slider_enable_map" data-placement="bottom" data-original-title="<?php _e('Map','wpestate');?>">    <i class="fa fa-map-marker"></i>        </div>
+                <?php 
+                $no_street=' no_stret ';
+                if ( get_post_meta($post->ID, 'property_google_view', true) ==1){
+                    print '  <div id="slider_enable_street" data-placement="bottom" data-original-title="'.__('Street View','wpestate').'" > <i class="fa fa-location-arrow"></i>    </div>';
+                      $no_street='';
+                }
+                ?>
+                <div id="slider_enable_slider" data-placement="bottom" data-original-title="<?php _e('Image Gallery','wpestate');?>" class="slideron <?php echo   $no_street; ?>"> <i class="fa fa-picture-o"></i>         </div>
+                
+                <div id="gmapzoomplus"  class="smallslidecontrol" ><i class="fa fa-plus"></i> </div>
+                <div id="gmapzoomminus" class="smallslidecontrol" ><i class="fa fa-minus"></i></div>
+                <?php echo wpestate_show_poi_onmap();?>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 <div id="googleMapSlider" <?php print $property_add_on; ?> >   
                 </div>
         <?php        
@@ -225,10 +292,17 @@ if ($post_attachments || has_post_thumbnail() || get_post_meta($post->ID, 'embed
 
     <!-- Controls -->
     <a class="left vertical carousel-control" href="#carousel-listing" data-slide="prev">
+<<<<<<< HEAD
       <i class="fa fa-angle-left"></i>
     </a>
     <a class="right vertical carousel-control" href="#carousel-listing" data-slide="next">
       <i class="fa fa-angle-right"></i>
+=======
+        <i class="demo-icon icon-left-open-big"></i>
+    </a>
+    <a class="right vertical carousel-control" href="#carousel-listing" data-slide="next">
+        <i class="demo-icon icon-right-open-big"></i>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     </a>
     </div>
 

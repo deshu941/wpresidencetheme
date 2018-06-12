@@ -4,13 +4,21 @@
 global $post;
 get_header(); 
 $options=wpestate_page_details($post->ID); 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 
 
 
 <div class="row">
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class="col-xs-12 <?php print $options['content_class'];?> ">
+=======
+    <div class="col-xs-12 <?php print esc_html($options['content_class']);?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         
          <?php get_template_part('templates/ajax_container'); ?>
         
@@ -24,7 +32,14 @@ $options=wpestate_page_details($post->ID);
                    
         
         <!-- #comments start-->
+<<<<<<< HEAD
         <?php comments_template('', true);?> 	
+=======
+        <?php 
+        if(!is_front_page()){
+            comments_template('', true);
+        }?> 	
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         <!-- end comments -->   
         
         <?php endwhile; // end of the loop. ?>

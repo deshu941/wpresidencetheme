@@ -49,6 +49,10 @@ $required_text= '  ';
 
 $args = array(
     'id_form'           => 'commentform',
+<<<<<<< HEAD
+=======
+    'class_submit'      =>  'wpresidence_button',
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     'id_submit'         => 'submit',
     'title_reply'       => __( 'Leave a Reply','wpestate' ),
     'title_reply_to'    => __( 'Leave a Reply to %s','wpestate' ),

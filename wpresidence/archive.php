@@ -4,11 +4,24 @@
 get_header();
 $options    =   wpestate_page_details('');
 $blog_unit  =   esc_html ( get_option('wp_estate_blog_unit','') ); 
+<<<<<<< HEAD
+=======
+global $no_listins_per_row;
+$no_listins_per_row =   intval( get_option('wp_estate_blog_listings_per_row', '') );
+
+if ( 'wpestate_message' == get_post_type() || 'wpestate_invoice' == get_post_type()  ){
+    exit();
+}
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 ?>
 
 <div class="row"> 
     <?php get_template_part('templates/breadcrumbs'); ?>
+<<<<<<< HEAD
     <div class=" <?php print $options['content_class'];?> ">
+=======
+    <div class=" <?php print esc_html($options['content_class']);?> ">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
           <?php get_template_part('templates/ajax_container'); ?>
           <h1 class="entry-title">
              <?php 

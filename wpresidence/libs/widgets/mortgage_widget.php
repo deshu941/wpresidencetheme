@@ -1,10 +1,19 @@
 <?php
 class Mortgage_widget extends WP_Widget {
+<<<<<<< HEAD
 	
 	function Mortgage_widget(){
 		$widget_ops = array('classname' => 'mortgage_calculator_li', 'description' => 'Mortgage Calculator.');
 		$control_ops = array('id_base' => 'mortgage_widget');
 		$this->WP_Widget('mortgage_widget', 'Wp Estate: Mortgage', $widget_ops, $control_ops);
+=======
+	function __construct(){
+	//function Mortgage_widget(){
+		$widget_ops = array('classname' => 'mortgage_calculator_li boxed_widget', 'description' => 'Mortgage Calculator.');
+		$control_ops = array('id_base' => 'mortgage_widget');
+		//$this->WP_Widget('mortgage_widget', 'Wp Estate: Mortgage', $widget_ops, $control_ops);
+                parent::__construct('mortgage_widget', 'Wp Estate: Mortgage', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 	
 	function form($instance){
@@ -35,6 +44,7 @@ class Mortgage_widget extends WP_Widget {
 
 		print $before_widget;
 
+<<<<<<< HEAD
 		if($title) {
 			print $before_title.$title.$after_title;
 		}
@@ -53,15 +63,47 @@ class Mortgage_widget extends WP_Widget {
 
                     <label for="interest_rate">'.__('Interest Rate in %','wpestate').'</label>    
                     <input type="text" id="interest_rate" value="5" class="form-control">
+=======
+		
+		$display.='
+                <h3 class="widget-title-sidebar"> '.__('Mortgage Calculator','wpestate').'</h3>
+               
+                <div id="input_formula">
+                    <label for="sale_price">'.__('Sale Price','wpestate').'</label>    
+                    <div class="sale_price_wrapper">    
+                        <input type="text" id="sale_price" value="100000" class="form-control">
+                    </div>
+                    
+                    <label for="percent_down">'.__('Percent Down','wpestate').'</label>    
+                    <div class="percent_down_wrapper">    
+                        <input type="text" id="percent_down" value="10" class="form-control">
+                    </div>
+                  
+                    <label for="term_years">'.__('Term (Years)','wpestate').'</label>    
+                    <div class="years_wrapper">    
+                        <input type="text" id="term_years" value="30" class="form-control">
+                    </div>
+                    
+                    <label for="interest_rate">'.__('Interest Rate in %','wpestate').'</label>    
+                    <div class="interest_wrapper">    
+                        <input type="text" id="interest_rate" value="5" class="form-control">
+                    </div>
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     
                     <div id="morg_results">
                         <span id="am_fin"></span>
                         <span id="morgage_pay"></span>                      
                         <span id="anual_pay"></span>
                     </div>
+<<<<<<< HEAD
                     <button class="wpb_button  wpb_btn-info wpb_btn-large" id="morg_compute">'.__('Calculate','wpestate').'</button>
                    
                 </div>
+=======
+                    <button class="wpresidence_button" id="morg_compute">'.__('Calculate','wpestate').'</button>
+                   
+            
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 
                 ';
 		

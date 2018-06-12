@@ -7,7 +7,11 @@ $link       =   get_permalink();
 ?>
 
 <div class="blog-unit-wrapper">
+<<<<<<< HEAD
     <div class="blog_unit  col-md-12" data-link="<?php print $link;?>"> 
+=======
+    <div class="blog_unit  col-md-12" data-link="<?php print esc_url($link);?>"> 
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
     
         <?php 
         if( $options['content_class']=='col-md-12'){
@@ -23,21 +27,38 @@ $link       =   get_permalink();
         
         $unit_class = "";
         $thumb_prop = get_the_post_thumbnail( $post->ID, 'blog_unit',$extra );
+<<<<<<< HEAD
+=======
+         
+        if($thumb_prop ==''){
+            $thumb_prop_default =  get_template_directory_uri().'/img/defaults/default_blog_unit.jpg';
+            $thumb_prop         =  '<img src="'.$thumb_prop_default.'" class="b-lazy img-responsive wp-post-image  lazy-hidden" alt="no thumb" />';   
+        }
+            
+            
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
         if ( $thumb_prop != '' ) {
             $unit_class="has_thumb"; ?>
             <div class="blog_unit_image">
                 <?php print $thumb_prop; ?>
+<<<<<<< HEAD
           
                 <?php
                     print '<div class="listing-cover"></div>
                     <a href="'.$link.'"> <span class="listing-cover-plus">+</span></a>';
              
                 ?>
+=======
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
             </div>      
         <?php } ?>        
                 
 
+<<<<<<< HEAD
     <div class="blog_unit_content <?php print $unit_class;?>">
+=======
+    <div class="blog_unit_content <?php print esc_html($unit_class);?>">
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
          <div class="blog_unit_meta">
  
         </div>
@@ -46,8 +67,13 @@ $link       =   get_permalink();
             <a href="<?php the_permalink(); ?>">
             <?php 
                 $title=get_the_title();
+<<<<<<< HEAD
                 echo substr( $title,0,54); 
                 if(strlen($title)>54){
+=======
+                echo mb_substr( $title,0,54); 
+                if(mb_strlen($title)>54){
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                     echo '...';   
                 } 
             ?>

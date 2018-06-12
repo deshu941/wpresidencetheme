@@ -1,11 +1,20 @@
 <?php
 
 class Tweet_Widget extends WP_Widget {	
+<<<<<<< HEAD
 	function Tweet_Widget()
 	{
 		$widget_ops = array('classname' => 'twitter_wrapper', 'description' => 'show your latest tweets');
 		$control_ops = array('id_base' => 'twitter-widget');
 		$this->WP_Widget('twitter-widget', 'Wp Estate Twitter Widget', $widget_ops, $control_ops);
+=======
+	function __construct(){
+        //function Tweet_Widget(){
+		$widget_ops = array('classname' => 'twitter_wrapper', 'description' => 'show your latest tweets');
+		$control_ops = array('id_base' => 'twitter-widget');
+		//$this->WP_Widget('twitter-widget', 'Wp Estate Twitter Widget', $widget_ops, $control_ops);
+                parent::__construct('twitter-widget', 'Wp Estate Twitter Widget', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 
 	function form($instance)
@@ -57,17 +66,47 @@ class Tweet_Widget extends WP_Widget {
                 $diff = time() - $tw_last_cache_time;
                 $crt = $twitter_cache_time * 3600;
                 
+<<<<<<< HEAD
                 if($diff >= $crt || empty($tp_twitter_plugin_last_cache_time)){
                     require_once('twitteroauth.php');
                 }
                 
+=======
+                if($diff >= $crt || empty($tp_twitter_plugin_last_cache_time)){   
+                    require_once get_template_directory().'/libs/widgets/twitter-api-wordpress.php';
+                }
+                
+                $settings = array(
+                        'oauth_access_token' => $twitter_access_token,
+                        'oauth_access_token_secret' =>$twitter_access_secret,
+                        'consumer_key' => $twitter_consumer_key,
+                        'consumer_secret' => $twitter_consumer_secret
+                );
+                $url            = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+                $getfield       = '?screen_name='.$username;
+                $request_method = 'GET';
+                $twitter_instance = new Twitter_API_WordPress( $settings );
+
+          
+
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                 
                 if( $twitter_consumer_key!='' && $twitter_consumer_secret!=''  && $twitter_access_token!=''  && $twitter_access_secret!=''  ){
                 
                             if($username!=''){
+<<<<<<< HEAD
                                       $connection = getConnectionWithAccessToken($twitter_consumer_key, $twitter_consumer_secret , $twitter_access_token, $twitter_access_secret);
                                       $got_tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=". $username."&count=10") or die('Couldn\'t retrieve your tweets!');
 
+=======
+                                     $got_tweets = $twitter_instance
+                                    ->set_get_field( $getfield )
+                                    ->build_oauth( $url, $request_method )
+                                    ->process_request();
+                                    $got_tweets=  json_decode($got_tweets);
+
+                                      
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                                       if(!empty($tweets->errors)){
                                          $display='<strong>'.$tweets->errors[0]->message.'</strong>';
                                       }
@@ -94,14 +133,21 @@ class Tweet_Widget extends WP_Widget {
                                                       $counter    =   0;
                                                       $slides     =   '';
                                                       $indicators =   '';
+<<<<<<< HEAD
                                                       foreach($wpestate_tweets as $tweet){
                                                           if($counter==0){
+=======
+                                                foreach($wpestate_tweets as $tweet){
+
+                                                     if($counter==0){
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                                                             $active=" active ";
                                                           }else{
                                                             $active=" ";
                                                           }
                                                           $indicators.= '<li data-target="#twiter-carousel" data-slide-to="'.($counter).'" class="'. $active.'">
                                                                           </li>';
+<<<<<<< HEAD
                                                             
                                                           
                                                            $slides.= '
@@ -120,6 +166,29 @@ class Tweet_Widget extends WP_Widget {
                                                              $counter++;
                                                       }
 
+=======
+
+
+                                                    $string_twet = preg_replace(
+                                                                  "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~",
+                                                                  "<a href=\"\\0\">\\0</a>", 
+                                                                  $tweet['text']);
+
+                                                    $slides.= '
+                                                    <div class="item '.$active.'">
+                                                        <span>'.$string_twet.'</span><br />
+                                                        <a class="twitter_time" target="_blank" href="http://twitter.com/'.$username.'/statuses/'.$tweet['status'].'">'.wpestate_relative_time($tweet['when']).'</a>
+                                                    </div>';
+
+
+
+                                                    if($fctr == $how_many){ 
+                                                        break; 
+                                                    }
+                                                    $fctr++;
+                                                    $counter++;
+                                                }
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
                                               /*print '</ul>
                                                   <div id="tw_control"></div>
                                               </div>';*/

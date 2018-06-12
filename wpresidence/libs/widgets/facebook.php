@@ -1,10 +1,19 @@
 <?php
 class Facebook_Widget extends WP_Widget {	
+<<<<<<< HEAD
 	function Facebook_Widget()
 	{
 		$widget_ops = array('classname' => 'facebook_widget_like', 'description' => 'Insert a Facebook Like Box.');
 		$control_ops = array('id_base' => 'facebook_widget');
 		$this->WP_Widget('facebook_widget', 'Wp Estate: Facebook Box', $widget_ops, $control_ops);
+=======
+	function __construct(){
+        //function Facebook_Widget(){
+		$widget_ops = array('classname' => 'facebook_widget_like', 'description' => 'Insert a Facebook Like Box.');
+		$control_ops = array('id_base' => 'facebook_widget');
+		//$this->WP_Widget('facebook_widget', 'Wp Estate: Facebook Box', $widget_ops, $control_ops);
+                parent::__construct('facebook_widget', 'Wp Estate: Facebook Box', $widget_ops, $control_ops);
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 	}
 
 
@@ -111,8 +120,13 @@ class Facebook_Widget extends WP_Widget {
 		}
 		
 		if($page_url){
+<<<<<<< HEAD
 			
 		$display='<iframe id="facebook_wid" src="http://www.facebook.com/plugins/likebox.php?href='.urlencode($page_url).'&amp;width='.$box_width.'&amp;height='.$box_height.'&amp;colorscheme='.$color_scheme.'&amp;show_faces='.$faces.'&amp;stream='.$stream.'&amp;header='.$header.'&amp;"  style="border:none; overflow:hidden; width:'.$box_width.'px; height:'.$box_height.'px;background-color:white;" ></iframe>';
+=======
+                    $protocol = is_ssl() ? 'https' : 'http';
+                    $display='<iframe id="facebook_wid" src="'.$protocol.'://www.facebook.com/plugins/likebox.php?href='.urlencode($page_url).'&amp;width='.$box_width.'&amp;height='.$box_height.'&amp;colorscheme='.$color_scheme.'&amp;show_faces='.$faces.'&amp;stream='.$stream.'&amp;header='.$header.'&amp;"  style="border:none; overflow:hidden; width:'.$box_width.'px; height:'.$box_height.'px;background-color:white;" ></iframe>';
+>>>>>>> 64662fd89bea560852792d7203888072d7452d48
 		}
 		print $display;
 		print $after_widget;
